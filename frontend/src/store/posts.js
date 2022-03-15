@@ -2,15 +2,28 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_POSTS = 'user/LOAD_POSTS';
 const CREATE_POST = 'user/CREATE_POST';
+const DELETE_POST = 'user/DELETE_POST';
 
-const createPost = (post) => ({
-    type: CREATE_POST,
-    post
-});
+const deletePost = (postId) => ({
+    type: DELETE_POST,
+    postId
+})
+
+export const deleteSinglePost = (postId) => async dispatch => {
+    const response = await csrfFetch(`/api/users/posts/${postId}/delete`, {
+        method: 'DELETE',
+        body: JSON.stringify({
+            postId
+        })
+    })
+    const deleted = await response.json()
+    dispatch(deletePost(postId))
+    return deleted
+}
+
 
 export const createUserPost = (post) => async dispatch => {
-    console.log(post, ' is it sending a post to the thunk?')
-    const response = await csrfFetch('/api/users/post/new', {
+    const response = await csrfFetch('/api/users/posts/new', {
         method: 'POST',
         body: JSON.stringify(post)
     })
@@ -42,7 +55,11 @@ function postsReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_POSTS:
         newState = {...state}
-        newState.Posts = action.postData;
+        action.postData.forEach((post) => newState.Posts[post.id] = post)
+        return newState;
+    case DELETE_POST:
+        newState = {...state}
+        delete newState.Posts[action.postId]
         return newState;
     default:
       return state;

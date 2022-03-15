@@ -9,6 +9,7 @@ import CreatePost from '../CreatePost/CreatePost';
 
 
 
+
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
   const history = useHistory();
