@@ -4,3 +4,29 @@
   gap: 30px;
   overflow: auto;
 }
+
+.post-cont{
+  width: 400px;
+  height: 400px;
+  border: 2px solid black;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.post-menu{
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.modal-delete{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(44, 43, 43, 0.1);
+}

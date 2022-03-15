@@ -65,7 +65,7 @@ const validatePost = [
 ]
 
 
-router.post('/post/new', validatePost, requireAuth, asyncHandler(async(req,res) => {
+router.post('/posts/new', validatePost, requireAuth, asyncHandler(async(req,res) => {
     const {userId, image, caption} = req.body
     console.log(userId, image ,caption, 'what is the post')
     const newPost = {userId, image, caption}
@@ -73,6 +73,13 @@ router.post('/post/new', validatePost, requireAuth, asyncHandler(async(req,res) 
     res.json(post);
 }));
 
+
+router.delete('/posts/:postId/delete', requireAuth, asyncHandler(async(req,res) => {
+  const {postId} = req.params
+  const post = await Post.findByPk(postId)
+  await post.destroy();
+  res.json({msg: 'delete successful'})
+}))
 
 
 module.exports = router;

@@ -6,6 +6,7 @@ import SignupFormPage from './components/SignupFormPage';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation/Navigation';
 import HomeFeed from './components/HomeFeed/HomeFeed';
+import DeletePost from './components/DeletePost/DeletePost';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,12 +23,15 @@ function App() {
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route> */}
-          <Route path='/signup'>
+          <Route path='/signup' exact={true}>
             <SignupFormPage />
           </Route>
           <Route path='/' exact={true}>
             <HomeFeed />
           </Route>
+          {/* <Route path='/posts/:postId' exact={true} >
+            <DeletePost />
+          </Route> */}
         </Switch>
       )}
     </>
