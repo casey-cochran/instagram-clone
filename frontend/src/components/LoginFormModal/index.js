@@ -1,18 +1,38 @@
 import React, { useState } from 'react';
-import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
+import Modal from 'react-modal';
 
 function LoginFormModal() {
-  const [showModal, setShowModal] = useState(false);
+
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  };
+  function closeModal() {
+    setIsOpen(false);
+  };
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Log In</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
-        </Modal>
-      )}
+    <button onClick={openModal}>Login</button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+      >
+        <LoginForm />
+      </Modal>
     </>
   );
 }
