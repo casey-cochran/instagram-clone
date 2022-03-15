@@ -49,16 +49,29 @@ router.post(
 router.get("", asyncHandler(async(req,res) => {
   const posts = await Post.findAll()
   res.json(posts);
-}))
+}));
+
+const validatePost = [
+  check("image")
+    .exists({ checkFalsy: true })
+    .withMessage("Must provide an image URL")
+    .isURL()
+    .withMessage("Must be a valid URL"),
+  check('caption')
+    .exists({checkFalsy: true})
+    .withMessage("Must provide a caption"),
+  handleValidationErrors,
+
+]
 
 
-router.post('/post/new', requireAuth, asyncHandler(async(req,res) => {
+router.post('/post/new', validatePost, requireAuth, asyncHandler(async(req,res) => {
     const {userId, image, caption} = req.body
     console.log(userId, image ,caption, 'what is the post')
     const newPost = {userId, image, caption}
     const post = await Post.create(newPost);
     res.json(post);
-}))
+}));
 
 
 
