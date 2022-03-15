@@ -4,7 +4,8 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User } = require("../../db/models");
+const { User, Post } = require("../../db/models");
+
 
 const router = express.Router();
 
@@ -43,5 +44,22 @@ router.post(
     });
   }),
 );
+
+
+router.get("", asyncHandler(async(req,res) => {
+  const posts = await Post.findAll()
+  res.json(posts);
+}))
+
+
+router.post('/post/new', requireAuth, asyncHandler(async(req,res) => {
+    const {userId, image, caption} = req.body
+    console.log(userId, image ,caption, 'what is the post')
+    const newPost = {userId, image, caption}
+    const post = await Post.create(newPost);
+    res.json(post);
+}))
+
+
 
 module.exports = router;

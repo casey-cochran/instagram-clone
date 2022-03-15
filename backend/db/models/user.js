@@ -39,6 +39,27 @@ module.exports = (sequelize, DataTypes) => {
     };
     static associate(models) {
       // define association here
+      User.hasMany(models.Post, {foreignKey: 'userId'})
+      User.hasMany(models.Conversation, {
+        foreignKey: 'senderId'})
+      User.hasMany(models.Conversation, {
+        foreignKey: 'receiverId'})
+      User.belongsToMany(models.User, {
+        through: 'Follow',
+        otherKey: 'followedId',
+        foreignKey: 'followerId',
+        as: 'followers'
+      })
+      User.belongsToMany(models.User, {
+        through: 'Follow',
+        otherKey: 'followerId',
+        foreignKey: 'followedId',
+        as: 'followed'
+      })
+      // User.belongsTo(models.Feed, {foreignKey: 'userId'})
+      User.hasMany(models.Like, {foreignKey: 'userId'})
+      User.hasMany(models.Dislike, {foreignKey: 'userId'})
+      User.hasMany(models.Comment, {foreignKey: 'userId'})
     }
   };
   User.init(
@@ -62,6 +83,14 @@ module.exports = (sequelize, DataTypes) => {
           len: [3, 256],
         },
       },
+      bio: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      image: {
+        type: DataTypes.TEXT,
+        allowNull: true
+      },
       hashedPassword: {
         type: DataTypes.STRING.BINARY,
         allowNull: false,
@@ -72,7 +101,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "User",
+      modelName: 'User',
       defaultScope: {
         attributes: {
           exclude: ["hashedPassword", "email", "createdAt", "updatedAt"],
