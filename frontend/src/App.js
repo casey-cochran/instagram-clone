@@ -7,6 +7,7 @@ import * as sessionActions from './store/session';
 import Navigation from './components/Navigation/Navigation';
 import HomeFeed from './components/HomeFeed/HomeFeed';
 import DeletePost from './components/DeletePost/DeletePost';
+import SinglePost from './components/SinglePost/SinglePost';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,9 +30,9 @@ function App() {
           <Route path='/' exact={true}>
             <HomeFeed />
           </Route>
-          {/* <Route path='/posts/:postId' exact={true} >
-            <DeletePost />
-          </Route> */}
+          <Route path='/posts/:postId' exact={true} >
+            <SinglePost />
+          </Route>
         </Switch>
       )}
     </>

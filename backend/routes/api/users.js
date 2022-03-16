@@ -51,6 +51,12 @@ router.get("", asyncHandler(async(req,res) => {
   res.json(posts);
 }));
 
+router.get('/posts/:postId', asyncHandler(async(req,res) => {
+  const {postId} = req.params;
+  const post = await Post.findByPk(postId);
+  res.json(post)
+}))
+
 const validatePost = [
   check("image")
     .exists({ checkFalsy: true })

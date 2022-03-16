@@ -1,8 +1,23 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_POSTS = 'user/LOAD_POSTS';
+const LOAD_ONE_POST = 'user/LOAD_ONE_POST'
 const CREATE_POST = 'user/CREATE_POST';
 const DELETE_POST = 'user/DELETE_POST';
+
+
+const loadOnePost = (post) => ({
+    type: LOAD_ONE_POST,
+    post
+})
+
+export const loadSinglePost = (postId) => async dispatch => {
+    const response = await csrfFetch(`/api/users/posts/${postId}`)
+    const post = await response.json()
+    dispatch(loadOnePost(post))
+    return post
+}
+
 
 const deletePost = (postId) => ({
     type: DELETE_POST,
@@ -60,6 +75,10 @@ function postsReducer(state = initialState, action) {
     case DELETE_POST:
         newState = {...state}
         delete newState.Posts[action.postId]
+        return newState;
+    case LOAD_ONE_POST:
+        newState = {...state}
+        newState.Posts[action.post.id] = action.post;
         return newState;
     default:
       return state;
