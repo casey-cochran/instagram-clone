@@ -97,7 +97,7 @@ const validateEdit = [
 router.patch('/posts/:postId/edit', validateEdit, requireAuth, asyncHandler(async(req,res) => {
   const {postId} = req.params
   const {caption} = req.body
-  const post = await Post.findByPk(postId)
+  const post = await Post.findByPk(postId,{include: [Comment]})
   const updated = await post.update({caption: caption})
   res.json({updated})
 }))

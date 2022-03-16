@@ -29,7 +29,7 @@ function commentsReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_COMMENT:
         newState = {...state}
-        newState[action.comment.newComment.id] = action.comment.newComment
+        newState.Comments[action.comment.newComment.id] = action.comment.newComment
         return newState;
     default:
       return state;

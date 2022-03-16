@@ -5,6 +5,7 @@ const LOAD_ONE_POST = 'user/LOAD_ONE_POST'
 const CREATE_POST = 'user/CREATE_POST';
 const DELETE_POST = 'user/DELETE_POST';
 const EDIT_POST = 'user/EDIT_POST';
+const ADD_COMMENT = 'user/ADD_COMMENT';
 
 
 const editPost = (post) => ({
@@ -103,6 +104,10 @@ function postsReducer(state = initialState, action) {
         newState = {...state}
         newState.Posts[action.post.updated.id] = action.post.updated;
         return newState
+    case ADD_COMMENT:
+        newState = {...state}
+        newState.Posts[action.comment.newComment.postId].Comments.push(action.comment.newComment);
+        return newState;
     default:
       return state;
   }
