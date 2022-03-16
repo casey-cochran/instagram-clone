@@ -92,10 +92,10 @@ const HomeFeed = () => {
                   </div>
                   <p>{user.username} {post?.caption}</p>
                   <p>View all {post?.Comments?.length} comments</p>
-                    {comments?.map((com) => {
+                    {comments?.map((com, index) => {
                         return (
                             <>
-                            <p key={com.id}>{com.postId === post.id && com.content}</p>
+                            <p key={index}>{com.postId === post.id && com.content}</p>
                             </>
                         )
                     })}

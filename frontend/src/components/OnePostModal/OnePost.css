@@ -1,13 +1,66 @@
-#single-post-{
-    height:705px;
+
+.one-post-cont{
+    display:flex;
+    width: 1020px;
+    justify-content: stretch;
 }
 
-.header-comment.single-post{
-    height: 705px;
-    width: 800px;
-    margin: 0;
+.view-items{
+    width: 700px;
+    height: 706px;
 }
 
-.right-bar.wid{
-    width: 327px;
+.view-items.img{
+    object-fit: cover;
+}
+
+.comments-side-bar{
+    width: 370px;
+    height: 618px;
+    background-color: white;
+}
+
+.comments-side-header{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid black;
+    width: 370px;
+
+}
+
+#input-wid{
+    width: 50px;
+    border: none;
+}
+
+.side-comments-scroll{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 637px;
+    background-color: white;
+}
+
+.home-comment.sidebar{
+    width: 200px;
+}
+.add-comment.sidebar{
+    width: 370px;
+    border:none;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.scroll-comments{
+    flex: 1;
+    width: 365px;
+    overflow: auto;
+
+}
+.comm-spacing{
+    padding-left: 10px;
+    padding-top: 30px;
+}
+
+.one-post-likes{
+    box-shadow: 0 -5px 5px -5px rgb(204, 201, 201);
 }
