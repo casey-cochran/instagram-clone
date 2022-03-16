@@ -36,6 +36,7 @@
   background: rgba(44, 43, 43, 0.1);
 }
 
+
 .likes-cont{
   display: flex;
   justify-content: flex-start;
@@ -64,4 +65,14 @@ img{
 #testing{
   display: flex;
   flex-direction: column;
+}
+
+
+.view-comm-modal{
+  position: absolute;
+    top: 14px;
+    left: 150px;
+    right: 150px;
+    bottom:15px;
+    background-color: papayawhip;
 }

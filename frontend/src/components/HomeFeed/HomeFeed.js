@@ -6,6 +6,8 @@ import { useHistory, NavLink } from "react-router-dom";
 import Modal from "react-modal";
 import DeletePost from "../DeletePost/DeletePost";
 import PostComment from "../PostComment/PostComment";
+import OnePostModal from "../OnePostModal/OnePostModal";
+
 
 const HomeFeed = () => {
   const dispatch = useDispatch();
@@ -22,17 +24,19 @@ const HomeFeed = () => {
 
   const customStyles = {
     content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
+    //   top: "50%",
+    //   left: "50%",
+    //   right: "auto",
+    //   bottom: "auto",
+    //   marginRight: "-50%",
+    //   transform: "translate(-50%, -50%)",
     },
   };
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState(null);
+  const [modalPost, setModalPost] = useState(null);
   const [commentProps, setCommentProps] = useState(null);
+  const [openComm, setOpenComm] = useState(false)
 
   function openModal() {
     setIsOpen(true);
@@ -40,6 +44,13 @@ const HomeFeed = () => {
   function closeModal() {
     setIsOpen(false);
   }
+
+  const openCommModal = () => {
+    setOpenComm(true);
+  }
+  const closeCommModal = () => {
+    setOpenComm(false);
+}
 
   useEffect(() => {
     dispatch(loadAllPosts());
@@ -72,10 +83,14 @@ const HomeFeed = () => {
                 <div id='testing'>
                   <div className="likes-cont">
                     <p>likes</p>
-                    <button>add comment</button>
+                    <button onClick={() => {
+                        setModalPost(post)
+                        setModalProps(post.id)
+                        openCommModal()
+                    }}>add comment</button>
                     <p>send message</p>
                   </div>
-                  <p>{user.username}</p>
+                  <p>{user.username} {post?.caption}</p>
                   <p>View all {post?.Comments?.length} comments</p>
                     {comments?.map((com) => {
                         return (
@@ -96,6 +111,14 @@ const HomeFeed = () => {
           overlayClassName="modal-delete"
         >
           <DeletePost closeModal={closeModal} postId={modalProps} />
+        </Modal>
+        <Modal
+          isOpen={openComm}
+          onRequestClose={closeCommModal}
+          className='view-comm-modal'
+          overlayClassName="modal-delete"
+        >
+          <OnePostModal closeModal={closeCommModal} user={user} postId={modalProps} singlePost={modalPost}/>
         </Modal>
       </div>
       <div>
