@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import "./SinglePost.css";
 import { useParams } from "react-router-dom";
 import { loadSinglePost } from "../../store/posts";
+import EditPost from "../EditPost/EditPost";
 
 const SinglePost = () => {
   const dispatch = useDispatch();
@@ -54,12 +55,13 @@ const SinglePost = () => {
                   style={customStyles}
                   overlayClassName="modal-delete"
                 >
-                  {/* <DeletePost closeModal={closeModal} postId={modalProps} /> */}
+                <EditPost closeModal={closeModal} postId={postId} postImg={singlePost?.image} />
                 </Modal>
-                <button onClick={openModal}>edit post</button>
+                <button onClick={openModal} >edit post</button>
               </div>
               <div className="child2">
                 <h2>comments box</h2>
+                <p>{singlePost?.caption}</p>
               </div>
             </div>
           </div>

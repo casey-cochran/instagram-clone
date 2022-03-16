@@ -4,7 +4,26 @@ const LOAD_POSTS = 'user/LOAD_POSTS';
 const LOAD_ONE_POST = 'user/LOAD_ONE_POST'
 const CREATE_POST = 'user/CREATE_POST';
 const DELETE_POST = 'user/DELETE_POST';
+const EDIT_POST = 'user/EDIT_POST';
 
+
+const editPost = (post) => ({
+    type: EDIT_POST,
+    post
+})
+
+export const editSinglePost = (post) => async dispatch => {
+    console.log(post, ' any post hitting the thunk?')
+    const response = await csrfFetch(`/api/users/posts/${post.postId}/edit`, {
+        method: 'PATCH',
+        body: JSON.stringify(
+            post
+        )
+    })
+    const updatedPost = await response.json()
+    dispatch(editPost(updatedPost))
+    return updatedPost
+}
 
 const loadOnePost = (post) => ({
     type: LOAD_ONE_POST,
@@ -80,6 +99,10 @@ function postsReducer(state = initialState, action) {
         newState = {...state}
         newState.Posts[action.post.id] = action.post;
         return newState;
+    case EDIT_POST:
+        newState = {...state}
+        newState.Posts[action.post.updated.id] = action.post.updated;
+        return newState
     default:
       return state;
   }

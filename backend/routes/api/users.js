@@ -73,7 +73,6 @@ const validatePost = [
 
 router.post('/posts/new', validatePost, requireAuth, asyncHandler(async(req,res) => {
     const {userId, image, caption} = req.body
-    console.log(userId, image ,caption, 'what is the post')
     const newPost = {userId, image, caption}
     const post = await Post.create(newPost);
     res.json(post);
@@ -85,6 +84,22 @@ router.delete('/posts/:postId/delete', requireAuth, asyncHandler(async(req,res) 
   const post = await Post.findByPk(postId)
   await post.destroy();
   res.json({msg: 'delete successful'})
+}))
+
+
+const validateEdit = [
+  check('caption')
+    .exists({checkFalsy: true})
+    .withMessage("Must provide a caption"),
+  handleValidationErrors,
+]
+
+router.patch('/posts/:postId/edit', validateEdit, requireAuth, asyncHandler(async(req,res) => {
+  const {postId} = req.params
+  const {caption} = req.body
+  const post = await Post.findByPk(postId)
+  const updated = await post.update({caption: caption})
+  res.json({updated})
 }))
 
 
