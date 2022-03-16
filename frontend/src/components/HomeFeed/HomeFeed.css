@@ -6,8 +6,8 @@
 }
 
 .post-cont{
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 585px;
   border: 2px solid black;
   display:flex;
   flex-direction: column;
@@ -29,4 +29,27 @@
   right: 0;
   bottom: 0;
   background: rgba(44, 43, 43, 0.1);
+}
+
+.likes-cont{
+  display: flex;
+  justify-content: flex-start;
+  width: 404px;
+}
+
+img{
+  height: 314px;
+  object-fit: fill;
+  width: 500px;
+}
+
+.add-comment{
+  border: 1px solid black;
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#home-comment{
+  width: 250px;
 }

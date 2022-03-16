@@ -5,14 +5,17 @@ import "./HomeFeed.css";
 import { useHistory, NavLink } from "react-router-dom";
 import Modal from "react-modal";
 import DeletePost from "../DeletePost/DeletePost";
+import PostComment from "../PostComment/PostComment";
 
 const HomeFeed = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
-  const user = useSelector((state) => state.session.user?.id);
+  const userId = useSelector((state) => state.session.user?.id);
   const history = useHistory();
+
+
 
   const customStyles = {
     content: {
@@ -60,18 +63,18 @@ const HomeFeed = () => {
                   </button>
                 </div>
                 <div>
-                  <p>the post image will go in this cont</p>
+                  <img src={post?.image} />
                 </div>
                 <div>
-                  <div>
+                  <div className="likes-cont">
                       <p>likes</p>
-                      <p>add comment</p>
+                      <button>add comment</button>
                       <p>send message</p>
                   </div>
-                  <p>{post.caption}</p>
-                  <div></div>
-                  <div></div>
-                  <p>comments here</p>
+                  <p>username with post goes here?</p>
+                  <p>view all commenst, modal to view post and comments scroll</p>
+                  <div>comments load here when posted</div>
+                  <PostComment postId={post?.id} userId={userId}/>
                 </div>
               </div>
             );
