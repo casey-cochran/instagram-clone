@@ -8,7 +8,9 @@ import DeletePost from "../DeletePost/DeletePost";
 
 const HomeFeed = () => {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => Object.values(state.postsReducer?.Posts));
+  const posts = useSelector((state) =>
+    Object.values(state.postsReducer?.Posts)
+  );
   const user = useSelector((state) => state.session.user?.id);
   const history = useHistory();
 
@@ -48,9 +50,12 @@ const HomeFeed = () => {
               <div className="post-cont" key={index}>
                 <div className="post-menu">
                   <p>user name and prof image </p>
-                  <button onClick={(() => {
+                  <button
+                    onClick={() => {
                       setIsOpen(true);
-                    setModalProps(post.id)})}>
+                      setModalProps(post.id);
+                    }}
+                  >
                     modal to delete
                   </button>
                 </div>
@@ -58,7 +63,15 @@ const HomeFeed = () => {
                   <p>the post image will go in this cont</p>
                 </div>
                 <div>
+                  <div>
+                      <p>likes</p>
+                      <p>add comment</p>
+                      <p>send message</p>
+                  </div>
                   <p>{post.caption}</p>
+                  <div></div>
+                  <div></div>
+                  <p>comments here</p>
                 </div>
               </div>
             );
@@ -69,7 +82,7 @@ const HomeFeed = () => {
           style={customStyles}
           overlayClassName="modal-delete"
         >
-          <DeletePost closeModal={closeModal} postId={modalProps}/>
+          <DeletePost closeModal={closeModal} postId={modalProps} />
         </Modal>
       </div>
       <div>
