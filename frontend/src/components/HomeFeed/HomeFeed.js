@@ -9,12 +9,15 @@ import PostComment from "../PostComment/PostComment";
 
 const HomeFeed = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user)
+  const userId = useSelector((state) => state.session.user?.id);
   const posts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
-  const userId = useSelector((state) => state.session.user?.id);
-  const history = useHistory();
 
+  const comments = useSelector((state) =>
+    Object.values(state.commentsReducer.Comments)
+  );
 
 
   const customStyles = {
@@ -29,6 +32,7 @@ const HomeFeed = () => {
   };
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState(null);
+  const [commentProps, setCommentProps] = useState(null);
 
   function openModal() {
     setIsOpen(true);
@@ -65,16 +69,22 @@ const HomeFeed = () => {
                 <div>
                   <img src={post?.image} />
                 </div>
-                <div>
+                <div id='testing'>
                   <div className="likes-cont">
-                      <p>likes</p>
-                      <button>add comment</button>
-                      <p>send message</p>
+                    <p>likes</p>
+                    <button>add comment</button>
+                    <p>send message</p>
                   </div>
-                  <p>username with post goes here?</p>
-                  <p>view all commenst, modal to view post and comments scroll</p>
-                  <div>comments load here when posted</div>
-                  <PostComment postId={post?.id} userId={userId}/>
+                  <p>{user.username}</p>
+                  <p>View all {post?.Comments?.length} comments</p>
+                    {comments?.map((com) => {
+                        return (
+                            <>
+                            <p key={com.id}>{com.postId === post.id && com.content}</p>
+                            </>
+                        )
+                    })}
+                  <PostComment postId={post?.id} userId={userId} />
                 </div>
               </div>
             );

@@ -2,18 +2,23 @@
   display: flex;
   justify-content: center;
   gap: 30px;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 .post-cont{
   width: 500px;
-  height: 585px;
+  /* height: 585px; */
   border: 2px solid black;
   display:flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
 
+.user-feed{
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
 }
 
 .post-menu{
@@ -48,8 +53,15 @@ img{
   width: 500px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 #home-comment{
   width: 250px;
+}
+
+
+#testing{
+  display: flex;
+  flex-direction: column;
 }
