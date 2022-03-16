@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Post } = require("../../db/models");
+const { User, Post, Comment } = require("../../db/models");
 
 
 const router = express.Router();
@@ -47,7 +47,7 @@ router.post(
 
 
 router.get("", asyncHandler(async(req,res) => {
-  const posts = await Post.findAll()
+  const posts = await Post.findAll({include: [Comment]})
   res.json(posts);
 }));
 
@@ -101,6 +101,19 @@ router.patch('/posts/:postId/edit', validateEdit, requireAuth, asyncHandler(asyn
   const updated = await post.update({caption: caption})
   res.json({updated})
 }))
+
+
+
+
+router.post('/posts/:postId/comments/new', requireAuth, asyncHandler(async(req,res) => {
+  const {postId, content, userId} = req.body;
+  const comment = {content, postId, userId}
+  const newComment = await Comment.create(comment)
+  res.json({newComment})
+
+}))
+
+
 
 
 module.exports = router;
