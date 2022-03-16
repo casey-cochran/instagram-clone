@@ -31,11 +31,11 @@ const PostComment = ({postId, userId}) => {
 
 
   return (
-    <div className="add-comment">
+    <div className="add-comment sidebar">
       <p>emoji</p>
       <form onSubmit={handleSubmit}>
       <input
-        id="home-comment"
+        className="home-comment sidebar"
         onChange={(e) => setContent(e.target.value)}
         value={content}
         placeholder={errors ? errors : 'Add a comment'}
