@@ -4,8 +4,10 @@ import EditPost from "../EditPost//EditPost";
 import Modal from "react-modal";
 import "./OnePost.css";
 import PostComment from "../PostComment/PostComment";
+import { deleteOneComment } from "../../store/comments";
 
 const OnePostModal = ({ postId, user, closeModal, singlePost }) => {
+    const dispatch = useDispatch();
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
     setIsOpen(true);
@@ -25,6 +27,7 @@ const OnePostModal = ({ postId, user, closeModal, singlePost }) => {
   };
 
   return (
+      <div>
     <div className="one-post-cont">
       <img className="view-items img" src={singlePost?.image} />
       <div className="comments-side-bar" >
@@ -48,7 +51,10 @@ const OnePostModal = ({ postId, user, closeModal, singlePost }) => {
           <p>username</p>
           <div className="scroll-comments">
           {singlePost?.Comments?.map((comm, index) => {
-            return  <div key={index} className="comm-spacing">{comm.content}</div>
+            return  <div key={index} className="comm-spacing">
+                {comm.User.image}<b>{comm.User.username}</b> {comm.content}
+                <button onClick={(() => dispatch(deleteOneComment(comm)))}>delete</button>
+                </div>
           })}
           </div>
           <div className="one-post-likes">
@@ -59,6 +65,7 @@ const OnePostModal = ({ postId, user, closeModal, singlePost }) => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

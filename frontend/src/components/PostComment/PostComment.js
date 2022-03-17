@@ -25,7 +25,7 @@ const PostComment = ({postId, userId}) => {
       if (value?.errors) {
         return setErrors(value?.errors);
       }
-
+      setContent('');
  }
 
 
