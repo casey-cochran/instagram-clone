@@ -3,6 +3,24 @@ import { csrfFetch } from "./csrf";
 
 const ADD_COMMENT = 'user/ADD_COMMENT';
 const DELETE_COMMENT = 'user/DELETE_COMMENT';
+const EDIT_COMMENT = 'user/EDIT_COMMENT';
+
+const editComment = (comment) => ({
+    type: EDIT_COMMENT,
+    comment
+})
+
+export const editOneComment = (comment) => async dispatch => {
+    console.log(comment, 'comment coming into thunk')
+    const response = await csrfFetch(`api/users/posts/${comment.postId}/comments/${comment.id}/edit`,{
+        method: 'PATCH',
+        body: JSON.stringify({
+            comment
+        })
+    })
+    const data = await response.json();
+    console.log(data,' is this the correct edit ?')
+}
 
 
 const deleteComment = (comment) => ({
