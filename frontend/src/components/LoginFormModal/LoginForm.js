@@ -17,9 +17,12 @@ function LoginForm() {
     const value = await dispatch(
       sessionActions.login({ credential, password })
     ).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) setErrors(data.errors);
+      const errors = await res.json();
+      if (errors) return errors;
     });
+    if (value.errors) {
+      return setErrors(value.errors);
+    }
     history.push("/");
   };
 
@@ -29,7 +32,7 @@ function LoginForm() {
         <p id="newtest"></p>
         <div className="login-cont">
           <div className="center-log">
-            <h1 id="login-title">Memories</h1>
+            <h1 className="login-title">Memories</h1>
             <form className="login-form" onSubmit={handleSubmit}>
               <ul>
                 {errors.map((error, idx) => (
@@ -58,7 +61,6 @@ function LoginForm() {
             </form>
           </div>
           <div className="testing-s">
-            {/* <button className="login-btns signup">Signup</button> */}
             <p>Don't have an account? <Link id='signup-lnk' to='/signup'>Sign up</Link></p>
           </div>
         </div>
