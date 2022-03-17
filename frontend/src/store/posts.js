@@ -6,6 +6,7 @@ const CREATE_POST = 'user/CREATE_POST';
 const DELETE_POST = 'user/DELETE_POST';
 const EDIT_POST = 'user/EDIT_POST';
 const ADD_COMMENT = 'user/ADD_COMMENT';
+const DELETE_COMMENT = 'user/DELETE_COMMENT';
 
 
 const editPost = (post) => ({
@@ -107,6 +108,11 @@ function postsReducer(state = initialState, action) {
     case ADD_COMMENT:
         newState = {...state}
         newState.Posts[action.comment.newComment.postId].Comments.push(action.comment.newComment);
+        return newState;
+    case DELETE_COMMENT:
+        newState = {...state}
+        const com = newState.Posts[action.comment.postId].Comments.filter((comm) => {return comm.id !== action.comment.id})
+        newState.Posts[action.comment.postId].Comments = com
         return newState;
     default:
       return state;
