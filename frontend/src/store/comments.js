@@ -2,6 +2,22 @@ import { csrfFetch } from "./csrf";
 
 
 const ADD_COMMENT = 'user/ADD_COMMENT';
+const DELETE_COMMENT = 'user/DELETE_COMMENT';
+
+
+const deleteComment = (commentId) => ({
+    type: DELETE_COMMENT,
+    commentId
+})
+
+export const deleteOneComment = (comment) => async dispatch => {
+    const response = await csrfFetch(`api/users/posts/${comment.postId}/comments/delete`, {
+        method: 'DELETE',
+        body: JSON.stringify({comment})
+    })
+    const data = await response.json();
+    dispatch(deleteComment(comment.id));
+}
 
 
 const addComment = (comment) => ({

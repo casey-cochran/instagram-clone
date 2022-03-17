@@ -47,9 +47,10 @@ router.post(
 
 
 router.get("", asyncHandler(async(req,res) => {
-  const posts = await Post.findAll({include: [Comment]})
+  const posts = await Post.findAll({include: {model: Comment, include: User}})
   res.json(posts);
 }));
+
 
 router.get('/posts/:postId', asyncHandler(async(req,res) => {
   const {postId} = req.params;
@@ -110,7 +111,14 @@ router.post('/posts/:postId/comments/new', requireAuth, asyncHandler(async(req,r
   const comment = {content, postId, userId}
   const newComment = await Comment.create(comment)
   res.json({newComment})
+}))
 
+router.delete('/posts/:postId/comments/delete', requireAuth, asyncHandler(async(req,res) => {
+  const {comment} = req.body;
+
+  const com = await Comment.findByPk(comment.id);
+  await com.destroy();
+  res.json({msg:'success'});
 }))
 
 
