@@ -33,9 +33,9 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Post.belongsTo(models.User, {foreignKey: 'userId'})
     // Post.belongsTo(models.Feed, {foreignKey: 'postId'})
-    Post.hasMany(models.Like, {foreignKey: 'postId'})
-    Post.hasMany(models.Dislike, {foreignKey: 'postId'})
-    Post.hasMany(models.Comment, {foreignKey: 'postId'})
+    Post.hasMany(models.Like, {foreignKey: 'postId', onDelete: 'cascade', hooks:true})
+    Post.hasMany(models.Dislike, {foreignKey: 'postId', onDelete: 'cascade', hooks:true})
+    Post.hasMany(models.Comment, {foreignKey: 'postId', onDelete: 'cascade', hooks:true})
   };
   return Post;
 };

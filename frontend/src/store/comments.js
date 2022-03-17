@@ -11,7 +11,6 @@ const editComment = (comment) => ({
 })
 
 export const editOneComment = (comment) => async dispatch => {
-    console.log(comment, 'comment coming into thunk')
     const response = await csrfFetch(`api/users/posts/${comment.postId}/comments/${comment.id}/edit`,{
         method: 'PATCH',
         body: JSON.stringify({
@@ -19,7 +18,8 @@ export const editOneComment = (comment) => async dispatch => {
         })
     })
     const data = await response.json();
-    console.log(data,' is this the correct edit ?')
+    dispatch(editComment(comment))
+    return data
 }
 
 

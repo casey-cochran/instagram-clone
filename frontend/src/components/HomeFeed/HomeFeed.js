@@ -16,7 +16,7 @@ const HomeFeed = () => {
   const posts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
-
+  posts?.reverse()
   const comments = useSelector((state) =>
     Object.values(state.commentsReducer.Comments)
   );

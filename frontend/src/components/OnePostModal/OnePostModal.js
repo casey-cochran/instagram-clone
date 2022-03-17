@@ -53,7 +53,7 @@ const OnePostModal = ({ postId, user, closeModal, singlePost }) => {
           <div className="scroll-comments">
           {singlePost?.Comments?.map((comm, index) => {
             return  <div key={index} className="comm-spacing">
-                {comm.User?.image}<b>{comm.User?.username}</b> {comm.content}
+                {comm?.User?.image}<b>{comm?.User?.username}</b> {comm?.content}
                 <button onClick={(() => dispatch(deleteOneComment(comm)))}>delete</button>
                 <EditComment comm={comm}/>
                 </div>
