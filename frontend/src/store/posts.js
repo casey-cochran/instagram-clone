@@ -7,6 +7,7 @@ const DELETE_POST = 'user/DELETE_POST';
 const EDIT_POST = 'user/EDIT_POST';
 const ADD_COMMENT = 'user/ADD_COMMENT';
 const DELETE_COMMENT = 'user/DELETE_COMMENT';
+const EDIT_COMMENT = 'user/EDIT_COMMENT';
 
 
 const editPost = (post) => ({
@@ -15,7 +16,6 @@ const editPost = (post) => ({
 })
 
 export const editSinglePost = (post) => async dispatch => {
-    console.log(post, ' any post hitting the thunk?')
     const response = await csrfFetch(`/api/users/posts/${post.postId}/edit`, {
         method: 'PATCH',
         body: JSON.stringify(
@@ -75,6 +75,7 @@ const loadPosts = (postData) => ({
 export const loadAllPosts = () => async dispatch => {
     const response = await csrfFetch('/api/users')
     const postData = await response.json()
+    console.log(postData, ' what is the order returned')
     dispatch(loadPosts(postData))
 }
 
@@ -113,6 +114,14 @@ function postsReducer(state = initialState, action) {
         newState = {...state}
         const com = newState.Posts[action.comment.postId].Comments.filter((comm) => {return comm.id !== action.comment.id})
         newState.Posts[action.comment.postId].Comments = com
+        return newState;
+    case EDIT_COMMENT:
+        newState = {...state}
+       newState.Posts[action.comment.postId].Comments.forEach((comm, i) => {
+            if (comm.id === action.comment.id){
+                newState.Posts[action.comment.postId].Comments[i] = action.comment
+            }
+        })
         return newState;
     default:
       return state;

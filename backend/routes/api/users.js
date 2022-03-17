@@ -47,7 +47,8 @@ router.post(
 
 
 router.get("", asyncHandler(async(req,res) => {
-  const posts = await Post.findAll({include: {model: Comment, include: User}})
+  const posts = await Post.findAll({order:[['createdAt','DESC']],include: {model: Comment, include: User}})
+  console.log(posts, ' order?')
   res.json(posts);
 }));
 

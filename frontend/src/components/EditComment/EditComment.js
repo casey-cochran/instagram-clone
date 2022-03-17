@@ -22,12 +22,12 @@ const EditComment = ({comm}) => {
           if (value?.errors) {
             return setEdit(value?.errors);
           }
-
+          setEdit('');
     }
 
     return (
         <>
-        <button onClick={() => setTest(true)}>edit</button>
+        <button onClick={() => setTest(!test)}>edit</button>
         {test &&
             <form onSubmit={handleSubmit}>
             <input
