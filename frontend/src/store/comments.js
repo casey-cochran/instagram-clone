@@ -5,9 +5,9 @@ const ADD_COMMENT = 'user/ADD_COMMENT';
 const DELETE_COMMENT = 'user/DELETE_COMMENT';
 
 
-const deleteComment = (commentId) => ({
+const deleteComment = (comment) => ({
     type: DELETE_COMMENT,
-    commentId
+    comment
 })
 
 export const deleteOneComment = (comment) => async dispatch => {
@@ -16,7 +16,7 @@ export const deleteOneComment = (comment) => async dispatch => {
         body: JSON.stringify({comment})
     })
     const data = await response.json();
-    dispatch(deleteComment(comment.id));
+    dispatch(deleteComment(comment));
 }
 
 
