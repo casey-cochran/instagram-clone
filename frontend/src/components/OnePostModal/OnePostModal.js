@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import EditPost from "../EditPost//EditPost";
+import EditComment from "../EditComment/EditComment";
 import Modal from "react-modal";
 import "./OnePost.css";
 import PostComment from "../PostComment/PostComment";
-import { deleteOneComment } from "../../store/comments";
+import { deleteOneComment, editOneComment } from "../../store/comments";
 
 const OnePostModal = ({ postId, user, closeModal, singlePost }) => {
     const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const OnePostModal = ({ postId, user, closeModal, singlePost }) => {
     setIsOpen(true);
   }
 
-  console.log(singlePost, ' single post')
+
 
   const customStyles = {
     content: {
@@ -52,8 +53,9 @@ const OnePostModal = ({ postId, user, closeModal, singlePost }) => {
           <div className="scroll-comments">
           {singlePost?.Comments?.map((comm, index) => {
             return  <div key={index} className="comm-spacing">
-                {comm.User.image}<b>{comm.User.username}</b> {comm.content}
+                {comm.User?.image}<b>{comm.User?.username}</b> {comm.content}
                 <button onClick={(() => dispatch(deleteOneComment(comm)))}>delete</button>
+                <EditComment comm={comm}/>
                 </div>
           })}
           </div>
