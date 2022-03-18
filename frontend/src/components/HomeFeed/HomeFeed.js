@@ -16,7 +16,7 @@ const HomeFeed = () => {
   const posts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
-//   posts?.reverse()
+  posts?.reverse()
   const comments = useSelector((state) =>
     Object.values(state.commentsReducer.Comments)
   );
@@ -59,15 +59,12 @@ const HomeFeed = () => {
   return (
     <div id="main-cont">
       <div className="user-feed">
-        <h2>hello from home feed</h2>
-
-        <button onClick={() => dispatch(loadAllPosts())}>load posts</button>
         {posts.length > 0 &&
           posts?.map((post, index) => {
             return (
               <div className="post-cont" key={index}>
                 <div className="post-menu">
-                  <p>user name and prof image </p>
+                  <p><img id='profile-img' src={post.User.image}/>  {post.User.username} </p>
                   <button
                     onClick={() => {
                       setIsOpen(true);
