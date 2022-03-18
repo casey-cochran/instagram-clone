@@ -14,6 +14,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
 }
 
 .user-feed{
@@ -71,6 +72,7 @@ img{
 #testing{
   display: flex;
   flex-direction: column;
+  padding-left: 25px;
 }
 
 
@@ -98,6 +100,8 @@ img{
 .icons{
   font-size: 24px;
   line-height: 20px;
+  cursor: pointer;
+  color:black;
 }
 
 .sub-likes-cont > p{
@@ -107,4 +111,30 @@ img{
 #sub-likes-f{
   margin: 0px;
   margin-top: 10px;
+  margin-bottom: 7px;
+}
+.view-all{
+  color: #8E8E8E;
+  margin-bottom: 10px;
+  cursor:pointer;
+  padding-bottom: 10px;
+}
+
+.comm-input-feed{
+  width: 500px;
+}
+
+.home-comments{
+  margin: 0;
+
+}
+
+.com-content-cont{
+  display: flex;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+#com-content{
+  margin: 0;
 }

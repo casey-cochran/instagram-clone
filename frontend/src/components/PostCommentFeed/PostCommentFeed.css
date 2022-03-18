@@ -1,0 +1,38 @@
+
+.home-feed-comment{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 1px solid #dbdbdb;
+}
+
+.home-feed-input{
+    width: 400px;
+    margin-right:8px;
+    border:none;
+    background: none;
+}
+
+.home-feed-input:focus{
+    outline: none;
+}
+
+.post-comment-disabled{
+    color: #7fc1ecaf;
+    border: none;
+    padding: 10px;
+    background: none;
+    cursor: pointer;
+}
+
+.post-comment{
+    color: #0095F6;
+    border: none;
+    padding: 10px;
+    background: none;
+    cursor: pointer;
+}
+
+.diff{
+    width: 500px;
+}
