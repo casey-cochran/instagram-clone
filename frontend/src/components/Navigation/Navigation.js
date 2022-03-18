@@ -6,9 +6,9 @@ import LoginFormModal from '../LoginFormModal';
 import Modal from 'react-modal';
 import './Navigation.css';
 import CreatePost from '../CreatePost/CreatePost';
-
-
-
+import { MdHomeFilled } from 'react-icons/md';
+import { AiOutlinePlusSquare } from 'react-icons/ai';
+import { FaUserCircle } from 'react-icons/fa'
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -51,12 +51,12 @@ function Navigation({ isLoaded }){
   return (
     <div id='nav-cont'>
       <div>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
+        <NavLink className='home-title name' exact to="/">Memories</NavLink>
+        {/* {isLoaded && sessionLinks} */}
       </div>
-      <div>
-      <button>home icon</button>
-      <NavLink to='/post/new' onClick={openModal}>Add New Post</NavLink>
+      <div className='up-r-icons'>
+      <NavLink to='/'><MdHomeFilled className='icons home-title' /></NavLink>
+      <NavLink to='/post/new' onClick={openModal}><AiOutlinePlusSquare className='icons home-title' /></NavLink>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -64,7 +64,8 @@ function Navigation({ isLoaded }){
       >
         <CreatePost closeModal={closeModal}/>
       </Modal>
-      <button>drop menu to logout here</button>
+      {/* <FaUserCircle className='icons'/> */}
+      {isLoaded && sessionLinks}
       </div>
     </div>
   );

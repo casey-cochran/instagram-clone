@@ -26,6 +26,7 @@ const HomeFeed = () => {
   const customStyles = {
     content: {
       top: "50%",
+      outline: 0,
       left: "50%",
       right: "auto",
       bottom: "auto",
@@ -81,9 +82,6 @@ const HomeFeed = () => {
                       setIsOpen(true);
                       setModalProps(post.id);
                     }}
-                    modal
-                    to
-                    delete
                   />
                 </div>
                 <div>
@@ -111,17 +109,21 @@ const HomeFeed = () => {
                     <p id="sub-likes-f">
                       <b>{user.username}</b> {post?.caption}
                     </p>
-                    <p id="view-all">
+                    <p onClick={() => {
+                        setModalPost(post);
+                        setModalProps(post.id);
+                        openCommModal();
+                      }} className="view-all">
                       View all {post?.Comments?.length} comments
                     </p>
                   </div>
                   {comments?.map((com, index) => {
                     return (
-                      <>
-                        <p key={index}>
-                          {com.postId === post.id && com.content}
+                      <div key={index}>
+                        <p className="home-comments" >
+                          {com.postId === post.id ? <div className="com-content-cont"><b>{com.User?.username}</b> <p id='com-content'>{com.content}</p></div> : ''}
                         </p>
-                      </>
+                      </div>
                     );
                   })}
                 </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useHistory } from "react-router-dom";
+import { FaUserCircle } from 'react-icons/fa';
 
 function ProfileButton({ user }) {
   const history = useHistory();
@@ -33,17 +34,16 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
+      <FaUserCircle onClick={openMenu} className='icons'/>
+
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
+        <div className="profile-dropdown">
+          <div className="prof-item">{user.username}</div>
+          <div className="prof-item">{user.email}</div>
+          <div className="prof-item">
             <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+          </div>
+        </div>
       )}
     </>
   );
