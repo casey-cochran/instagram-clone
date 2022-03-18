@@ -92,9 +92,12 @@ function postsReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_POSTS:
         newState = {...state}
-        let posts = []
-        action.postData.forEach((post) => posts.push(post[post.id] = post))
-        newState.Posts = posts
+        // let posts = []
+        console.log(action.postData, ' awht')
+        action.postData.forEach((post) => newState.Posts[post.id] = post)
+        // action.postData.forEach((post) => posts.push(post[post.id] = post))
+        // newState.Posts = posts
+        // console.log(newState.Posts, ' what happened')
         return newState;
     case DELETE_POST:
         newState = {...state}

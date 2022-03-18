@@ -17,11 +17,12 @@ const PostComment = ({postId, userId}) => {
         content
     }
     const value = await dispatch(addSingleComment(comment)).catch(async (err) => {
-        const errors = await err.json();
+        // const errors = await err.json();
         if (errors) {
           return errors;
         }
       });
+      console.log(value, 'whats happening')
       if (value?.errors) {
         return setErrors(value?.errors);
       }
