@@ -71,6 +71,7 @@ img{
 #testing{
   display: flex;
   flex-direction: column;
+  padding-left: 25px;
 }
 
 
@@ -107,4 +108,13 @@ img{
 #sub-likes-f{
   margin: 0px;
   margin-top: 10px;
+  margin-bottom: 7px;
+}
+#view-all{
+  color: #8E8E8E;
+  margin-bottom: 10px;
+}
+
+.comm-input-feed{
+  width: 500px;
 }

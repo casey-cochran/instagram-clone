@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addSingleComment } from "../../store/comments";
+import './PostCommentFeed.css'
+import { BsEmojiSmile } from 'react-icons/bs'
 
-const PostComment = ({postId, userId, inputId}) => {
+
+const PostCommentFeed = ({postId, userId, inputId}) => {
  const dispatch = useDispatch();
  const [content, setContent] = useState('')
  const [errors, setErrors] = useState([])
-
-
+let buttonClass = ''
+if(content){
+  buttonClass = 'post-comment'
+}else {
+    buttonClass = 'post-comment-disabled'
+}
 
  const handleSubmit = async(e) => {
      e.preventDefault();
@@ -26,26 +33,26 @@ const PostComment = ({postId, userId, inputId}) => {
       if (value?.errors) {
         return setErrors(value?.errors);
       }
+      console.log(errors, 'is thsi ture?')
       setContent('');
  }
 
 
-
   return (
-    <div className="add-comment sidebar">
-      <p>emoji</p>
+    <div className="home-feed-comment">
+      <p><BsEmojiSmile /></p>
       <form onSubmit={handleSubmit}>
       <input
-        className="home-comment sidebar"
+        className="home-feed-input"
         onChange={(e) => setContent(e.target.value)}
         value={content}
-        placeholder={errors ? errors : 'Add a comment'}
+        placeholder={errors.length > 0 ? errors : 'Add a comment'}
         type="text"
       />
-      <button type='submit'>Post</button>
+      <button disabled={content ? false : true} className={buttonClass} type='submit'>Post</button>
       </form>
     </div>
   );
 };
 
-export default PostComment;
+export default PostCommentFeed;

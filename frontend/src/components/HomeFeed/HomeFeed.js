@@ -6,23 +6,22 @@ import Modal from "react-modal";
 import DeletePost from "../DeletePost/DeletePost";
 import PostComment from "../PostComment/PostComment";
 import OnePostModal from "../OnePostModal/OnePostModal";
-import { FaUserCircle, FaEllipsisH, FaRegComment }from 'react-icons/fa';
-import {AiOutlineHeart} from 'react-icons/ai'
-import {HiOutlinePaperAirplane } from 'react-icons/hi';
-
+import { FaUserCircle, FaEllipsisH, FaRegComment } from "react-icons/fa";
+import { AiOutlineHeart } from "react-icons/ai";
+import { HiOutlinePaperAirplane } from "react-icons/hi";
+import PostCommentFeed from "../PostCommentFeed/PostCommentFeed";
 
 const HomeFeed = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user)
+  const user = useSelector((state) => state.session.user);
   const userId = useSelector((state) => state.session.user?.id);
   const posts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
-  posts?.reverse()
+  posts?.reverse();
   const comments = useSelector((state) =>
     Object.values(state.commentsReducer.Comments)
   );
-
 
   const customStyles = {
     content: {
@@ -38,7 +37,8 @@ const HomeFeed = () => {
   const [modalProps, setModalProps] = useState(null);
   const [modalPost, setModalPost] = useState(null);
   const [commentProps, setCommentProps] = useState(null);
-  const [openComm, setOpenComm] = useState(false)
+  const [openComm, setOpenComm] = useState(false);
+  const inputId = 'home-comment'
 
   function openModal() {
     setIsOpen(true);
@@ -49,10 +49,10 @@ const HomeFeed = () => {
 
   const openCommModal = () => {
     setOpenComm(true);
-  }
+  };
   const closeCommModal = () => {
     setOpenComm(false);
-}
+  };
 
   useEffect(() => {
     dispatch(loadAllPosts());
@@ -66,45 +66,67 @@ const HomeFeed = () => {
             return (
               <div className="post-cont" key={index}>
                 <div className="post-menu">
-                <div className="icon-user">{post.User.image ? <img id='profile-img' src={post.User.image}/> : <FaUserCircle className="icons" /> }
-                <p>{post.User.username} </p>
-                </div>
+                  <div className="icon-user">
+                    {post.User.image ? (
+                      <img id="profile-img" src={post.User.image} />
+                    ) : (
+                      <FaUserCircle className="icons" />
+                    )}
+                    <p>{post.User.username} </p>
+                  </div>
 
-                  <FaEllipsisH className="icons"
+                  <FaEllipsisH
+                    className="icons"
                     onClick={() => {
                       setIsOpen(true);
                       setModalProps(post.id);
                     }}
-
-                    modal to delete
+                    modal
+                    to
+                    delete
                   />
                 </div>
                 <div>
                   <img src={post?.image} />
                 </div>
-                <div id='testing'>
+                <div id="testing">
                   <div className="likes-cont">
-                    <p><AiOutlineHeart className="icons" /></p>
-                    <FaRegComment className="icons" onClick={() => {
-                        setModalPost(post)
-                        setModalProps(post.id)
-                        openCommModal()
-                    }} />
-                    <p><HiOutlinePaperAirplane className="icons" /></p>
+                    <p>
+                      <AiOutlineHeart className="icons" />
+                    </p>
+                    <FaRegComment
+                      className="icons"
+                      onClick={() => {
+                        setModalPost(post);
+                        setModalProps(post.id);
+                        openCommModal();
+                      }}
+                    />
+                    <p>
+                      <HiOutlinePaperAirplane className="icons" />
+                    </p>
                   </div>
                   <div className="sub-likes-cont">
-                  <p >likes count</p>
-                  <p id='sub-likes-f'>{user.username} {post?.caption}</p>
-                  <p>View all {post?.Comments?.length} comments</p>
+                    <p>likes count</p>
+                    <p id="sub-likes-f">
+                      <b>{user.username}</b> {post?.caption}
+                    </p>
+                    <p id="view-all">
+                      View all {post?.Comments?.length} comments
+                    </p>
                   </div>
-                    {comments?.map((com, index) => {
-                        return (
-                            <>
-                            <p key={index}>{com.postId === post.id && com.content}</p>
-                            </>
-                        )
-                    })}
-                  <PostComment postId={post?.id} userId={userId} />
+                  {comments?.map((com, index) => {
+                    return (
+                      <>
+                        <p key={index}>
+                          {com.postId === post.id && com.content}
+                        </p>
+                      </>
+                    );
+                  })}
+                </div>
+                <div className="comm-input-feed">
+                  <PostCommentFeed postId={post?.id} userId={userId} />
                 </div>
               </div>
             );
@@ -121,10 +143,16 @@ const HomeFeed = () => {
           isOpen={openComm}
           onRequestClose={closeCommModal}
           style={customStyles}
-          className='view-comm-modal'
+          className="view-comm-modal"
           overlayClassName="modal-delete"
         >
-          <OnePostModal closeModal={closeCommModal} user={user} postId={modalProps} singlePost={modalPost}/>
+          <OnePostModal
+            closeModal={closeCommModal}
+            user={user}
+            postId={modalProps}
+            singlePost={modalPost}
+            inputId={inputId}
+          />
         </Modal>
       </div>
       <div>
