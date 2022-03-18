@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { loadAllPosts } from "../../store/posts";
 import "./HomeFeed.css";
-import { useHistory, NavLink } from "react-router-dom";
 import Modal from "react-modal";
 import DeletePost from "../DeletePost/DeletePost";
 import PostComment from "../PostComment/PostComment";
 import OnePostModal from "../OnePostModal/OnePostModal";
+import { FaUserCircle, FaEllipsisH, FaRegComment }from 'react-icons/fa';
+import {AiOutlineHeart} from 'react-icons/ai'
+import {HiOutlinePaperAirplane } from 'react-icons/hi';
 
 
 const HomeFeed = () => {
@@ -64,31 +66,37 @@ const HomeFeed = () => {
             return (
               <div className="post-cont" key={index}>
                 <div className="post-menu">
-                  <p><img id='profile-img' src={post.User.image}/>  {post.User.username} </p>
-                  <button
+                <div className="icon-user">{post.User.image ? <img id='profile-img' src={post.User.image}/> : <FaUserCircle className="icons" /> }
+                <p>{post.User.username} </p>
+                </div>
+
+                  <FaEllipsisH className="icons"
                     onClick={() => {
                       setIsOpen(true);
                       setModalProps(post.id);
                     }}
-                  >
+
                     modal to delete
-                  </button>
+                  />
                 </div>
                 <div>
                   <img src={post?.image} />
                 </div>
                 <div id='testing'>
                   <div className="likes-cont">
-                    <p>likes</p>
-                    <button onClick={() => {
+                    <p><AiOutlineHeart className="icons" /></p>
+                    <FaRegComment className="icons" onClick={() => {
                         setModalPost(post)
                         setModalProps(post.id)
                         openCommModal()
-                    }}>add comment</button>
-                    <p>send message</p>
+                    }} />
+                    <p><HiOutlinePaperAirplane className="icons" /></p>
                   </div>
-                  <p>{user.username} {post?.caption}</p>
+                  <div className="sub-likes-cont">
+                  <p >likes count</p>
+                  <p id='sub-likes-f'>{user.username} {post?.caption}</p>
                   <p>View all {post?.Comments?.length} comments</p>
+                  </div>
                     {comments?.map((com, index) => {
                         return (
                             <>
