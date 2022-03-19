@@ -123,8 +123,17 @@ router.delete('/posts/:postId/comments/delete', requireAuth, asyncHandler(async(
   res.json({msg:'success'});
 }))
 
+const validateComment = [
+  check('content')
+    .exists({checkFalsy: true})
+    .withMessage("Must provide a caption")
+    .isLength({ max: 300 })
+    .withMessage("Cannot be longer than 300 characters"),
+  handleValidationErrors,
+]
 
-router.patch('/posts/:postId/comments/:commentId/edit', requireAuth, asyncHandler(async(req,res) => {
+
+router.patch('/posts/:postId/comments/:commentId/edit', validateComment, requireAuth, asyncHandler(async(req,res) => {
   const {comment} = req.body;
   const comm = await Comment.findByPk(comment.id)
   const updated = await comm.update({content: comment.content})

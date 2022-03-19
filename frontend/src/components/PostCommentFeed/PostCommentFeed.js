@@ -33,7 +33,6 @@ if(content){
       if (value?.errors) {
         return setErrors(value?.errors);
       }
-      console.log(errors, 'is thsi ture?')
       setContent('');
  }
 
