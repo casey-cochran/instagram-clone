@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createUserPost } from "../../store/posts";
-import { BiImage } from 'react-icons/bi';
 import "./CreatePost.css";
 
 const CreatePost = ({ closeModal }) => {
@@ -72,7 +71,7 @@ if(caption){
               />
             </div>
             <button onClick={() => setOpenForm(true)} disabled={caption ? false : true} className={createImageClass} type='submit'>Add image</button>
- 
+
           </form>
          {errors.length > 0 && <button onClick={() => setOpenForm(false)}>Go back to add image</button> }
         </div>

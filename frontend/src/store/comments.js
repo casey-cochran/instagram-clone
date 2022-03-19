@@ -35,7 +35,6 @@ export const deleteOneComment = (comment) => async dispatch => {
         body: JSON.stringify({comment})
     })
     const data = await response.json();
-    console.log(data, ' comm backend')
     dispatch(deleteComment(comment));
 }
 
