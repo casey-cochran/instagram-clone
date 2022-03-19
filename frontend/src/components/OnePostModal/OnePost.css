@@ -22,10 +22,27 @@
 
 .comments-side-header{
     display: flex;
+    align-items: center;
     justify-content: space-around;
-    border-bottom: 2px solid black;
     width: 370px;
+    gap: 10px;
+    border-bottom: 1px solid #dbdbdb;
 
+}
+
+.username-head{
+    padding-left: 6px;
+}
+
+.icons.modal{
+    padding-right: 8px;
+}
+
+#icon-header{
+    display:flex;
+    align-items: center;
+    padding: 15px;
+    width: 370px;
 }
 
 #input-wid{
@@ -40,6 +57,32 @@
     height: 637px;
     background-color: white;
 }
+
+.one-post-cap{
+    display: flex;
+    align-items: center;
+    padding-top: 8px;
+    gap: 5px;
+    width: 370px;
+    flex-wrap: wrap;
+}
+
+.break-wrd{
+    word-wrap: break-word;
+    margin:0;
+    width: 365px;
+}
+
+.caption-lng{
+    width: 250px;
+    word-wrap: break-word;
+}
+
+.comments-side-icons{
+    cursor: pointer;
+}
+
+
 
 .home-comment.sidebar{
     width: 200px;
@@ -59,6 +102,11 @@
 .comm-spacing{
     padding-left: 10px;
     padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    word-wrap: break-word;
+    width: 370px;
 }
 
 .one-post-likes{

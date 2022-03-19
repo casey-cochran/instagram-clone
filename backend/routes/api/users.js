@@ -109,7 +109,9 @@ router.patch('/posts/:postId/edit', validateEdit, requireAuth, asyncHandler(asyn
 router.post('/posts/:postId/comments/new', requireAuth, asyncHandler(async(req,res) => {
   const {postId, content, userId} = req.body;
   const comment = {content, postId, userId}
+  const user = await User.findByPk(userId)
   const newComment = await Comment.create(comment)
+  newComment.dataValues['User'] = user
   res.json({newComment})
 }))
 
