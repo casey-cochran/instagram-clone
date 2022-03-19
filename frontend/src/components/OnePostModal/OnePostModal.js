@@ -74,7 +74,11 @@ const OnePostModal = ({ postId, user, closeModal }) => {
               {singlePost?.Comments?.map((comm, index) => {
                 return (
                   <div key={index} className="comm-spacing">
-                    {comm?.User?.image}
+                    {comm.User?.image ? (
+                <img id="profile-img" src={user?.image} />
+              ) : (
+                <FaUserCircle className="icons" />
+              )}
                     <b>{comm?.User?.username}</b> <p className="break-wrd">{comm?.content}</p>
                     <GoTrashcan className="comments-side-icons" onClick={() => dispatch(deleteOneComment(comm))} />
                     <EditComment comm={comm} />

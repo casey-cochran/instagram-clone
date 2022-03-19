@@ -1,0 +1,26 @@
+.home-feed-input.modal{
+    width: 250px;
+    border:none;
+    background: none;
+}
+
+
+.home-feed-input.modal:focus{
+    outline: none;
+}
+
+
+.post-comment-disabled{
+    color: #7fc1ecaf;
+    border: none;
+    padding: 10px;
+    background: none;
+    cursor: pointer;
+}
+
+.post-comment{
+    color: #0095F6;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
