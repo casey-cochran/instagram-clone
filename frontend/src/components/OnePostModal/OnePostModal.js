@@ -68,8 +68,8 @@ const OnePostModal = ({ postId, user, closeModal }) => {
                 <FaUserCircle className="icons" />
               )}
               <b>{user?.username}</b>
-              <div className="caption-lng">{singlePost?.caption}</div>
             </div>
+              <div className="caption-lng">{singlePost?.caption}</div>
             <div className="scroll-comments">
               {singlePost?.Comments?.map((comm, index) => {
                 return (

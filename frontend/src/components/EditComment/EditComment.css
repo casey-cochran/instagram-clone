@@ -1,0 +1,12 @@
+.one-post-input{
+    width: 200px;
+    border: 1px solid #dbdbdb;
+}
+
+.one-post-input:focus{
+    outline: none;
+}
+
+.post-comment.one:hover{
+    color: #087ac5;
+}

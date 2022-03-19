@@ -62,6 +62,7 @@
     display: flex;
     align-items: center;
     padding-top: 8px;
+    padding-left: 8px;
     gap: 5px;
     width: 370px;
     flex-wrap: wrap;
@@ -76,6 +77,8 @@
 .caption-lng{
     width: 250px;
     word-wrap: break-word;
+    padding-top: 5px;
+    padding-left: 10px;
 }
 
 .comments-side-icons{
@@ -104,6 +107,7 @@
     padding-top: 30px;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 10px;
     word-wrap: break-word;
     width: 370px;
