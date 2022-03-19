@@ -34,6 +34,22 @@ const HomeFeed = () => {
       transform: "translate(-50%, -50%)",
     },
   };
+
+  const deleteModalStyles = {
+    content: {
+      width: '250px',
+      height: '250px',
+      padding: '0px',
+      top: "50%",
+      outline: 0,
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
+
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState(null);
   const [modalPost, setModalPost] = useState(null);
@@ -136,7 +152,7 @@ const HomeFeed = () => {
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
-          style={customStyles}
+          style={deleteModalStyles}
           overlayClassName="modal-delete"
         >
           <DeletePost closeModal={closeModal} postId={modalProps} />

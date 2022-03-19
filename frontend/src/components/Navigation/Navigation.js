@@ -8,7 +8,7 @@ import './Navigation.css';
 import CreatePost from '../CreatePost/CreatePost';
 import { MdHomeFilled } from 'react-icons/md';
 import { AiOutlinePlusSquare } from 'react-icons/ai';
-import { FaUserCircle } from 'react-icons/fa';
+
 
 
 function Navigation({ isLoaded }){

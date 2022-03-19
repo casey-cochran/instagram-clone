@@ -54,7 +54,7 @@ router.get("", asyncHandler(async(req,res) => {
 
 router.get('/posts/:postId', asyncHandler(async(req,res) => {
   const {postId} = req.params;
-  const post = await Post.findByPk(postId);
+  const post = await Post.findByPk(postId, {include: {model:Comment, include: User}});
   res.json(post)
 }))
 
@@ -133,7 +133,7 @@ const validateComment = [
 ]
 
 
-router.patch('/posts/:postId/comments/:commentId/edit', validateComment, requireAuth, asyncHandler(async(req,res) => {
+router.patch('/posts/:postId/comments/:commentId/edit',  requireAuth, asyncHandler(async(req,res) => {
   const {comment} = req.body;
   const comm = await Comment.findByPk(comment.id)
   const updated = await comm.update({content: comment.content})

@@ -1,0 +1,42 @@
+.delete-modal-cont{
+    display: flex;
+    width: 250px;
+    height: 250px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 90px;
+}
+
+.delete-post-content{
+    padding: 10px;
+    text-decoration: none;
+    padding: 15px;
+    font-size: 20px;
+    width: 250px;
+    text-align: center;
+    cursor: pointer;
+    color: #0095F6;
+
+}
+
+.post-comment.delete{
+    font-size: 20px;
+    width: 250px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.delete-title{
+    margin: 0;
+    padding: 20px;
+}
+
+.delete-post-content:hover{
+    background-color: rgb(250, 249, 249);
+}
+
+.post-comment.delete:hover{
+    background-color: rgb(250, 249, 249);
+}

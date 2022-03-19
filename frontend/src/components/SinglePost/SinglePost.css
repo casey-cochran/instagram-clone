@@ -6,10 +6,35 @@
     align-items: center;
     min-height: 100vh;
     border: 1px solid black;
-    width: 700px;
+    width: 750px;
     margin: auto;
     margin-top: 40px;
 }
+#testing3{
+    display: flex;
+    justify-content: center;
+    height: 400px;
+    width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 300px;
+}
+
+.comments-side-bar.single{
+    height: 600px;
+
+}
+.side-comments-scroll.single{
+    height: 550px;
+}
+ .view-items.img.single{
+    height: 607px;
+}
+/*
+.single-post-cont.single{
+    margin: 0;
+    height: 400px;
+} */
 
 
 .flex-child{
