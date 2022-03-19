@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { editOneComment } from "../../store/comments";
+import { editOneComment, findOneComment } from "../../store/comments";
 import { FiEdit2 } from 'react-icons/fi';
 
 
@@ -9,11 +9,12 @@ import { FiEdit2 } from 'react-icons/fi';
 const EditComment = ({comm}) => {
     const dispatch = useDispatch();
     const [test, setTest] = useState(false)
-
     const testing = useSelector((state) => state.postsReducer.Posts[comm.postId].Comments)
     const found = testing.find((com => com.id === comm.id))
-    // console.log(found, ' new test')
-    const [edit, setEdit] = useState(comm.content)
+    const [edit, setEdit] = useState(found.content)
+
+
+
     const handleSubmit = async(e) => {
         e.preventDefault()
         found.content=edit
@@ -26,13 +27,16 @@ const EditComment = ({comm}) => {
           if (value?.errors) {
             return setEdit(value?.errors);
           }
-          // setEdit('');
+           setEdit(value?.content);
           setTest(false);
     }
 
+
+
     return (
         <>
-        <FiEdit2 className="comments-side-icons" onClick={() => setTest(!test)} />
+        <FiEdit2 className="comments-side-icons" onClick={() => {setTest(!test)
+           setEdit(comm.content)}} />
         {test &&
             <form onSubmit={handleSubmit}>
             <input

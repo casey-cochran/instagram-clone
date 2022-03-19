@@ -5,6 +5,7 @@ const ADD_COMMENT = 'user/ADD_COMMENT';
 const DELETE_COMMENT = 'user/DELETE_COMMENT';
 const EDIT_COMMENT = 'user/EDIT_COMMENT';
 
+
 const editComment = (comment) => ({
     type: EDIT_COMMENT,
     comment
@@ -34,6 +35,7 @@ export const deleteOneComment = (comment) => async dispatch => {
         body: JSON.stringify({comment})
     })
     const data = await response.json();
+    console.log(data, ' comm backend')
     dispatch(deleteComment(comment));
 }
 
