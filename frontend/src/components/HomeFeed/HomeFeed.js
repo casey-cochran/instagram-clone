@@ -68,12 +68,12 @@ const HomeFeed = () => {
               <div className="post-cont" key={index}>
                 <div className="post-menu">
                   <div className="icon-user">
-                    {post.User.image ? (
-                      <img id="profile-img" src={post.User.image} />
+                    {post.User?.image ? (
+                      <img id="profile-img" src={post.User?.image} />
                     ) : (
                       <FaUserCircle className="icons" />
                     )}
-                    <p>{post.User.username} </p>
+                    <p>{post.User?.username} </p>
                   </div>
 
                   <FaEllipsisH

@@ -9,6 +9,7 @@ import HomeFeed from './components/HomeFeed/HomeFeed';
 import DeletePost from './components/DeletePost/DeletePost';
 import SinglePost from './components/SinglePost/SinglePost';
 import LoginForm from './components/LoginFormModal/LoginForm';
+import EditComment from './components/EditComment/EditComment';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
