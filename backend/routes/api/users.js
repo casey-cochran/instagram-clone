@@ -126,11 +126,11 @@ router.delete('/posts/:postId/comments/delete', requireAuth, asyncHandler(async(
 
 router.patch('/posts/:postId/comments/:commentId/edit', requireAuth, asyncHandler(async(req,res) => {
   const {comment} = req.body;
-  console.log(comment, ' what is this in the backend')
   const comm = await Comment.findByPk(comment.id)
   const updated = await comm.update({content: comment.content})
   res.json(updated)
 }))
+
 
 
 
