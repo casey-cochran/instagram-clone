@@ -7,7 +7,6 @@ import './EditComment.css';
 
 
 const EditComment = ({comm}) => {
-  console.log(comm, 'comm coming from single post')
     const dispatch = useDispatch();
     const [test, setTest] = useState(false)
     const [edit, setEdit] = useState(comm.content)

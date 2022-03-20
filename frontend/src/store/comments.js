@@ -12,7 +12,7 @@ const editComment = (comment) => ({
 })
 
 export const editOneComment = (comment) => async dispatch => {
-    const response = await csrfFetch(`api/users/posts/${comment.postId}/comments/${comment.id}/edit`,{
+    const response = await csrfFetch(`/api/users/posts/${comment.postId}/comments/${comment.id}/edit`,{
         method: 'PATCH',
         body: JSON.stringify({
             comment
@@ -30,7 +30,7 @@ const deleteComment = (comment) => ({
 })
 
 export const deleteOneComment = (comment) => async dispatch => {
-    const response = await csrfFetch(`api/users/posts/${comment.postId}/comments/delete`, {
+    const response = await csrfFetch(`/api/users/posts/${comment.postId}/comments/delete`, {
         method: 'DELETE',
         body: JSON.stringify({comment})
     })
@@ -46,7 +46,7 @@ const addComment = (comment) => ({
 
 
 export const addSingleComment = (comment) => async dispatch => {
-    const response = await csrfFetch(`api/users/posts/${comment.postId}/comments/new`, {
+    const response = await csrfFetch(`/api/users/posts/${comment.postId}/comments/new`, {
         method: 'POST',
         body: JSON.stringify(
             comment
