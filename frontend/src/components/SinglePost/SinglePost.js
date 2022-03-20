@@ -18,6 +18,7 @@ const SinglePost = () => {
   const posts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
+
   const singlePost = posts.find((post) => post.id === +postId);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState(null);
@@ -72,7 +73,9 @@ const SinglePost = () => {
               postImg={singlePost?.image}
             />
           </Modal>
+          {user.id === singlePost?.userId &&
           <FaEllipsisH onClick={openModal} className="icons modal" />
+          }
         </div>
         <div className="side-comments-scroll single">
           <div className="one-post-cap">
@@ -94,8 +97,10 @@ const SinglePost = () => {
               <FaUserCircle className="icons" />
             )}
                   <b>{comm?.User?.username}</b> <p className="break-wrd">{comm?.content}</p>
+                  {user.id === singlePost?.userId && <>
                   <GoTrashcan className="comments-side-icons" onClick={() => dispatch(deleteOneComment(comm))} />
                   <EditComment comm={comm} />
+                  </>}
                 </div>
               );
             })}

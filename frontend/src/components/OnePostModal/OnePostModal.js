@@ -15,7 +15,7 @@ const OnePostModal = ({ postId, user, closeModal }) => {
   function openModal() {
     setIsOpen(true);
   }
-
+  const currentUser = useSelector((state) => state.session.user)
   const singlePost = useSelector((state) => state.postsReducer.Posts[postId])
 
 
@@ -43,7 +43,7 @@ const OnePostModal = ({ postId, user, closeModal }) => {
                 <FaUserCircle className="icons" />
               )}
               <div className="username-head">
-                <b>{user?.username}</b>
+                <b>{singlePost?.User?.username}</b>
               </div>
             </div>
             <Modal
@@ -58,7 +58,9 @@ const OnePostModal = ({ postId, user, closeModal }) => {
                 postImg={singlePost?.image}
               />
             </Modal>
+            {singlePost?.userId === currentUser.id &&
             <FaEllipsisH onClick={openModal} className="icons modal" />
+            }
           </div>
           <div className="side-comments-scroll">
             <div className="one-post-cap">
@@ -67,7 +69,7 @@ const OnePostModal = ({ postId, user, closeModal }) => {
               ) : (
                 <FaUserCircle className="icons" />
               )}
-              <b>{user?.username}</b>
+              <b>{singlePost?.User?.username}</b>
             </div>
               <div className="caption-lng">{singlePost?.caption}</div>
             <div className="scroll-comments">
@@ -80,8 +82,9 @@ const OnePostModal = ({ postId, user, closeModal }) => {
                 <FaUserCircle className="icons" />
               )}
                     <b>{comm?.User?.username}</b> <p className="break-wrd">{comm?.content}</p>
+                    {comm.userId === currentUser.id && <>
                     <GoTrashcan className="comments-side-icons" onClick={() => dispatch(deleteOneComment(comm))} />
-                    <EditComment comm={comm} />
+                    <EditComment comm={comm} />  </>}
                   </div>
                 );
               })}
