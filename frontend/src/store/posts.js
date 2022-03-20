@@ -75,7 +75,6 @@ const loadPosts = (postData) => ({
 export const loadAllPosts = () => async dispatch => {
     const response = await csrfFetch('/api/users')
     const postData = await response.json()
-    console.log(postData, ' what is the order returned')
     dispatch(loadPosts(postData))
 }
 
@@ -93,7 +92,6 @@ function postsReducer(state = initialState, action) {
     case LOAD_POSTS:
         newState = {...state}
         // let posts = []
-        console.log(action.postData, ' awht')
         action.postData.forEach((post) => newState.Posts[post.id] = post)
         // action.postData.forEach((post) => posts.push(post[post.id] = post))
         // newState.Posts = posts
