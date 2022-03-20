@@ -8,7 +8,8 @@ const DeletePost = ({ postId, closeModal }) => {
   const dispatch = useDispatch();
 
   const [confirmDelete, setConfirmDelete] = useState(false);
-
+  const currentUser = useSelector((state) => state.session.user)
+  const post = useSelector((state) => state.postsReducer.Posts[postId])
   const deletePost = () => {
     dispatch(deleteSinglePost(postId));
     closeModal();
@@ -25,7 +26,9 @@ const DeletePost = ({ postId, closeModal }) => {
         <>
           <div className="delete-modal-cont">
             <NavLink className='delete-post-content' to={`/posts/${postId}`}>Go to post</NavLink>
+            {currentUser.id === post?.userId &&
           <button onClick={() => setConfirmDelete(true)} className='post-comment delete' >Delete Post</button>
+            }
           </div>
         </>
       )}

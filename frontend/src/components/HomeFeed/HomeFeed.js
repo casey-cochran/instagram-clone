@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { loadAllPosts } from "../../store/posts";
+import { useHistory } from "react-router-dom";
 import "./HomeFeed.css";
 import Modal from "react-modal";
 import DeletePost from "../DeletePost/DeletePost";
-import PostComment from "../PostComment/PostComment";
 import OnePostModal from "../OnePostModal/OnePostModal";
 import { FaUserCircle, FaEllipsisH, FaRegComment } from "react-icons/fa";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -13,6 +13,7 @@ import PostCommentFeed from "../PostCommentFeed/PostCommentFeed";
 
 const HomeFeed = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const userId = useSelector((state) => state.session.user?.id);
   const posts = useSelector((state) =>
@@ -123,7 +124,7 @@ const HomeFeed = () => {
                   <div className="sub-likes-cont">
                     <p>likes count</p>
                     <p id="sub-likes-f">
-                      <b>{user.username}</b> {post?.caption}
+                      <b>{user?.username}</b> {post?.caption}
                     </p>
                     <p onClick={() => {
                         setModalPost(post);
