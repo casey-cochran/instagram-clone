@@ -10,6 +10,7 @@ import {GoTrashcan} from 'react-icons/go';
 import { deleteOneComment } from "../../store/comments";
 import EditComment from "../EditComment/EditComment";
 import PostComment from "../PostComment/PostComment";
+import AddLikes from "../HomeFeed/Likes/Likes";
 
 const SinglePost = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const SinglePost = () => {
   );
 
   const singlePost = posts.find((post) => post.id === +postId);
+  // console.log(singlePost, 'what is single')
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState(null);
 
@@ -106,7 +108,8 @@ const SinglePost = () => {
             })}
           </div>
           <div className="one-post-likes">
-            <p>another cont here</p>
+          <p><AddLikes postId={singlePost?.id}/></p>
+              <p>{singlePost?.Likes?.length} Likes</p>
           </div>
           <div id="input-wid">
             <PostComment postId={singlePost?.id} userId={user.id} />

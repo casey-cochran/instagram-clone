@@ -162,6 +162,7 @@ function postsReducer(state = initialState, action) {
                 newState.Posts[action.comment.postId].Comments[i] = action.comment
             }
         })
+        return newState
     case ADD_LIKE:
         newState = {...state}
         newState.Posts[action.newLike.postId].Likes.push(action.newLike);
