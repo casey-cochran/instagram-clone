@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useHistory } from "react-router-dom";
 import { FaUserCircle } from 'react-icons/fa';
+import './Navigation.css';
 
 function ProfileButton({ user }) {
   const history = useHistory();
@@ -41,7 +42,7 @@ function ProfileButton({ user }) {
           <div className="prof-item">{user.username}</div>
           <div className="prof-item">{user.email}</div>
           <div className="prof-item">
-            <button onClick={logout}>Log Out</button>
+            <button className='profile-btn' onClick={logout}>Log Out</button>
           </div>
         </div>
       )}
