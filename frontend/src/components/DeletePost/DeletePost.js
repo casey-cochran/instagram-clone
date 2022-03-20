@@ -24,7 +24,7 @@ const DeletePost = ({ postId, closeModal }) => {
       ) : (
         <>
           <div className="delete-modal-cont">
-            <NavLink className='delete-post-content' to={`posts/${postId}`}>Go to post</NavLink>
+            <NavLink className='delete-post-content' to={`/posts/${postId}`}>Go to post</NavLink>
           <button onClick={() => setConfirmDelete(true)} className='post-comment delete' >Delete Post</button>
           </div>
         </>

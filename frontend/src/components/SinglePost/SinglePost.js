@@ -18,10 +18,7 @@ const SinglePost = () => {
   const posts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
-  // const singlePost = posts.find((post) => post.id === +postId);
-  //Edit the navlink in deletepost and App component to get functions to work
-  const singlePost = useSelector((state) => state.postsReducer.Posts[postId])
-  console.log(singlePost, ' single post')
+  const singlePost = posts.find((post) => post.id === +postId);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState(null);
 
