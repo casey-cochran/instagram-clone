@@ -1,0 +1,35 @@
+.edit-post-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 450px;
+    border-radius: 90px;
+    padding: 0;
+}
+
+.edit-post-title{
+    border-bottom: 1px solid #dbdbdb;
+    width: 450px;
+    margin: 0;
+    text-align: center;
+    padding: 5px;
+}
+
+.edit-post-input{
+    width: 250px;
+    border:none;
+    background: none;
+}
+
+.edit-post-input:focus{
+    outline: none;
+}
+
+.edit-post-form{
+    padding-bottom: 10px;
+}
+
+.add-img.edit{
+    height: 350px;
+}

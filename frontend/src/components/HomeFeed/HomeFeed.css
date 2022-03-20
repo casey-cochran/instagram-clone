@@ -50,7 +50,12 @@
   height: 40px;
 }
 
-img{
+/* img{
+  height: 314px;
+  object-fit: fill;
+  width: 500px;
+} */
+.add-img.home{
   height: 314px;
   object-fit: fill;
   width: 500px;

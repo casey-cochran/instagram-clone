@@ -24,6 +24,8 @@ const HomeFeed = () => {
     Object.values(state.commentsReducer.Comments)
   );
 
+  if (!user) history.push('/login');
+
   const customStyles = {
     content: {
       top: "50%",
@@ -102,7 +104,7 @@ const HomeFeed = () => {
                   />
                 </div>
                 <div>
-                  <img src={post?.image} />
+                  <img className="add-img home" src={post?.image} />
                 </div>
                 <div id="testing">
                   <div className="likes-cont">

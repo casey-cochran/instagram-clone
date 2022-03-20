@@ -3,6 +3,7 @@ import {  useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createUserPost } from "../../store/posts";
 import "./CreatePost.css";
+const validUrl = require('valid-url');
 
 const CreatePost = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,15 @@ const CreatePost = ({ closeModal }) => {
   const [caption, setCaption] = useState("");
   const [errors, setErrors] = useState([]);
   const [openForm, setOpenForm] = useState(false);
+
+
+const handleClick = () => {
+  if(validUrl.isUri(image)){
+    setOpenForm(true)
+}
+}
+
+
 
   let buttonClass = ''
   let createImageClass = ''
@@ -53,7 +63,7 @@ if(caption){
     <div >
       {openForm ? (
         <div className="create-post-cont">
-          <img id="add-img" src={image} />
+          <img className="add-img" src={image} />
           <form className="create-post-form" onSubmit={handleSubmit}>
             <ul>
               {errors?.map((error, index) => {
@@ -92,7 +102,7 @@ if(caption){
                 className="create-post-input"
               />
             </div>
-            <button onClick={() => setOpenForm(true)} disabled={image ? false : true} className={buttonClass} type='submit'>Add image</button>
+            <button onClick={handleClick} disabled={image ? false : true} className={buttonClass}>Add image</button>
           </form>
         </div>
       )}
