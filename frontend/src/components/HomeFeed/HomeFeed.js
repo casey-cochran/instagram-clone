@@ -10,6 +10,7 @@ import { FaUserCircle, FaEllipsisH, FaRegComment } from "react-icons/fa";
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
 import PostCommentFeed from "../PostCommentFeed/PostCommentFeed";
+import AddLikes from "./Likes/Likes";
 
 const HomeFeed = () => {
   const dispatch = useDispatch();
@@ -109,7 +110,7 @@ const HomeFeed = () => {
                 <div id="testing">
                   <div className="likes-cont">
                     <p>
-                      <AiOutlineHeart className="icons" />
+                      <AddLikes postId={post?.id} userId={post?.userId}/>
                     </p>
                     <FaRegComment
                       className="icons"
@@ -124,7 +125,7 @@ const HomeFeed = () => {
                     </p>
                   </div>
                   <div className="sub-likes-cont">
-                    <p>likes count</p>
+                    <p>{post?.Likes?.length} Likes</p>
                     <p id="sub-likes-f">
                       <b>{user?.username}</b> {post?.caption}
                     </p>

@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Post, Comment } = require("../../db/models");
+const { User, Post, Comment, Like, Dislike } = require("../../db/models");
 
 
 const router = express.Router();
@@ -47,7 +47,7 @@ router.post(
 
 
 router.get("", asyncHandler(async(req,res) => {
-  const posts = await Post.findAll({order:[['createdAt','DESC']],include:[{model:User}, {model:Comment, include: User}]})
+  const posts = await Post.findAll({order:[['createdAt','DESC']],include:[{model:User}, {model:Like}, {model:Dislike}, {model:Comment, include: User}]})
   res.json(posts);
 }));
 
