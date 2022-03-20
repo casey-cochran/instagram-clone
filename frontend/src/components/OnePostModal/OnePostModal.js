@@ -8,6 +8,7 @@ import PostComment from "../PostComment/PostComment";
 import { deleteOneComment } from "../../store/comments";
 import { FaUserCircle, FaEllipsisH } from "react-icons/fa";
 import { GoTrashcan } from 'react-icons/go';
+import AddLikes from "../HomeFeed/Likes/Likes";
 
 const OnePostModal = ({ postId, user, closeModal }) => {
   const dispatch = useDispatch();
@@ -93,7 +94,8 @@ const OnePostModal = ({ postId, user, closeModal }) => {
               })}
             </div>
             <div className="one-post-likes">
-              <p>another cont here</p>
+              <p><AddLikes postId={singlePost?.id}/></p>
+              <p>{singlePost?.Likes?.length} Likes</p>
             </div>
             <div id="input-wid">
               <PostComment postId={singlePost.id} userId={user.id} />
