@@ -10,6 +10,7 @@ import DeletePost from './components/DeletePost/DeletePost';
 import SinglePost from './components/SinglePost/SinglePost';
 import LoginForm from './components/LoginFormModal/LoginForm';
 import EditComment from './components/EditComment/EditComment';
+import UserProfile from './components/UserProfile/UserProfile';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route path='/posts/:postId' exact={true} >
             <SinglePost />
+          </Route>
+          <Route path='/users/:userId' exact={true}>
+            <UserProfile />
           </Route>
         </Switch>
       )}

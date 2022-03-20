@@ -54,3 +54,19 @@
 .icons.home-title:active{
   color:black;
 }
+
+.profile-btn{
+  color: #0095F6;
+    border: none;
+    /* padding: 10px; */
+    background: none;
+    cursor: pointer;
+    width: 180px;
+    text-align: left;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.profile-btn:hover{
+  background-color: rgb(250, 249, 249);
+}
