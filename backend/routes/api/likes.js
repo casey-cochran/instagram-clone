@@ -14,12 +14,12 @@ router.post('/new', requireAuth, asyncHandler(async(req,res) => {
     const {userId, postId} = req.body;
     const newLike = {userId, postId};
     const like = await Like.create(newLike);
-    res.json({msg: 'like created'})
+    res.json(like)
 }))
 
 router.delete('/delete', requireAuth, asyncHandler(async(req,res) => {
     const {likeId} = req.body;
-    const like = await Like.findByPK(likeId);
+    const like = await Like.findByPk(likeId);
     await like.destroy();
     res.json({msg: 'like removed'});
 }))
