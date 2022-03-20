@@ -54,7 +54,7 @@ router.get("", asyncHandler(async(req,res) => {
                                                       //include:[{model:Like}, {model:User}, {model:Comment, include: User}]
 router.get('/posts/:postId', asyncHandler(async(req,res) => {
   const {postId} = req.params;
-  const post = await Post.findByPk(postId, {include:[{model:Like}, {model:User}, {model:Comment, include: User}]});
+  const post = await Post.findByPk(postId, {include:[{model:Like}, {model:User}, {model:Dislike}, {model:Comment, include: User}]});
   res.json(post)
 }))
 

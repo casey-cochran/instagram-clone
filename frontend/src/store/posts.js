@@ -10,6 +10,45 @@ const DELETE_COMMENT = 'user/DELETE_COMMENT';
 const EDIT_COMMENT = 'user/EDIT_COMMENT';
 const ADD_LIKE = 'user/ADD_LIKE';
 const REMOVE_LIKE = 'user/REMOVE_LIKE';
+const ADD_DISLIKE = 'user/ADD_DISLIKE';
+const REMOVE_DISLIKE = 'user/REMOVE_DISLIKE';
+
+
+
+const removeDislike = (dislikeId, postId) => ({
+    type: REMOVE_DISLIKE,
+    dislikeId,
+    postId
+})
+
+export const removeOneDislike = (dislikeId, postId) => async dispatch =>{
+    const response = await csrfFetch('/api/dislikes/delete', {
+        method: 'DELETE',
+        body: JSON.stringify({
+            dislikeId
+        })
+    })
+    const deleteDislike = await response.json();
+    dispatch(removeDislike(dislikeId, postId))
+}
+
+
+const addDislike = (newDislike) => ({
+    type: ADD_DISLIKE,
+    newDislike
+})
+
+export const addOneDislike = (postId, userId) => async dispatch => {
+    const response = await csrfFetch(`/api/dislikes/new`, {
+        method: 'POST',
+        body: JSON.stringify({
+            postId,
+            userId
+        })
+    })
+    const dislike = await response.json();
+    dispatch(addDislike(dislike))
+}
 
 
 const removeLike = (likeId, postId) => ({
@@ -171,6 +210,15 @@ function postsReducer(state = initialState, action) {
         newState = {...state}
        const likesArr = newState.Posts[action.postId].Likes.filter((like) => like.id !== action.likeId);
        newState.Posts[action.postId].Likes = likesArr;
+       return newState;
+    case ADD_DISLIKE:
+        newState = {...state}
+        newState.Posts[action.newDislike.postId].Dislikes.push(action.newDislike);
+        return newState;
+    case REMOVE_DISLIKE:
+        newState = {...state}
+       const dislikesArr = newState.Posts[action.postId].Dislikes.filter((like) => like.id !== action.dislikeId);
+       newState.Posts[action.postId].Dislikes = dislikesArr;
        return newState;
     default:
       return state;

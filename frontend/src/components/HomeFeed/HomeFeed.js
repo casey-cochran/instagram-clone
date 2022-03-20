@@ -11,6 +11,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
 import PostCommentFeed from "../PostCommentFeed/PostCommentFeed";
 import AddLikes from "./Likes/Likes";
+import AddDislikes from "../Dislike/AddDislike";
 
 const HomeFeed = () => {
   const dispatch = useDispatch();
@@ -112,6 +113,9 @@ const HomeFeed = () => {
                     <p>
                       <AddLikes postId={post?.id} userId={post?.userId}/>
                     </p>
+                    <p>
+                      <AddDislikes postId={post?.id} userId={post?.userId} />
+                    </p>
                     <FaRegComment
                       className="icons"
                       onClick={() => {
@@ -125,7 +129,7 @@ const HomeFeed = () => {
                     </p>
                   </div>
                   <div className="sub-likes-cont">
-                    <p>{post?.Likes?.length} Likes</p>
+                    <p>{post?.Likes?.length} Likes {post?.Dislikes?.length} Dislikes</p>
                     <p id="sub-likes-f">
                       <b>{user?.username}</b> {post?.caption}
                     </p>

@@ -13,7 +13,7 @@ router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
 router.use('/comments', commentsRouter);
 router.use('/likes', likesRouter);
-router.use('/dislieks', dislieksRouter);
+router.use('/dislikes', dislieksRouter);
 // // GET /api/set-token-cookie
 // const asyncHandler = require('express-async-handler');
 // const { setTokenCookie } = require('../../utils/auth.js');
