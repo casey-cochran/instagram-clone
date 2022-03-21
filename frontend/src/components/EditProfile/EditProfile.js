@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { editUserProfile } from "../../store/posts";
 import './EditProfile.css';
 
 
 
 const EditProfile = ({user, closeModal}) => {
+    const dispatch = useDispatch();
 console.log('what is ', user)
 
-const [bio, setBio] = useState(user?.bio)
-const [image, setImage] = useState('')
+const [bio, setBio] = useState(user?.bio ? user?.bio : '')
+const [image, setImage] = useState(user?.image ? user?.image : '')
 const [errors, setErrors] = useState('')
 
 let buttonClass = ''
@@ -16,6 +18,28 @@ if(bio || image){
   buttonClass = 'post-comment'
 }else {
     buttonClass = 'post-comment-disabled'
+}
+
+const handleSubmit = async(e) => {
+    e.preventDefault();
+    // if(!image){
+    //     setImage('https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png')
+    // }
+
+    const userEdit = {
+        userId: user.id,
+        image,
+        bio
+    }
+    const value = await dispatch(editUserProfile(userEdit)).catch(async(err) => {
+        const errors = await err.json();
+        if(errors){
+            return errors
+        }
+    })
+    if(value?.errors){
+      return  setErrors(value.errors)
+    }
 }
 
 
@@ -28,7 +52,10 @@ if(bio || image){
                 : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
             } />
             </div>
-            <form className="prof-edit-form">
+            {errors.length > 0 && errors.map((error, index) => {
+                return <div key={index}>{error}</div>
+            })}
+            <form onSubmit={handleSubmit} className="prof-edit-form">
                 <input
                 onChange={((e) => setBio(e.target.value))}
                 value={bio}
@@ -38,7 +65,7 @@ if(bio || image){
                 />
                 <input
                 onChange={((e) => setImage(e.target.value))}
-                value={image}
+                value={image ? image : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'}
                 type='url'
                 placeholder="Add profile image"
                 className="create-post-input edit"

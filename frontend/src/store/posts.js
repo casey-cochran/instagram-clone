@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_POSTS = 'user/LOAD_POSTS';
 const LOAD_ONE_POST = 'user/LOAD_ONE_POST';
 const LOAD_USERS_POSTS = 'user/LOAD_USERS_POSTS';
+const EDIT_USER_PROFILE = 'user/EDIT_USER_PROFILE';
 const CREATE_POST = 'user/CREATE_POST';
 const DELETE_POST = 'user/DELETE_POST';
 const EDIT_POST = 'user/EDIT_POST';
@@ -14,6 +15,22 @@ const REMOVE_LIKE = 'user/REMOVE_LIKE';
 const ADD_DISLIKE = 'user/ADD_DISLIKE';
 const REMOVE_DISLIKE = 'user/REMOVE_DISLIKE';
 
+
+const editProfile = (user) => ({
+    type: EDIT_USER_PROFILE,
+    user
+})
+
+export const editUserProfile = (user) => async dispatch => {
+    const response = await csrfFetch(`/api/users/${user.id}/edit`, {
+        method: 'PATCH',
+        body: JSON.stringify(
+            user
+        )
+    })
+    const data = await response.json();
+    console.log(data, 'is data correct?')
+}
 
 const loadUserPosts = (posts) => ({
     type: LOAD_USERS_POSTS,
@@ -192,6 +209,7 @@ function postsReducer(state = initialState, action) {
         return newState;
     case LOAD_USERS_POSTS:
         newState = {...state}
+        newState.Posts = {}
         action.posts.forEach((post) => newState.Posts[post.id] = post)
         return newState;
     case LOAD_ONE_POST:
