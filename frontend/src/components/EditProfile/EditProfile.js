@@ -7,7 +7,7 @@ import './EditProfile.css';
 
 const EditProfile = ({user, closeModal}) => {
     const dispatch = useDispatch();
-    
+
 const [bio, setBio] = useState(user?.bio ? user?.bio : '')
 const [image, setImage] = useState(user?.image ? user?.image : '')
 const [errors, setErrors] = useState('')
@@ -44,6 +44,7 @@ const handleSubmit = async(e) => {
     return (
         <div className="prof-edit-cont">
             <div>
+            <h2 id='edit-prof-header'>Edit Profile</h2>
                 <img className="prof-edit-image" src={
               user?.image
                 ? user?.image
