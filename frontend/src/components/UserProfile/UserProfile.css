@@ -3,10 +3,9 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 1px solid black;
     margin: auto;
-    margin-top: 80px;
-    width: 1000px;
+    margin-top: 20px;
+    width: 950px;
 }
 
 .user-data-cont{
@@ -17,16 +16,26 @@
 }
 
 .user-top-cont{
-    width: 1000px;
-    justify-content: center;
-    border: 1px solid black;
+    width: 950px;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #dbdbdb;
     display: flex;
+    gap: 100px;
 
 }
 
-.user-prof-img{
+.user-prof-img-cont{
     width: 290px;
     height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-prof-img{
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
 }
 
 .name-follow{
@@ -40,14 +49,14 @@
 }
 
 .profile-img-loop{
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
 }
 
 .user-post-img-cont{
     display: flex;
     justify-content: flex-start;
-    margin-left: 27px;
+    margin-left: 165px;
     padding-top: 30px;
     padding-bottom: 30px;
     width: 950px;
