@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { FaUserCircle } from 'react-icons/fa';
 import './Navigation.css';
 
@@ -41,6 +41,9 @@ function ProfileButton({ user }) {
         <div className="profile-dropdown">
           <div className="prof-item">{user.username}</div>
           <div className="prof-item">{user.email}</div>
+          <div className='prof-item'>
+            <Link className='profile-btn lnk' to={`/users/${user.id}`}>Go to profile</Link>
+            </div>
           <div className="prof-item">
             <button className='profile-btn' onClick={logout}>Log Out</button>
           </div>

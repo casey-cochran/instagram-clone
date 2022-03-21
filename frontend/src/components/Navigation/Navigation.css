@@ -70,3 +70,9 @@
 .profile-btn:hover{
   background-color: rgb(250, 249, 249);
 }
+
+.profile-btn.lnk{
+  text-decoration: none;
+  width: 180px !important;
+  cursor:pointer;
+}

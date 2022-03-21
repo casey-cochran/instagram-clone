@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editUserProfile } from "../../store/posts";
 import './EditProfile.css';
 
@@ -7,7 +7,7 @@ import './EditProfile.css';
 
 const EditProfile = ({user, closeModal}) => {
     const dispatch = useDispatch();
-
+    
 const [bio, setBio] = useState(user?.bio ? user?.bio : '')
 const [image, setImage] = useState(user?.image ? user?.image : '')
 const [errors, setErrors] = useState('')
@@ -37,6 +37,7 @@ const handleSubmit = async(e) => {
     if(value?.errors){
       return  setErrors(value.errors)
     }
+    closeModal();
 }
 
 
