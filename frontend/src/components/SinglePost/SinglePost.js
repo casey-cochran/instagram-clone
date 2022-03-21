@@ -55,13 +55,13 @@ const SinglePost = () => {
         <div className="comments-side-bar single">
           <div className="comments-side-header">
             <div id="icon-header">
-              {user?.image ? (
-                <img id="profile-img" src={user?.image} />
+              {singlePost?.User?.image ? (
+                <img id="profile-img" src={singlePost?.User?.image} />
               ) : (
                 <FaUserCircle className="icons" />
               )}
               <div className="username-head">
-                <b>{user?.username}</b>
+                <b>{singlePost?.User?.username}</b>
               </div>
             </div>
             <Modal
@@ -82,12 +82,12 @@ const SinglePost = () => {
           </div>
           <div className="side-comments-scroll single">
             <div className="one-post-cap">
-              {user?.image ? (
-                <img id="profile-img" src={user?.image} />
+              {singlePost?.User?.image ? (
+                <img id="profile-img" src={singlePost?.User?.image} />
               ) : (
                 <FaUserCircle className="icons" />
               )}
-              <b>{user?.username}</b>
+              <b>{singlePost?.User?.username}</b>
             </div>
             <div className="caption-lng">{singlePost?.caption}</div>
             <div className="scroll-comments">
@@ -101,7 +101,7 @@ const SinglePost = () => {
                     )}
                     <b>{comm?.User?.username}</b>{" "}
                     <p className="break-wrd">{comm?.content}</p>
-                    {user.id === singlePost?.userId && (
+                    {comm.userId === user.id && (
                       <>
                         <GoTrashcan
                           className="comments-side-icons"

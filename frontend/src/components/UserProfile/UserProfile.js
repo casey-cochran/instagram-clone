@@ -63,7 +63,7 @@ const UserProfile = () => {
             </div>
             <div>follow</div>
             <div>
-                {currentUser.id === userPosts[0]?.User?.id &&
+                {(currentUser.id === userPosts[0]?.User?.id || userPosts?.length === 0) &&
               <FaEllipsisH
                 className="icons"
                 onClick={() => {
