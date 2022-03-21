@@ -130,7 +130,7 @@ const HomeFeed = () => {
                   <div className="sub-likes-cont">
                     <p>{post?.Likes?.length} Likes {post?.Dislikes?.length} Dislikes</p>
                     <p id="sub-likes-f">
-                      <b>{user?.username}</b> {post?.caption}
+                      <b>{post?.User?.username}</b> {post?.caption}
                     </p>
                     <p onClick={() => {
                         setModalPost(post);
