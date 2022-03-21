@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { loadAllUserPosts } from "../../store/posts";
-import { FaEllipsisH } from "react-icons/fa";
+import { FiEdit2 } from 'react-icons/fi';
 import Modal from 'react-modal';
 import "./UserProfile.css";
 import EditProfile from "../EditProfile/EditProfile";
@@ -27,7 +27,7 @@ const UserProfile = () => {
   const customStyles = {
     content: {
         width: '350px',
-      height: '500px',
+      height: '520px',
       top: "50%",
       outline: 0,
       padding: 0,
@@ -64,7 +64,7 @@ const UserProfile = () => {
             <div>follow</div>
             <div>
                 {(currentUser.id === userPosts[0]?.User?.id || userPosts?.length === 0) &&
-              <FaEllipsisH
+              <FiEdit2
                 className="icons"
                 onClick={() => {
                   setIsOpen(true);
