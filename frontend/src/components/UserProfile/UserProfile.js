@@ -10,11 +10,11 @@ import EditProfile from "../EditProfile/EditProfile";
 const UserProfile = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
-  const user = useSelector((state) => state.session.user);
+  const currentUser = useSelector((state) => state.session.user)
   const userPosts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
-  console.log(userPosts, ' thsi is wrong')
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -27,7 +27,7 @@ const UserProfile = () => {
   const customStyles = {
     content: {
         width: '350px',
-      height: '450px',
+      height: '500px',
       top: "50%",
       outline: 0,
       padding: 0,
@@ -63,12 +63,13 @@ const UserProfile = () => {
             </div>
             <div>follow</div>
             <div>
+                {currentUser.id === userPosts[0]?.User?.id &&
               <FaEllipsisH
                 className="icons"
                 onClick={() => {
                   setIsOpen(true);
                 }}
-              />
+              /> }
               <Modal
               isOpen={modalIsOpen}
               onRequestClose={closeModal}
