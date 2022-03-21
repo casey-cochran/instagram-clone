@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import "./SinglePost.css";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { loadSinglePost } from "../../store/posts";
 import EditPost from "../EditPost/EditPost";
 import { FaUserCircle, FaEllipsisH } from "react-icons/fa";
@@ -14,6 +14,7 @@ import AddLikes from "../Likes/Likes";
 import AddDislikes from "../Dislike/AddDislike";
 
 const SinglePost = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { postId } = useParams();
   const user = useSelector((state) => state.session.user);
@@ -22,6 +23,8 @@ const SinglePost = () => {
   );
 
   const singlePost = posts.find((post) => post.id === +postId);
+
+
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState(null);
 
@@ -44,7 +47,11 @@ const SinglePost = () => {
   }
 
   useEffect(() => {
-    dispatch(loadSinglePost(postId));
+    if(!posts[0]?.User?.id) history.push('/');
+    dispatch(loadSinglePost(postId)).catch(async(err) => {
+      const error = err.json();
+
+    });
   }, [dispatch]);
 
   return (

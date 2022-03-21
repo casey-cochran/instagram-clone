@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { loadAllUserPosts } from "../../store/posts";
 import { FiEdit2 } from 'react-icons/fi';
 import Modal from 'react-modal';
-import "./UserProfile.css";
 import EditProfile from "../EditProfile/EditProfile";
+import "./UserProfile.css";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { userId } = useParams();
   const currentUser = useSelector((state) => state.session.user)
+
   const userPosts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
+
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -41,6 +44,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     dispatch(loadAllUserPosts(userId));
+    if(!userPosts[0]?.User?.id) history.push('/')
   }, [dispatch, userId]);
 
   return (
