@@ -1,0 +1,57 @@
+.user-prof-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: auto;
+    margin-top: 80px;
+    width: 1000px;
+}
+
+.user-data-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 230px;
+}
+
+.user-top-cont{
+    width: 1000px;
+    justify-content: center;
+    border: 1px solid black;
+    display: flex;
+
+}
+
+.user-prof-img{
+    width: 290px;
+    height: 230px;
+}
+
+.name-follow{
+    display: flex;
+    gap: 15px;
+}
+
+.post-follow-count{
+    display: flex;
+    gap: 15px;
+}
+
+.profile-img-loop{
+    width: 300px;
+    height: 300px;
+}
+
+.user-post-img-cont{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 27px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 950px;
+    flex-wrap:wrap;
+    gap: 20px;
+
+}
