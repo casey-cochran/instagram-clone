@@ -3,9 +3,9 @@ const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const commentsRouter = require('./comments.js');
 const likesRouter = require('./likes')
-const dislieksRouter = require('./dislikes')
-
-
+const dislikesRouter = require('./dislikes')
+const followsRouter = require('./follows');
+const followersRouter = require('./followers');
 
 
 
@@ -13,7 +13,9 @@ router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
 router.use('/comments', commentsRouter);
 router.use('/likes', likesRouter);
-router.use('/dislikes', dislieksRouter);
+router.use('/dislikes', dislikesRouter);
+router.use('/follows', followsRouter);
+router.use('/followers', followersRouter);
 // // GET /api/set-token-cookie
 // const asyncHandler = require('express-async-handler');
 // const { setTokenCookie } = require('../../utils/auth.js');
