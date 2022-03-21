@@ -8,7 +8,7 @@ import PostComment from "../PostComment/PostComment";
 import { deleteOneComment } from "../../store/comments";
 import { FaUserCircle, FaEllipsisH } from "react-icons/fa";
 import { GoTrashcan } from 'react-icons/go';
-import AddLikes from "../HomeFeed/Likes/Likes";
+import AddLikes from "../Likes/Likes";
 import AddDislikes from "../Dislike/AddDislike";
 
 const OnePostModal = ({ postId, user, closeModal }) => {
@@ -42,8 +42,8 @@ const OnePostModal = ({ postId, user, closeModal }) => {
         <div className="comments-side-bar">
           <div className="comments-side-header">
             <div id="icon-header">
-              {user?.image ? (
-                <img id="profile-img" src={user?.image} />
+              {singlePost?.User?.image ? (
+                <img id="profile-img" src={singlePost?.User?.image} />
               ) : (
                 <FaUserCircle className="icons" />
               )}
@@ -69,8 +69,8 @@ const OnePostModal = ({ postId, user, closeModal }) => {
           </div>
           <div className="side-comments-scroll">
             <div className="one-post-cap">
-              {user?.image ? (
-                <img id="profile-img" src={user?.image} />
+              {singlePost?.User?.image ? (
+                <img id="profile-img" src={singlePost?.User?.image} />
               ) : (
                 <FaUserCircle className="icons" />
               )}
@@ -82,7 +82,7 @@ const OnePostModal = ({ postId, user, closeModal }) => {
                 return (
                   <div key={index} className="comm-spacing">
                     {comm.User?.image ? (
-                <img id="profile-img" src={user?.image} />
+                <img id="profile-img" src={comm.User?.image} />
               ) : (
                 <FaUserCircle className="icons" />
               )}

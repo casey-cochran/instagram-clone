@@ -9,7 +9,7 @@ import OnePostModal from "../OnePostModal/OnePostModal";
 import { FaUserCircle, FaEllipsisH, FaRegComment } from "react-icons/fa";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
 import PostCommentFeed from "../PostCommentFeed/PostCommentFeed";
-import AddLikes from "./Likes/Likes";
+import AddLikes from "../Likes/Likes";
 import AddDislikes from "../Dislike/AddDislike";
 
 const HomeFeed = () => {
