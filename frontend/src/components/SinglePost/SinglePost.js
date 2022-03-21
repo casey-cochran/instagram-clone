@@ -22,7 +22,6 @@ const SinglePost = () => {
   );
 
   const singlePost = posts.find((post) => post.id === +postId);
-  // console.log(singlePost, 'what is single')
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState(null);
 

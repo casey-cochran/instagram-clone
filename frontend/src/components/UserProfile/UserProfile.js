@@ -41,7 +41,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     dispatch(loadAllUserPosts(userId));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   return (
     <div className="user-prof-cont">
