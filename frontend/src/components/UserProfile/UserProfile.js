@@ -5,6 +5,7 @@ import { loadAllUserPosts } from "../../store/posts";
 import { FiEdit2 } from 'react-icons/fi';
 import Modal from 'react-modal';
 import EditProfile from "../EditProfile/EditProfile";
+import { followUser, unfollowUser } from "../../store/followers";
 import "./UserProfile.css";
 
 const UserProfile = () => {
@@ -65,7 +66,10 @@ const UserProfile = () => {
             <div>
               <b>{userPosts[0]?.User?.username}</b>
             </div>
-            <div>follow</div>
+            <div>
+              <button onClick={(() => dispatch(followUser(currentUser.id, userPosts[0]?.User?.id)))}>Follow</button>
+              <button onClick={(() => dispatch(unfollowUser(currentUser.id, userPosts[0]?.User?.id)))}>Unfollow</button>
+            </div>
             <div>
                 {(currentUser.id === userPosts[0]?.User?.id || userPosts?.length === 0) &&
               <FiEdit2
