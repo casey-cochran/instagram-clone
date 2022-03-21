@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import {  useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createUserPost } from "../../store/posts";
 import "./CreatePost.css";
-const validUrl = require('valid-url');
+const validUrl = require("valid-url");
 
 const CreatePost = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -15,28 +15,24 @@ const CreatePost = ({ closeModal }) => {
   const [errors, setErrors] = useState([]);
   const [openForm, setOpenForm] = useState(false);
 
+  const handleClick = () => {
+    if (validUrl.isUri(image)) {
+      setOpenForm(true);
+    }
+  };
 
-const handleClick = () => {
-  if(validUrl.isUri(image)){
-    setOpenForm(true)
-}
-}
-
-
-
-  let buttonClass = ''
-  let createImageClass = ''
- if(image){
-   buttonClass = 'post-comment'
- }else {
-  buttonClass = 'post-comment-disabled'
-}
-if(caption){
-  createImageClass = 'post-comment'
-}else {
-  createImageClass = 'post-comment-disabled'
-}
-
+  let buttonClass = "";
+  let createImageClass = "";
+  if (image) {
+    buttonClass = "post-comment";
+  } else {
+    buttonClass = "post-comment-disabled";
+  }
+  if (caption) {
+    createImageClass = "post-comment";
+  } else {
+    createImageClass = "post-comment-disabled";
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,16 +56,11 @@ if(caption){
   };
 
   return (
-    <div >
+    <div>
       {openForm ? (
         <div className="create-post-cont">
           <img className="add-img" src={image} />
           <form className="create-post-form" onSubmit={handleSubmit}>
-            <ul>
-              {errors?.map((error, index) => {
-               return <li key={index}>{error}</li>;
-              })}
-            </ul>
             <div>
               <input
                 onChange={(e) => setCaption(e.target.value)}
@@ -80,16 +71,34 @@ if(caption){
                 className="create-post-input"
               />
             </div>
-            <button onClick={() => setOpenForm(true)} disabled={caption ? false : true} className={createImageClass} type='submit'>Add image</button>
-
+            <button
+              onClick={() => setOpenForm(true)}
+              disabled={caption ? false : true}
+              className={createImageClass}
+              type="submit"
+            >
+              Add image
+            </button>
           </form>
-         {errors.length > 0 && <button onClick={() => setOpenForm(false)}>Go back to add image</button> }
+          <div>
+            {errors?.map((error, index) => {
+              return <div key={index}>{error}</div>;
+            })}
+          </div>
+          {errors.length > 0 && (
+            <button className="post-comment" onClick={() => setOpenForm(false)}>
+              Go back to add image
+            </button>
+          )}
         </div>
       ) : (
         <div className="create-post-cont">
           <h3 className="create-post-title">Create new post</h3>
           {/* <BiImage className="create-post-icon"/> */}
-          <img className="create-post-icon" src='https://www.cera.org.au/wp-content/uploads/2021/06/placeholder-images-image_large.png' />
+          <img
+            className="create-post-icon"
+            src="https://www.cera.org.au/wp-content/uploads/2021/06/placeholder-images-image_large.png"
+          />
           <form className="create-post-form">
             <div>
               <input
@@ -102,7 +111,13 @@ if(caption){
                 className="create-post-input"
               />
             </div>
-            <button onClick={handleClick} disabled={image ? false : true} className={buttonClass}>Add image</button>
+            <button
+              onClick={handleClick}
+              disabled={image ? false : true}
+              className={buttonClass}
+            >
+              Add image
+            </button>
           </form>
         </div>
       )}

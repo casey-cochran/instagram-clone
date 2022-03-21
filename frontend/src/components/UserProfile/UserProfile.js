@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { loadAllUserPosts } from "../../store/posts";
+import {FaEllipsisH} from 'react-icons/fa';
 import './UserProfile.css';
 
 
@@ -20,21 +21,23 @@ const UserProfile = () => {
     return (
         <div className="user-prof-cont">
             <div className="user-top-cont">
-                <div className="user-prof-img">image here</div>
+                <div className="user-prof-img-cont">
+                    <img className="user-prof-img" src={userPosts[0]?.User?.image ? userPosts[0]?.User?.image : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png' } />
+                </div>
                 <div className="user-data-cont">
                     <div className="name-follow">
-                        <div>name</div>
+                        <div><b>{userPosts[0]?.User?.username}</b></div>
                         <div>follow</div>
-                        <div>menu option? if owner can edit picture or bio?</div>
+                        <div><FaEllipsisH /></div>
                     </div>
                     <div className="post-follow-count">
-                        <div>posts count</div>
+                        <div>{userPosts?.length} posts</div>
                         <div>followers count</div>
                         <div>following count</div>
                     </div>
                     <div>
-                        <div>username again</div>
-                        <div>bio of user?</div>
+                        <div><b>Bio:</b></div>
+                        <div>{userPosts[0]?.User?.bio ? userPosts[0]?.User?.bio : 'Add a bio'}</div>
                     </div>
                 </div>
                 </div>
