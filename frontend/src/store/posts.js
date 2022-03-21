@@ -29,7 +29,9 @@ export const editUserProfile = (user) => async dispatch => {
         )
     })
     const data = await response.json();
-    console.log(data, 'is data correct?')
+    dispatch(editProfile(data))
+    console.log(data, ' waht is the data?')
+    return data;
 }
 
 const loadUserPosts = (posts) => ({
@@ -211,6 +213,11 @@ function postsReducer(state = initialState, action) {
         newState = {...state}
         newState.Posts = {}
         action.posts.forEach((post) => newState.Posts[post.id] = post)
+        return newState;
+    case EDIT_USER_PROFILE:
+        newState = {...state};
+        const postsArr = Object.values(newState.Posts)
+        postsArr.forEach((post) => post.User = action.user)
         return newState;
     case LOAD_ONE_POST:
         newState = {...state}

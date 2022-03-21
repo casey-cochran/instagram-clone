@@ -1,5 +1,5 @@
 import { AiOutlineHeart } from "react-icons/ai";
-import { addOneLike, removeOneLike } from "../../../store/posts";
+import { addOneLike, removeOneLike } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 
 const AddLikes = ({postId, userId}) => {

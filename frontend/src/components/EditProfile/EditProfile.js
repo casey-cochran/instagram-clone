@@ -7,7 +7,6 @@ import './EditProfile.css';
 
 const EditProfile = ({user, closeModal}) => {
     const dispatch = useDispatch();
-console.log('what is ', user)
 
 const [bio, setBio] = useState(user?.bio ? user?.bio : '')
 const [image, setImage] = useState(user?.image ? user?.image : '')
@@ -22,9 +21,7 @@ if(bio || image){
 
 const handleSubmit = async(e) => {
     e.preventDefault();
-    // if(!image){
-    //     setImage('https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png')
-    // }
+
 
     const userEdit = {
         userId: user.id,
@@ -65,8 +62,8 @@ const handleSubmit = async(e) => {
                 />
                 <input
                 onChange={((e) => setImage(e.target.value))}
-                value={image ? image : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'}
-                type='url'
+                value={image}
+                type='text'
                 placeholder="Add profile image"
                 className="create-post-input edit"
                 />

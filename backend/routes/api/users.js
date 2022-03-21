@@ -62,6 +62,7 @@ const validateProfile = [
     .isLength({ max: 350 })
     .withMessage("Cannot be longer than 350 characters"),
   check('image')
+    .if((value, { req }) => req.body.image)
     .isURL()
     .withMessage("Must be a valid URL"),
   handleValidationErrors

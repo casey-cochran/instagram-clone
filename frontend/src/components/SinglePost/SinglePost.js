@@ -10,7 +10,7 @@ import { GoTrashcan } from "react-icons/go";
 import { deleteOneComment } from "../../store/comments";
 import EditComment from "../EditComment/EditComment";
 import PostComment from "../PostComment/PostComment";
-import AddLikes from "../HomeFeed/Likes/Likes";
+import AddLikes from "../Likes/Likes";
 import AddDislikes from "../Dislike/AddDislike";
 
 const SinglePost = () => {
