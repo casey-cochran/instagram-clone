@@ -1,0 +1,29 @@
+.prof-edit-cont{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    height: 500px;
+    width: 350px;
+    gap: 10px;
+}
+
+.prof-edit-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+.prof-edit-image{
+    width: 350px;
+    height: 350px;
+    object-fit: fill;
+}
+
+.create-post-input.edit{
+    border: 1px solid grey;
+    padding: 5px;
+}
