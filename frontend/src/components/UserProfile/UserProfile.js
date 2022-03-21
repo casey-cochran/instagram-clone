@@ -14,6 +14,7 @@ const UserProfile = () => {
   const userPosts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
+  console.log(userPosts, ' thsi is wrong')
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {

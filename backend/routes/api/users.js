@@ -57,6 +57,23 @@ router.get('/:userId', asyncHandler(async(req,res) => {
   res.json(userPosts)
 }))
 
+const validateProfile = [
+  check('bio')
+    .isLength({ max: 350 })
+    .withMessage("Cannot be longer than 350 characters"),
+  check('image')
+    .isURL()
+    .withMessage("Must be a valid URL"),
+  handleValidationErrors
+]
+
+router.patch('/:userId/edit', validateProfile, requireAuth, asyncHandler(async(req,res) => {
+  const {userId, bio, image} = req.body;
+  const user = await User.findByPk(userId)
+  const updateUser =  await user.update({bio: bio, image:image})
+  res.json(updateUser)
+}))
+
 
 router.get('/posts/:postId', asyncHandler(async(req,res) => {
   const {postId} = req.params;
