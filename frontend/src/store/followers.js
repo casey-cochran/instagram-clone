@@ -48,6 +48,7 @@ export const followUser = (currentUserId, userId) => async dispatch => {
         })
     })
     const user = await response.json();
+    console.log(user, 'user with new data?')
     dispatch(follow(user))
 }
 
@@ -69,16 +70,8 @@ function followsReducer(state = initialState, action){
             return newState;
         case UNFOLLOW_USER:
             newState = {...state};
-            console.log(newState.Follows , ' what is new state  .follows')
-
-            // let test = newState.Follows.find((follow => (follow.followerId === action.currentUserId || follow.id === action.currentUserId)))
-
             const followsArr = newState.Follows.filter((follow => follow.id !== action.currentUserId))
-            const otherArr = newState.Follows.filter((follow) => follow.followerId !== action.currentUserId)
-            if(followsArr) newState.Follows = followsArr
-            if(otherArr) newState.Follows = otherArr
-            console.log(followsArr, 'and-----', otherArr)
-            // newState.Follows = followsArr;
+             newState.Follows = followsArr;
             return newState;
         default:
             return state;

@@ -25,9 +25,9 @@ const FollowUser = () => {
     // console.log(userFollowers2, ' hwat is this please ?')
     const ifFollow = () => {
         const follow = userFollowers?.find((follow) => follow?.id === currentUser.id)
-        const newFollow = userFollowers?.find((follow) => follow.followerId === currentUser.id)
-        console.log(newFollow, ' new follow i nfunc')
-        if(follow || newFollow){
+        // const newFollow = userFollowers?.find((follow) => follow.followerId === currentUser.id)
+        // console.log(newFollow, ' new follow i nfunc')
+        if(follow ){
             dispatch(unfollowUser(currentUser.id, userPosts[0]?.User?.id))
         }else {
             dispatch(followUser(currentUser.id, userPosts[0]?.User?.id))
@@ -39,7 +39,7 @@ const FollowUser = () => {
         <>
             <div>
                 {userPosts[0]?.User?.id !== currentUser.id &&
-              <button className="follow-btn" onClick={ifFollow}>{alreadyFollowed || userFollowers2 ? 'Following' : 'Follow'}</button>
+              <button className="follow-btn" onClick={ifFollow}>{alreadyFollowed  ? 'Following' : 'Follow'}</button>
                 }
             </div>
         </>

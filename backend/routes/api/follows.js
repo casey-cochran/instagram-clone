@@ -22,8 +22,10 @@ router.post('/:userId', asyncHandler(async(req,res) => {
         followerId: currentUserId,
         followedId: userId
     }
+    const user = await User.findByPk(currentUserId)
     const newFollow = await Follow.create(follow)
-    res.json(newFollow)
+    user.dataValues['Follow'] = newFollow
+    res.json(user)
 }))
 
 
