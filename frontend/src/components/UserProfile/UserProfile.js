@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import EditProfile from "../EditProfile/EditProfile";
 import { followUser, unfollowUser, loadAllFollows } from "../../store/followers";
 import "./UserProfile.css";
+import FollowUser from "../FollowUser/FollowUser";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -14,12 +15,14 @@ const UserProfile = () => {
   const { userId } = useParams();
   const currentUser = useSelector((state) => state.session.user)
   const followState = useSelector((state) => state.followsReducer?.Follows)
-  let followers; // length of this is amount of followers
-  let following; // length of this is amount of poeple the user is following
-  if(followState.length > 0) followers = followState?.filter((follow) => follow.followedId === +userId )
-  if(followState.length > 0) following = followState?.filter((follow) => follow.followerId === +userId )
+  const userFollowers = useSelector((state) => state.followsReducer?.Follows)
+   const userFollowing = useSelector((state) => state.followsReducer?.Following)
+console.log(userFollowers?.length, ' waht is user followers')
+  // let followers; // length of this is amount of followers
+  //   let following; // length of this is amount of poeple the user is following
+  //   if(followState?.length > 0) followers = userFollowers?.filter((follow) => follow.followedId === +userId )
+  //   if(followState?.length > 0) following = followState?.filter((follow) => follow.followerId === currentUser.id )
 
-  console.log(followers, ' followers here', following, ' following here')
   const userPosts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
@@ -73,10 +76,7 @@ const UserProfile = () => {
             <div>
               <b>{userPosts[0]?.User?.username}</b>
             </div>
-            <div>
-              <button onClick={(() => dispatch(followUser(currentUser.id, userPosts[0]?.User?.id)))}>Follow</button>{followers?.length}
-              <button onClick={(() => dispatch(unfollowUser(currentUser.id, userPosts[0]?.User?.id)))}>Unfollow</button>{following?.length}
-            </div>
+            <FollowUser />
             <div>
                 {(currentUser.id === userPosts[0]?.User?.id || userPosts?.length === 0) &&
               <FiEdit2
@@ -96,9 +96,9 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="post-follow-count">
-            <div>{userPosts?.length} posts</div>
-            <div>followers count</div>
-            <div>following count</div>
+            <div>{userPosts?.length > 0 ? userPosts?.length : 0} Posts</div>
+            <div>{userFollowers?.length > 0 ? userFollowers?.length : 0} Followers</div>
+            <div>{userFollowing?.length > 0 ? userFollowing?.length : 0} Following</div>
           </div>
           <div>
             <div>

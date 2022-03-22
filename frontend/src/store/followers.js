@@ -13,6 +13,7 @@ const loadFollows = (follows) => ({
 export const loadAllFollows = (userId) => async dispatch => {
     const response = await csrfFetch(`/api/follows/${userId}`)
     const follows = await response.json();
+    // console.log(follows,' what are all the follows returned')
     dispatch(loadFollows(follows))
 }
 
@@ -47,6 +48,7 @@ export const followUser = (currentUserId, userId) => async dispatch => {
         })
     })
     const user = await response.json();
+    console.log(user, 'user with new data?')
     dispatch(follow(user))
 }
 
@@ -58,7 +60,9 @@ function followsReducer(state = initialState, action){
     switch(action.type){
         case LOAD_FOLLOWS:
             newState = {...state};
-            newState.Follows = action.follows.Follows
+            // console.log(action.follows, ' waht is action follows')
+            newState.Follows = action.follows.followed
+            newState.Following = action.follows.followers
             return newState;
         case FOLLOW_USER:
             newState = {...state};
@@ -66,8 +70,8 @@ function followsReducer(state = initialState, action){
             return newState;
         case UNFOLLOW_USER:
             newState = {...state};
-            const followsArr = newState.Follows.filter((follow => follow.followerId !== action.currentUserId))
-            newState.Follows = followsArr;
+            const followsArr = newState.Follows.filter((follow => follow.id !== action.currentUserId))
+             newState.Follows = followsArr;
             return newState;
         default:
             return state;
