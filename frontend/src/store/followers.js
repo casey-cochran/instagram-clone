@@ -48,7 +48,6 @@ export const followUser = (currentUserId, userId) => async dispatch => {
         })
     })
     const user = await response.json();
-    console.log(user, 'user with new data?')
     dispatch(follow(user))
 }
 

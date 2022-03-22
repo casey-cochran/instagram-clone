@@ -5,7 +5,7 @@ import { loadAllUserPosts } from "../../store/posts";
 import { FiEdit2 } from 'react-icons/fi';
 import Modal from 'react-modal';
 import EditProfile from "../EditProfile/EditProfile";
-import { followUser, unfollowUser, loadAllFollows } from "../../store/followers";
+import {  loadAllFollows } from "../../store/followers";
 import "./UserProfile.css";
 import FollowUser from "../FollowUser/FollowUser";
 
@@ -14,10 +14,10 @@ const UserProfile = () => {
   const history = useHistory();
   const { userId } = useParams();
   const currentUser = useSelector((state) => state.session.user)
-  const followState = useSelector((state) => state.followsReducer?.Follows)
+  // const followState = useSelector((state) => state.followsReducer?.Follows)
   const userFollowers = useSelector((state) => state.followsReducer?.Follows)
-   const userFollowing = useSelector((state) => state.followsReducer?.Following)
-console.log(userFollowers?.length, ' waht is user followers')
+  const userFollowing = useSelector((state) => state.followsReducer?.Following)
+// console.log(userFollowers?.length, ' waht is user followers')
   // let followers; // length of this is amount of followers
   //   let following; // length of this is amount of poeple the user is following
   //   if(followState?.length > 0) followers = userFollowers?.filter((follow) => follow.followedId === +userId )
