@@ -1,14 +1,24 @@
 import { csrfFetch } from "./csrf";
 
-
+const LOAD_FOLLOWS = 'user/LOAD_FOLLOWS';
 const FOLLOW_USER = 'user/FOLLOW_USER';
 const UNFOLLOW_USER = 'user/UNFOLLOW_USER';
 
 
-const unfollow = (currentUserId, userId) => ({
+const loadFollows = (follows) => ({
+    type: LOAD_FOLLOWS,
+    follows
+})
+
+export const loadAllFollows = (userId) => async dispatch => {
+    const response = await csrfFetch(`/api/follows/${userId}`)
+    const follows = await response.json();
+    dispatch(loadFollows(follows))
+}
+
+const unfollow = (currentUserId) => ({
     type: UNFOLLOW_USER,
-    currentUserId,
-    userId
+    currentUserId
 })
 
 export const unfollowUser = (currentUserId, userId) => async dispatch => {
@@ -20,13 +30,12 @@ export const unfollowUser = (currentUserId, userId) => async dispatch => {
         })
     })
     const data = await response.json();
-    console.log(data, ' did it delete?')
+    dispatch(unfollow(currentUserId))
 }
 
-const follow = (currentUserId, userId) => ({
+const follow = (user) => ({
     type: FOLLOW_USER,
-    currentUserId,
-    userId
+    user
 })
 
 export const followUser = (currentUserId, userId) => async dispatch => {
@@ -37,8 +46,8 @@ export const followUser = (currentUserId, userId) => async dispatch => {
             userId
         })
     })
-    const data = await response.json();
-    console.log(data, ' is follow here ?')
+    const user = await response.json();
+    dispatch(follow(user))
 }
 
 
@@ -47,6 +56,19 @@ const initialState = {Follows: {}};
 function followsReducer(state = initialState, action){
     let newState;
     switch(action.type){
+        case LOAD_FOLLOWS:
+            newState = {...state};
+            newState.Follows = action.follows.Follows
+            return newState;
+        case FOLLOW_USER:
+            newState = {...state};
+            newState.Follows.push(action.user)
+            return newState;
+        case UNFOLLOW_USER:
+            newState = {...state};
+            const followsArr = newState.Follows.filter((follow => follow.followerId !== action.currentUserId))
+            newState.Follows = followsArr;
+            return newState;
         default:
             return state;
     }

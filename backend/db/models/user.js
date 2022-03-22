@@ -56,6 +56,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'followedId',
         as: 'followed'
       })
+      User.hasMany(models.Follow, {foreignKey: 'followerId'})
+      User.hasMany(models.Follow, {foreignKey: 'followedId'})
       // User.belongsTo(models.Feed, {foreignKey: 'userId'})
       User.hasMany(models.Like, {foreignKey: 'userId'})
       User.hasMany(models.Dislike, {foreignKey: 'userId'})

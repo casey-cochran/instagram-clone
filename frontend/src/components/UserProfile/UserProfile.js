@@ -5,7 +5,7 @@ import { loadAllUserPosts } from "../../store/posts";
 import { FiEdit2 } from 'react-icons/fi';
 import Modal from 'react-modal';
 import EditProfile from "../EditProfile/EditProfile";
-import { followUser, unfollowUser } from "../../store/followers";
+import { followUser, unfollowUser, loadAllFollows } from "../../store/followers";
 import "./UserProfile.css";
 
 const UserProfile = () => {
@@ -13,7 +13,13 @@ const UserProfile = () => {
   const history = useHistory();
   const { userId } = useParams();
   const currentUser = useSelector((state) => state.session.user)
+  const followState = useSelector((state) => state.followsReducer?.Follows)
+  let followers; // length of this is amount of followers
+  let following; // length of this is amount of poeple the user is following
+  if(followState.length > 0) followers = followState?.filter((follow) => follow.followedId === +userId )
+  if(followState.length > 0) following = followState?.filter((follow) => follow.followerId === +userId )
 
+  console.log(followers, ' followers here', following, ' following here')
   const userPosts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
@@ -45,7 +51,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     dispatch(loadAllUserPosts(userId));
-    if(!userPosts[0]?.User?.id) history.push('/')
+    dispatch(loadAllFollows(userId))
+    // if(!userPosts[0]?.User?.id) history.push('/')
   }, [dispatch, userId]);
 
   return (
@@ -67,8 +74,8 @@ const UserProfile = () => {
               <b>{userPosts[0]?.User?.username}</b>
             </div>
             <div>
-              <button onClick={(() => dispatch(followUser(currentUser.id, userPosts[0]?.User?.id)))}>Follow</button>
-              <button onClick={(() => dispatch(unfollowUser(currentUser.id, userPosts[0]?.User?.id)))}>Unfollow</button>
+              <button onClick={(() => dispatch(followUser(currentUser.id, userPosts[0]?.User?.id)))}>Follow</button>{followers?.length}
+              <button onClick={(() => dispatch(unfollowUser(currentUser.id, userPosts[0]?.User?.id)))}>Unfollow</button>{following?.length}
             </div>
             <div>
                 {(currentUser.id === userPosts[0]?.User?.id || userPosts?.length === 0) &&
