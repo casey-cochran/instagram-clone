@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createUserPost } from "../../store/posts";
 import "./CreatePost.css";
-const validUrl = require("valid-url");
 
 const CreatePost = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -15,9 +14,17 @@ const CreatePost = ({ closeModal }) => {
   const [errors, setErrors] = useState([]);
   const [openForm, setOpenForm] = useState(false);
 
-  const handleClick = () => {
-    if (validUrl.isUri(image)) {
-      setOpenForm(true);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const validateImage = /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp|svg|avif)(\?(.*))?$/.test(image);
+    if(validateImage){
+      setErrors([])
+      setOpenForm(true)
+    }else{
+      const newErrors = [];
+      newErrors.push('Valid image URL must contain jpg, jpeg, png, bmp, avif, gif, or svg')
+      setErrors(newErrors)
     }
   };
 
@@ -119,6 +126,9 @@ const CreatePost = ({ closeModal }) => {
               Add image
             </button>
           </form>
+          {errors?.map((error, index) => {
+              return <div key={index}>{error}</div>;
+            })}
         </div>
       )}
     </div>
