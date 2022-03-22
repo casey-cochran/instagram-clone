@@ -47,7 +47,7 @@ const SinglePost = () => {
   }
 
   useEffect(() => {
-    if(!posts[0]?.User?.id) history.push('/');
+    // if(!posts[0]?.User?.id) history.push('/');
     dispatch(loadSinglePost(postId)).catch(async(err) => {
       const error = err.json();
 
@@ -101,7 +101,7 @@ const SinglePost = () => {
                 return (
                   <div key={index} className="comm-spacing">
                     {comm.User?.image ? (
-                      <img id="profile-img" src={user?.image} />
+                      <img id="profile-img" src={comm.User?.image} />
                     ) : (
                       <FaUserCircle className="icons" />
                     )}
