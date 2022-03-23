@@ -17,14 +17,17 @@
   width: 180px;
 }
 
+
+
 #nav-cont{
   display:flex;
   justify-content: space-around;
   align-items: center;
   border: 1px solid #dbdbdb;
+  border-top: none;
   border-left: none;
   padding: 20px;
-  padding-top: 30px;
+  padding-top: 20px;
   padding-bottom: 30px;
   width: 100%;
 }
