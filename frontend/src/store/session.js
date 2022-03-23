@@ -3,6 +3,18 @@ import { csrfFetch } from "./csrf.js";
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 const EDIT_USER_PROFILE = 'user/EDIT_USER_PROFILE';
+const CHECK_USER = 'user/CHECK_USER';
+
+const checkUser = () => ({
+  type: CHECK_USER,
+})
+
+export const validateUserExists = (userId) => async dispatch => {
+  const response = await csrfFetch(`/api/users/${userId}/validate`)
+  const data = await response.json();
+  return data
+  console.log(data, ' what is repsone?')
+}
 
 const setUser = (user) => ({
   type: SET_USER,

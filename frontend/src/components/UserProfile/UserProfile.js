@@ -10,15 +10,18 @@ import "./UserProfile.css";
 import FollowUser from "../FollowUser/FollowUser";
 import ViewFollowers from "../ViewFollowers/ViewFollowers";
 import ViewFollowing from "../ViewFollowing/ViewFollowing";
+import { loadAUser } from "../../store/users";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { userId } = useParams();
+  const profileUser = useSelector((state) => state.usersReducer?.User)
   const currentUser = useSelector((state) => state.session.user)
   const userFollowers = useSelector((state) => state.followsReducer?.Follows)
   const userFollowing = useSelector((state) => state.followsReducer?.Following)
-
+  // let usertest;
+  // if(profileUser && !profileUser?.id) history.push('/')
   const userPosts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
@@ -70,13 +73,19 @@ const UserProfile = () => {
     },
   };
 
+
+
+
   useEffect(() => {
     dispatch(loadAllUserPosts(userId));
     dispatch(loadAllFollows(userId))
-    // if(!userPosts[0]?.User?.id) history.push('/')
+    dispatch(loadAUser(userId))
+
   }, [dispatch, userId]);
 
+
   return (
+    <> {profileUser?.id ?
     <div className="user-prof-cont">
       <div className="user-top-cont">
         <div className="user-prof-img-cont">
@@ -92,11 +101,11 @@ const UserProfile = () => {
         <div className="user-data-cont">
           <div className="name-follow">
             <div>
-              <b>{userPosts[0]?.User?.username ? userPosts[0]?.User?.username : currentUser?.username}</b>
+              <b>{profileUser?.username}</b>
             </div>
             <FollowUser />
             <div>
-                {(currentUser.id === userPosts[0]?.User?.id || userPosts?.length === 0) &&
+                {(currentUser.id === profileUser?.id) &&
               <FiEdit2
                 className="icons"
                 onClick={() => {
@@ -109,7 +118,7 @@ const UserProfile = () => {
               style={customStyles}
               overlayClassName="modal-delete"
               >
-                  <EditProfile user={userPosts[0]?.User} closeModal={closeModal}/>
+                  <EditProfile user={profileUser} closeModal={closeModal}/>
               </Modal>
             </div>
           </div>
@@ -159,6 +168,10 @@ const UserProfile = () => {
         </div>
       </div>
     </div>
+    : <div className="no-content">
+      <h2>You must have typed in the wrong url..</h2>
+      <p className="return-p">Return to home <Link className="no-content-lnk" to='/'>Here</Link></p>
+      </div>}</>
   );
 };
 

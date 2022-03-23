@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import "./SinglePost.css";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link} from "react-router-dom";
 import { loadSinglePost } from "../../store/posts";
 import EditPost from "../EditPost/EditPost";
 import { FaUserCircle, FaEllipsisH } from "react-icons/fa";
@@ -47,14 +47,11 @@ const SinglePost = () => {
   }
 
   useEffect(() => {
-    // if(!posts[0]?.User?.id) history.push('/');
-    dispatch(loadSinglePost(postId)).catch(async(err) => {
-      const error = err.json();
-
-    });
+    dispatch(loadSinglePost(postId))
   }, [dispatch]);
 
   return (
+    <> {singlePost?.id ?
     <div id="testing3">
       <div className="one-post-cont ">
         <img className="view-items img single" src={singlePost?.image} />
@@ -137,6 +134,10 @@ const SinglePost = () => {
         </div>
       </div>
     </div>
+   : <div className="no-content">
+   <h2>You must have typed in the wrong url..</h2>
+   <p className="return-p">Return to home <Link className="no-content-lnk" to='/'>Here</Link></p>
+   </div>} </>
   );
 };
 

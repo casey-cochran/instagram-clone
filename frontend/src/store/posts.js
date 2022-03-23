@@ -143,7 +143,7 @@ const loadOnePost = (post) => ({
 export const loadSinglePost = (postId) => async dispatch => {
     const response = await csrfFetch(`/api/users/posts/${postId}`)
     const post = await response.json()
-    if(response.ok){
+    if(post){
         dispatch(loadOnePost(post))
     }else {
         return post

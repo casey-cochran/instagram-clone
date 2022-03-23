@@ -46,6 +46,13 @@ router.post(
   }),
 );
 
+router.get('/:userId/validate', asyncHandler(async(req,res) => {
+  const {userId} = req.params;
+  const user = await User.findByPk(userId)
+  if(!user) res.json({msg: false})
+  res.json(user)
+}))
+
 
 router.get("", asyncHandler(async(req,res) => {
   const posts = await Post.findAll({order:[['createdAt','DESC']],include:[{model:User}, {model:Like}, {model:Dislike}, {model:Comment, include: User}]})
@@ -54,7 +61,9 @@ router.get("", asyncHandler(async(req,res) => {
 
 router.get('/:userId', asyncHandler(async(req,res) => {
   const {userId} = req.params;
+  const user = await User.findByPk(+userId)
   const userPosts = await Post.findAll({where:{userId}, include: [User]})
+  // userPosts.dataValues['User'] = user
   res.json(userPosts)
 }))
 
@@ -80,10 +89,6 @@ router.patch('/:userId/edit', validateProfile, requireAuth, asyncHandler(async(r
 router.get('/posts/:postId', asyncHandler(async(req,res) => {
   const {postId} = req.params;
   const post = await Post.findByPk(postId, {include:[{model:Like}, {model:User}, {model:Dislike}, {model:Comment, include: User}]});
-  if(!post) {
-    res.status(404)
-    res.json({msg: 'Not Found'})
-  }
   res.json(post)
 }))
 

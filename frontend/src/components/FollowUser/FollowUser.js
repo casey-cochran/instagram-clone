@@ -19,9 +19,9 @@ const FollowUser = () => {
     const ifFollow = () => {
         const follow = userFollowers?.find((follow) => follow?.id === currentUser.id)
         if(follow ){
-            dispatch(unfollowUser(currentUser.id, userPosts[0]?.User?.id))
+            dispatch(unfollowUser(currentUser.id, userId))
         }else {
-            dispatch(followUser(currentUser.id, userPosts[0]?.User?.id))
+            dispatch(followUser(currentUser.id, userId))
         }
     }
 

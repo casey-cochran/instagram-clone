@@ -76,3 +76,28 @@
 .following-btns:hover{
     color:rgb(82, 80, 80);
 }
+
+.no-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 80px;
+}
+
+.no-content-lnk{
+    color: black;
+    font-weight: 800;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.no-content-lnk:hover{
+    color: rgb(100, 98, 98);
+}
+
+.return-p{
+    font-size: 20px;
+}
