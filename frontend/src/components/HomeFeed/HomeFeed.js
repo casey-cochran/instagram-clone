@@ -93,7 +93,7 @@ const HomeFeed = () => {
                     ) : (
                       <FaUserCircle className="icons" />
                     )}
-                    <Link to={`/users/${post?.userId}`}>{post.User?.username} </Link>
+                    <Link className="link-to-user" to={`/users/${post?.userId}`}>{post.User?.username} </Link>
                   </div>
 
                   <FaEllipsisH
@@ -124,13 +124,13 @@ const HomeFeed = () => {
                       }}
                     />
                     <p>
-                      <HiOutlinePaperAirplane className="icons" />
+                      {/* <HiOutlinePaperAirplane className="icons" /> TODO sendmessages link */}
                     </p>
                   </div>
                   <div className="sub-likes-cont">
-                    <p>{post?.Likes?.length} Likes {post?.Dislikes?.length} Dislikes</p>
+                    <p>{post?.Likes?.length ? post?.Likes?.length : 0} Likes {post?.Dislikes?.length ? post?.Dislikes?.length : 0} Dislikes</p>
                     <p id="sub-likes-f">
-                      <b>{post?.User?.username}</b> {post?.caption}
+                    <Link className="link-to-user" to={`/users/${post?.userId}`}>{post.User?.username} </Link> {post?.caption}
                     </p>
                     <p onClick={() => {
                         setModalPost(post);
