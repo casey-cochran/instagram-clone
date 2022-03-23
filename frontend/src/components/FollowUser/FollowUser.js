@@ -8,17 +8,13 @@ const FollowUser = () => {
     const dispatch = useDispatch();
     const { userId } = useParams();
     const currentUser = useSelector((state) => state.session.user)
-    const followState = useSelector((state) => state.followsReducer?.Follows)
     const userFollowers = useSelector((state) => state.followsReducer?.Follows)
     const userPosts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
-    // let followers; // length of this is amount of followers
-    // let following; // length of this is amount of poeple the user is following
     let alreadyFollowed;
 
-    // if(followState?.length > 0) followers = userFollowers?.filter((follow) => follow.followedId === +userId )
-    // if(followState?.length > 0) following = followState?.filter((follow) => follow.followerId === +userId )
+
     if(userFollowers?.length > 0) alreadyFollowed = userFollowers?.find((follow) => follow?.id === currentUser.id)
     const ifFollow = () => {
         const follow = userFollowers?.find((follow) => follow?.id === currentUser.id)
