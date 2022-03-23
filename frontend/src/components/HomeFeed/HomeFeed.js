@@ -180,8 +180,31 @@ const HomeFeed = () => {
           />
         </Modal>
       </div>
-      <div id='iwonder'>
-        <h3>side bar content</h3>
+      <div className='home-side-cont'>
+      <div className='side-child'>
+        <h3 id='side-title'>About this developer</h3>
+        <div>
+          <Link
+            to={{ pathname: "https://github.com/casey-cochran" }}
+            target="_blank"
+            className="side-link"
+          >
+            Github
+          </Link>
+        </div>
+        <div>
+          <Link
+            to={{
+              pathname: "https://linkedin.com/in/casey-cochran-488420219/",
+            }}
+            target="_blank"
+            className="side-link"
+          >
+            Linkedin
+          </Link>
+        </div>
+      </div>
+
       </div>
     </div>
   );

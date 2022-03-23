@@ -3,7 +3,8 @@
   border: 1px solid #dbdbdb;
   width: 180px;
   height: 200px;
-  top: 10%;
+  top: 8%;
+  z-index: 2;
   right: 22%;
   display:flex;
   flex-direction: column;
