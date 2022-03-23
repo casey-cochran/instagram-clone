@@ -92,7 +92,7 @@ const UserProfile = () => {
         <div className="user-data-cont">
           <div className="name-follow">
             <div>
-              <b>{userPosts[0]?.User?.username}</b>
+              <b>{userPosts[0]?.User?.username ? userPosts[0]?.User?.username : currentUser?.username}</b>
             </div>
             <FollowUser />
             <div>
@@ -138,7 +138,7 @@ const UserProfile = () => {
               <b>Bio:</b>
             </div>
             <div>
-              {userPosts[0]?.User?.bio ? userPosts[0]?.User?.bio : "Add a bio"}
+              {userPosts[0]?.User?.bio  ? userPosts[0]?.User?.bio  : currentUser?.bio}
             </div>
           </div>
         </div>

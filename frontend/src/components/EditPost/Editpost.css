@@ -33,3 +33,39 @@
 .add-img.edit{
     height: 350px;
 }
+
+.delete-one-post{
+    color: #0095F6;
+    border: none;
+    padding: 10px;
+    background: none;
+    cursor: pointer;
+}
+
+.delete-one-post:hover{
+    color: #6aaad4;
+}
+
+
+.confirm-btns{
+    background-color: #0095F6;
+    gap: 10px;
+    color:white;
+    border: none;
+    cursor: pointer;
+    padding: 5px 5px;
+    width: 200px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 800px;
+    font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+.confirm-btns.mg{
+    margin-right: 10px;
+}
+
+
+.confirm-btns:hover{
+    background-color: #058ce6;
+}

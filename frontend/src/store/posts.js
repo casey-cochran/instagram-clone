@@ -28,6 +28,7 @@ export const editUserProfile = (user) => async dispatch => {
             user
         )
     })
+
     const data = await response.json();
     dispatch(editProfile(data))
     return data;

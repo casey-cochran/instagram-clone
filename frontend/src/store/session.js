@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf.js";
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const EDIT_USER_PROFILE = 'user/EDIT_USER_PROFILE';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -62,6 +63,11 @@ function reducer(state = initialState, action) {
       return newState;
     case REMOVE_USER:
       newState = Object.assign({}, state, { user: null });
+      return newState;
+    case EDIT_USER_PROFILE:
+      // action.user
+      newState = {...state}
+      newState.user = action.user
       return newState;
     default:
       return state;
