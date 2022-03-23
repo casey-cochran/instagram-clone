@@ -25,10 +25,10 @@
 
 .post-menu{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   width: 500px;
-  gap: 350px;
+  gap: 300px;
 }
 
 .modal-delete{
@@ -100,6 +100,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 10px;
 }
 
 .icons{
@@ -148,6 +149,7 @@
   text-decoration: none;
   color: black;
   font-weight: 800;
+  width: 100px;
 }
 
 .link-to-user:hover{

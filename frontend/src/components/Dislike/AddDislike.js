@@ -6,7 +6,7 @@ import './Dislike.css';
 
 const AddDislikes = ({postId, userId}) => {
     const dispatch = useDispatch();
-    const currentUserId = useSelector((state) => state.session.user.id)
+    const currentUserId = useSelector((state) => state.session.user?.id)
     const userDislike = useSelector((state) => state.postsReducer?.Posts[postId]?.Dislikes)
     const foundDislike = userDislike?.find((dislike) => (dislike?.userId === currentUserId ))
     const handleLike = () => {

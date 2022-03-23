@@ -57,7 +57,7 @@ const HomeFeed = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState(null);
   const [modalPost, setModalPost] = useState(null);
-  const [commentProps, setCommentProps] = useState(null);
+  // const [commentProps, setCommentProps] = useState(null);
   const [openComm, setOpenComm] = useState(false);
   const inputId = 'home-comment'
 
