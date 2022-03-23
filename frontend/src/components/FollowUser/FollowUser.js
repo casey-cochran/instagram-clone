@@ -29,7 +29,7 @@ const FollowUser = () => {
     return (
         <>
             <div>
-                {userPosts[0]?.User?.id !== currentUser.id &&
+                {+userId !== currentUser.id &&
               <button className="follow-btn" onClick={ifFollow}>{alreadyFollowed  ? 'Following' : 'Follow'}</button>
                 }
             </div>

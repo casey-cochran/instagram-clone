@@ -12,6 +12,7 @@ const router = express.Router();
 router.get('/:userId', asyncHandler(async(req,res) => {
     const {userId} = req.params;
     const follows = await User.findByPk(userId, {include: [{model: User, as: 'followed'}, {model: User, as: 'followers'}]})
+    
     res.json(follows);
 }))
 
