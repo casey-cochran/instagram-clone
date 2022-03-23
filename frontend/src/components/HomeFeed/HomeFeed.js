@@ -180,7 +180,7 @@ const HomeFeed = () => {
           />
         </Modal>
       </div>
-      <div>
+      <div id='iwonder'>
         <h3>side bar content</h3>
       </div>
     </div>
