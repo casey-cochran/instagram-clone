@@ -13,7 +13,11 @@ const loadFollows = (follows) => ({
 export const loadAllFollows = (userId) => async dispatch => {
     const response = await csrfFetch(`/api/follows/${userId}`)
     const follows = await response.json();
-    // console.log(follows,' what are all the follows returned', response)
+    if(!follows){
+        return follows
+    }
+    console.log(follows,' what are all the follows returned', response)
+
     dispatch(loadFollows(follows))
 }
 

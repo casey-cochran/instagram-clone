@@ -8,7 +8,6 @@ import './EditProfile.css';
 const EditProfile = ({user, closeModal}) => {
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.session.user)
-    console.log(currentUser.bio, ' is it changing ?')
 const [bio, setBio] = useState(user?.bio ? user?.bio : currentUser.bio)
 const [image, setImage] = useState(user?.image ? user?.image : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png")
 const [errors, setErrors] = useState('')
