@@ -47,7 +47,7 @@ function ProfileButton({ user }) {
             <Link className='profile-btn lnk' to={`/users/${userId}`}>Go to profile</Link>
             </div>
           <div className="prof-item">
-            <button className='profile-btn' onClick={logout}>Log Out</button>
+            <button className='profile-btn home' onClick={logout}>Log Out</button>
           </div>
         </div>
       )}

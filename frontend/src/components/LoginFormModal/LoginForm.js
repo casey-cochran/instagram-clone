@@ -11,6 +11,11 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const handleDemo = async() => {
+    await dispatch(sessionActions.login({credential: 'demo@user.io', password: 'password'}))
+    history.push('/');
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
@@ -59,6 +64,9 @@ function LoginForm() {
                 Log In
               </button>
             </form>
+            <div>
+            <button className="login-btns" onClick={handleDemo} >Demo User</button>
+              </div>
           </div>
           <div className="testing-s">
             <p>Don't have an account? <Link id='signup-lnk' to='/signup'>Sign up</Link></p>

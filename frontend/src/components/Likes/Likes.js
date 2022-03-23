@@ -5,7 +5,7 @@ import './Likes.css';
 
 const AddLikes = ({postId, userId}) => {
     const dispatch = useDispatch();
-    const currentUserId = useSelector((state) => state.session.user.id)
+    const currentUserId = useSelector((state) => state.session.user?.id)
     const userLike = useSelector((state) => state.postsReducer?.Posts[postId]?.Likes)
     const foundLike = userLike?.find((like) => (like?.userId === currentUserId ))
     const handleLike = () => {
