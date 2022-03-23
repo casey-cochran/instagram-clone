@@ -22,6 +22,14 @@ if(bio || image){
 const handleSubmit = async(e) => {
     e.preventDefault();
 
+    const validateImage = /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp|svg|avif)(\?(.*))?$/.test(image);
+    if(validateImage){
+      setErrors([])
+    }else{
+      const newErrors = [];
+      newErrors.push('Valid image URL must contain jpg, jpeg, png, bmp, avif, gif, or svg')
+     return setErrors(newErrors)
+    }
 
     const userEdit = {
         userId: user.id,

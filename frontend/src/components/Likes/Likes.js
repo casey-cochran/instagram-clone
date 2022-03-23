@@ -1,6 +1,7 @@
 import { AiOutlineHeart } from "react-icons/ai";
 import { addOneLike, removeOneLike } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
+import './Likes.css';
 
 const AddLikes = ({postId, userId}) => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const AddLikes = ({postId, userId}) => {
 
     return (
         <>
-            <AiOutlineHeart onClick={handleLike} className="icons" />
+            <AiOutlineHeart onClick={handleLike} className={foundLike ? "icons like" : 'icons'} />
         </>
     )
 }

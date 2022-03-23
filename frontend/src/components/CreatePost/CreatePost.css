@@ -57,6 +57,10 @@
     background: none;
     cursor: pointer;
 }
+.post-comment:hover{
+    color: #40a1e2;
+    background-color: #fbfbfc;
+}
 
 
 

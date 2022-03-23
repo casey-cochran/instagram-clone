@@ -1,6 +1,7 @@
 import {GoThumbsdown} from 'react-icons/go';
 import { addOneDislike, removeOneDislike } from '../../store/posts';
 import { useDispatch, useSelector } from "react-redux";
+import './Dislike.css';
 
 
 const AddDislikes = ({postId, userId}) => {
@@ -18,7 +19,7 @@ const AddDislikes = ({postId, userId}) => {
 
     return (
         <>
-            <GoThumbsdown onClick={handleLike} className="icons" />
+            <GoThumbsdown onClick={handleLike} className={foundDislike ? "icons dislike" : 'icons'} />
         </>
     )
 }
