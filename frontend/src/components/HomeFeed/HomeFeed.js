@@ -203,8 +203,11 @@ const HomeFeed = () => {
             Linkedin
           </Link>
         </div>
+        <div>
+          <p className='tech-names-title'>Technologies Used</p>
+        <p className='tech-names'>React, Redux, Express, Sequelize, HTML, CSS </p>
+        </div>
       </div>
-
       </div>
     </div>
   );

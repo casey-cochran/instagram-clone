@@ -26,6 +26,7 @@
 .home-side-cont{
   width: 200px;
   margin-top: 50px;
+  background-color: white;
   position: relative;
 }
 .side-child{
@@ -55,6 +56,17 @@
   color: #0095F6;
   padding-top: 10px;
   margin: 0;
+}
+
+.tech-names-title{
+  margin: 0;
+  font-weight: 500;
+}
+
+.tech-names{
+  margin: 0;
+  padding-top: 10px;
+  font-weight: 00;
 }
 
 .user-feed{
