@@ -67,6 +67,10 @@ html{
     font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
 
+.login-btns:hover{
+    background-color: #058ce6;
+}
+
 .login-inpt{
     padding: 9px 0 7px 8px;
     border: 1px solid #dbdbdb;
