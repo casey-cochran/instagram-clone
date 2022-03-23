@@ -1,0 +1,27 @@
+.followers-img{
+    height: 30px;
+  width: 30px;
+  border-radius: 30px;
+}
+
+
+.view-follows-cont{
+    height: 520px;
+    width: 350px;
+}
+
+
+.view-follows{
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+    padding-left: 15px;
+    gap: 15px;
+}
+
+
+.follows-link{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
