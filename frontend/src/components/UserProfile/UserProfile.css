@@ -65,3 +65,14 @@
     gap: 20px;
 
 }
+
+.following-btns{
+    border:none;
+    background-color: transparent;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.following-btns:hover{
+    color:rgb(82, 80, 80);
+}
