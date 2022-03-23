@@ -24,9 +24,18 @@ const UserProfile = () => {
 
 
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [followOpen, setFollowOpen] = useState(false);
   const [followProps, setFollowProps] = useState(null);
-  function openModal() {
+  const openFollowModal = () => {
     setFollowProps(userFollowers)
+    setFollowOpen(true);
+  }
+
+  const closeFollowModal = () => {
+    setFollowOpen(false)
+  }
+
+  function openModal() {
     setIsOpen(true);
   }
   function closeModal() {
@@ -92,17 +101,17 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="post-follow-count">
-            <div>{userPosts?.length > 0 ? userPosts?.length : 0} Posts</div>
-            <div>{userFollowers?.length > 0 ? userFollowers?.length : 0} <button onClick={openModal}>Followers</button>
+            <div>{userPosts?.length > 0 ? userPosts?.length : 0}  <b>Posts</b></div>
+            <div>{userFollowers?.length > 0 ? userFollowers?.length : 0} <button className="following-btns" onClick={openFollowModal}>Followers</button>
             <Modal
-              isOpen={modalIsOpen}
-              onRequestClose={closeModal}
+              isOpen={followOpen}
+              onRequestClose={closeFollowModal}
               style={customStyles}
               >
-                <ViewFollowers follow={followProps} closeModal={closeModal}/>
+                <ViewFollowers follow={followProps} closeModal={closeFollowModal}/>
             </Modal>
             </div>
-            <div>{userFollowing?.length > 0 ? userFollowing?.length : 0} Following</div>
+            <div>{userFollowing?.length > 0 ? userFollowing?.length : 0}<button className="following-btns" onClick={openModal}>Following</button></div>
           </div>
           <div>
             <div>
