@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom';
 import {FaUserCircle} from 'react-icons/fa';
 import {RiEmotionSadLine} from 'react-icons/ri';
-import './ViewFollowers.css';
 
 
 
-const ViewFollowers = ({follow, closeModal}) => {
+const ViewFollowing = ({following, closeModal}) => {
 
 
     return (
         <>
         <div className='view-follows-cont'>
-            {follow?.length > 0 ? <>
-            {follow?.map((ele, index) => {
+            {following?.length > 0 ? <>
+            {following?.map((ele, index) => {
                 return <div className='view-follows' key={index}>
                     {ele?.image ? (
                       <img className="followers-img" src={ele.image} />
@@ -27,15 +26,15 @@ const ViewFollowers = ({follow, closeModal}) => {
             })}
      </> : <div className='no-follows'>
          <h2>
-         User has no followers
+         User is not following anyone
              </h2>
          <div><RiEmotionSadLine className='no-follow-icon'/></div>
              </div>  }
         </div>
         </>
     )
+
 }
 
 
-
-export default ViewFollowers;
+export default ViewFollowing;

@@ -9,6 +9,7 @@ import {  loadAllFollows } from "../../store/followers";
 import "./UserProfile.css";
 import FollowUser from "../FollowUser/FollowUser";
 import ViewFollowers from "../ViewFollowers/ViewFollowers";
+import ViewFollowing from "../ViewFollowing/ViewFollowing";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,19 @@ const UserProfile = () => {
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [followOpen, setFollowOpen] = useState(false);
+  const [followingOpen, setFollowingOpen] = useState(false);
+  const [followingProps, setFollowingProps] = useState(null);
   const [followProps, setFollowProps] = useState(null);
+
+  const openFollowingModal = () => {
+    setFollowingProps(userFollowing);
+    setFollowingOpen(true);
+  }
+
+  const closeFollowingModal = () => {
+    setFollowingOpen(false)
+  }
+
   const openFollowModal = () => {
     setFollowProps(userFollowers)
     setFollowOpen(true);
@@ -111,7 +124,14 @@ const UserProfile = () => {
                 <ViewFollowers follow={followProps} closeModal={closeFollowModal}/>
             </Modal>
             </div>
-            <div>{userFollowing?.length > 0 ? userFollowing?.length : 0}<button className="following-btns" onClick={openModal}>Following</button></div>
+            <div>{userFollowing?.length > 0 ? userFollowing?.length : 0}<button className="following-btns" onClick={openFollowingModal}>Following</button></div>
+            <Modal
+              isOpen={followingOpen}
+              onRequestClose={closeFollowingModal}
+              style={customStyles}
+              >
+                <ViewFollowing closeModal={closeFollowingModal} following={followingProps} />
+              </Modal>
           </div>
           <div>
             <div>
