@@ -236,7 +236,6 @@ function postsReducer(state = initialState, action) {
         return newState;
     case DELETE_COMMENT:
         newState = {...state}
-        console.log(newState, ' what is this state in reducer?')
         const com = newState.Posts[action.comment.postId].Comments.filter((comm) => {return comm.id !== action.comment.id})
         newState.Posts[action.comment.postId].Comments = com
         return newState;

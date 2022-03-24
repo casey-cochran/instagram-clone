@@ -6,8 +6,9 @@ import "./HomeFeed.css";
 import Modal from "react-modal";
 import DeletePost from "../DeletePost/DeletePost";
 import OnePostModal from "../OnePostModal/OnePostModal";
-import { FaUserCircle, FaEllipsisH, FaRegComment } from "react-icons/fa";
-// import { HiOutlinePaperAirplane } from "react-icons/hi";
+import { FaEllipsisH, FaRegComment } from "react-icons/fa";
+import {AiOutlineGithub} from 'react-icons/ai';
+import {BsLinkedin} from 'react-icons/bs'
 import PostCommentFeed from "../PostCommentFeed/PostCommentFeed";
 import AddLikes from "../Likes/Likes";
 import AddDislikes from "../Dislike/AddDislike";
@@ -186,7 +187,7 @@ const HomeFeed = () => {
             target="_blank"
             className="side-link"
           >
-            Github
+            Github <AiOutlineGithub id='github'/>
           </Link>
         </div>
         <div>
@@ -197,7 +198,7 @@ const HomeFeed = () => {
             target="_blank"
             className="side-link"
           >
-            Linkedin
+            LinkedIn <BsLinkedin id='linkedin'/>
           </Link>
         </div>
         <div>
