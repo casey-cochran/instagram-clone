@@ -125,7 +125,9 @@ router.delete('/posts/:postId/delete', requireAuth, asyncHandler(async(req,res) 
 const validateEdit = [
   check('caption')
     .exists({checkFalsy: true})
-    .withMessage("Must provide a caption"),
+    .trim()
+    .isLength({min: 1, max: 350})
+    .withMessage("Must provide a caption between 1 and 350 characters"),
   handleValidationErrors,
 ]
 
@@ -157,17 +159,17 @@ router.delete('/posts/:postId/comments/delete', requireAuth, asyncHandler(async(
   res.json({msg:'success'});
 }))
 
-const validateComment = [
+const validateEditcomm = [
   check('content')
-    .exists({checkFalsy: true})
-    .withMessage("Must provide a caption")
-    .isLength({ max: 300 })
-    .withMessage("Cannot be longer than 300 characters"),
-  handleValidationErrors,
-]
+    .exists()
+    .trim()
+    .isLength({min: 1, max: 250 })
+    .withMessage('Content must be between 1 and 350 characters'),
+  handleValidationErrors
+];
 
 
-router.patch('/posts/:postId/comments/:commentId/edit',  requireAuth, asyncHandler(async(req,res) => {
+router.patch('/posts/:postId/comments/:commentId/edit', validateEditcomm,  requireAuth, asyncHandler(async(req,res) => {
   const {comment} = req.body;
   const comm = await Comment.findByPk(comment.id)
   const updated = await comm.update({content: comment.content})

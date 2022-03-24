@@ -9,9 +9,10 @@ const EditPost = ({ postId, closeModal, postImg }) => {
   const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
   const post = useSelector((state) => state.postsReducer.Posts[postId])
-  const [caption, setCaption] = useState("");
+  const [caption, setCaption] = useState(post?.caption);
   const [errors, setErrors] = useState([]);
   const [deletePost, setDeletePost] = useState(false);
+  const [placeholder, setPlaceholder] = useState('Please provide a caption')
 
   const removePost = () => {
     dispatch(deleteSinglePost(postId))
@@ -43,7 +44,8 @@ const EditPost = ({ postId, closeModal, postImg }) => {
       }
     );
     if (value?.errors) {
-      return setErrors(value?.errors);
+      setCaption('')
+      return setPlaceholder(value?.errors);
     }
 
     closeModal();
@@ -65,10 +67,10 @@ const EditPost = ({ postId, closeModal, postImg }) => {
           onChange={(e) => setCaption(e.target.value)}
           type="text"
           value={caption}
-          placeholder={post?.caption}
+          placeholder={placeholder}
           className='edit-post-input'
         />
-        <button className={buttonClass} type="submit">Submit Edit</button>
+        <button className={buttonClass} disabled={caption ? false: true} type="submit">Submit Edit</button>
         {+userId === post?.userId &&
         <button onClick={(() => setDeletePost(true))} className="delete-one-post">Delete post</button>
         }
