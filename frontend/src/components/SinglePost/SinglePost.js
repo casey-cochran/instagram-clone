@@ -58,11 +58,7 @@ const SinglePost = () => {
         <div className="comments-side-bar single">
           <div className="comments-side-header">
             <div id="icon-header">
-              {singlePost?.User?.image ? (
-                <img id="profile-img" src={singlePost?.User?.image} />
-              ) : (
-                <FaUserCircle className="icons" />
-              )}
+                <img id="profile-img" src={singlePost?.User?.image ? singlePost?.User?.image : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"} />
               <div className="username-head">
               <Link className="link-to-user" to={`/users/${singlePost?.userId}`}>{singlePost?.User?.username}</Link>
               </div>
@@ -85,11 +81,7 @@ const SinglePost = () => {
           </div>
           <div className="side-comments-scroll single">
             <div className="one-post-cap">
-              {singlePost?.User?.image ? (
-                <img id="profile-img" src={singlePost?.User?.image} />
-              ) : (
-                <FaUserCircle className="icons" />
-              )}
+                <img id="profile-img" src={singlePost?.User?.image ? singlePost?.User?.image : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"} />
               <b>{singlePost?.User?.username}</b>
             </div>
             <div className="caption-lng"><b>{singlePost?.caption}</b></div>

@@ -66,6 +66,10 @@ function commentsReducer(state = initialState, action) {
         newState = {...state}
         newState.Comments[action.comment.newComment.id] = action.comment.newComment
         return newState;
+    case DELETE_COMMENT:
+        newState = {...state}
+        delete newState.Comments[action.comment.id]
+        return newState;
     default:
       return state;
   }
