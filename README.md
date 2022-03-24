@@ -19,7 +19,7 @@ and have enjoyed every step of the way.
 * [Database Schema](https://github.com/casey-cochran/instagram-clone/wiki/Database-Schema)
 * [WireFrames](https://github.com/casey-cochran/instagram-clone/wiki/WireFrames)
 
-* Features
+## Features
 
   * Create an account, sign in, or log in as a demo user
   * View, Edit 
@@ -30,7 +30,7 @@ and have enjoyed every step of the way.
   * Ability to Like and Dislike posts
   * User Follows
 
-Future features:
+## Future features:
   
   * Search
   * Messaging between users
