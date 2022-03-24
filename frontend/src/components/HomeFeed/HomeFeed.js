@@ -140,9 +140,9 @@ const HomeFeed = () => {
                   {comments?.map((com, index) => {
                     return (
                       <div key={index}>
-                        <p className="home-comments" >
+                        <div className="home-comments" >
                           {com.postId === post.id ? <div className="com-content-cont"><b>{com.User?.username}</b> <p id='com-content'>{com.content}</p></div> : ''}
-                        </p>
+                        </div>
                       </div>
                     );
                   })}
