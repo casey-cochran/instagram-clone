@@ -7,10 +7,14 @@ const AddLikes = ({postId, userId}) => {
     const dispatch = useDispatch();
     const currentUserId = useSelector((state) => state.session.user?.id)
     const userLike = useSelector((state) => state.postsReducer?.Posts[postId]?.Likes)
+    const userDislike = useSelector((state) => state.postsReducer?.Posts[postId]?.Dislikes)
+    const foundDislike = userDislike?.find((dislike) => dislike.userId === currentUserId)
     const foundLike = userLike?.find((like) => (like?.userId === currentUserId ))
     const handleLike = () => {
-        if (!foundLike){
+        if (!foundLike && !foundDislike){
             dispatch(addOneLike(postId,currentUserId))
+        }else if(foundDislike) {
+            return;
         }else{
             dispatch(removeOneLike(foundLike.id, postId))
         }

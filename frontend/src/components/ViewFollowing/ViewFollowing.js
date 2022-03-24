@@ -13,12 +13,7 @@ const ViewFollowing = ({following, closeModal}) => {
             {following?.length > 0 ? <>
             {following?.map((ele, index) => {
                 return <div className='view-follows' key={index}>
-                    {ele?.image ? (
-                      <img className="followers-img" src={ele.image} />
-                    ) : (
-                      <FaUserCircle className="icons" />
-                    )}
-
+                      <img className="followers-img" src={ele.image ? ele.image : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"} />
                     <Link className='follows-link' to={`/users/${ele.id}`} onClick={closeModal}>
                     {ele.username}
                     </Link>
