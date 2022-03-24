@@ -13,7 +13,6 @@ export const loadAUser = (userId) => async dispatch => {
   const response = await csrfFetch(`/api/users/${userId}/validate`)
   const data = await response.json();
   if(data){
-      console.log(data, 'wahts returned ?')
       dispatch(loadUser(data))
   }
 }

@@ -40,6 +40,7 @@ function App() {
           <Route path='/users/:userId' exact={true}>
             <UserProfile />
           </Route>
+          <Route path='/post/new'></Route>
           <Route>
             <PageNotFound />
           </Route>

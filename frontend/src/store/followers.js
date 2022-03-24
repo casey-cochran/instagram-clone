@@ -16,7 +16,6 @@ export const loadAllFollows = (userId) => async dispatch => {
     if(!follows){
         return follows
     }
-    console.log(follows,' what are all the follows returned', response)
 
     dispatch(loadFollows(follows))
 }
