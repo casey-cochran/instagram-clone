@@ -21,7 +21,7 @@ const SinglePost = () => {
   const posts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
-
+  if (!user) history.push('/login');
   const singlePost = posts.find((post) => post.id === +postId);
 
 

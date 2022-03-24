@@ -20,6 +20,7 @@ const UserProfile = () => {
   const currentUser = useSelector((state) => state.session.user)
   const userFollowers = useSelector((state) => state.followsReducer?.Follows)
   const userFollowing = useSelector((state) => state.followsReducer?.Following)
+  if (!currentUser) history.push('/login');
   // let usertest;
   // if(profileUser && !profileUser?.id) history.push('/')
   const userPosts = useSelector((state) =>

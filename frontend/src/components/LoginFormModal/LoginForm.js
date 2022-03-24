@@ -39,11 +39,11 @@ function LoginForm() {
           <div className="center-log">
             <h1 className="login-title">Memories</h1>
             <form className="login-form" onSubmit={handleSubmit}>
-              <ul>
-                {errors.map((error, idx) => (
-                  <li key={idx}>{error}</li>
-                ))}
-              </ul>
+            <div>
+              {errors.map((error, idx) => (
+                <div className="sign-errors" key={idx}>{error}</div>
+              ))}
+              </div>
               <input
                 type="text"
                 value={credential}
