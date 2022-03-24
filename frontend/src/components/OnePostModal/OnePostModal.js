@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import EditPost from "../EditPost//EditPost";
 import EditComment from "../EditComment/EditComment";
 import Modal from "react-modal";
+import { Link } from "react-router-dom";
 import "./OnePost.css";
 import PostComment from "../PostComment/PostComment";
 import { deleteOneComment } from "../../store/comments";
@@ -48,7 +49,7 @@ const OnePostModal = ({ postId, user, closeModal }) => {
                 <FaUserCircle className="icons" />
               )}
               <div className="username-head">
-                <b>{singlePost?.User?.username}</b>
+                <Link className="link-to-user" to={`/posts/${singlePost?.id}`}>{singlePost?.User?.username}</Link>
               </div>
             </div>
             <Modal
@@ -76,7 +77,7 @@ const OnePostModal = ({ postId, user, closeModal }) => {
               )}
               <b>{singlePost?.User?.username}</b>
             </div>
-              <div className="caption-lng">{singlePost?.caption}</div>
+              <div className="caption-lng"><b>{singlePost?.caption}</b></div>
             <div className="scroll-comments">
               {singlePost?.Comments?.map((comm, index) => {
                 return (
