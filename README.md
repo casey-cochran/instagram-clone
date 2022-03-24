@@ -12,7 +12,7 @@ features, with my little experience I was able to surpass this goal by having co
 as well as adding likes, dislikes, and follows features. It was a very difficult task, but I love learning the world of programming
 and have enjoyed every step of the way. 
 
-## Featurse
+## Features
 
   * Create an account, sign in, or log in as a demo user
   * Create, view, edit, delete
@@ -21,7 +21,7 @@ and have enjoyed every step of the way.
   * Ability to Like and Dislike posts
   * User Follows
 
-Future featurse:
+Future features:
   
   * Search
   * Messaging between users
@@ -39,5 +39,5 @@ Future featurse:
   * CSS
 
 
-#@ Splash page
+## Splash page
 ![Screen Shot 2022-03-23 at 6 38 50 PM](https://user-images.githubusercontent.com/90711743/159824744-64ba89c6-800a-4b9d-a259-1c5a8a51008a.png)
