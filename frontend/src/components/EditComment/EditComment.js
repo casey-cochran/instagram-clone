@@ -14,12 +14,14 @@ const EditComment = ({comm}) => {
     const {userId, postId} = comm
 
 
+
     const handleSubmit = async(e) => {
         e.preventDefault()
         comm.content=edit
         if(!edit) {
           return setErrors('Must provide content')
         }
+
         const value = await dispatch(editOneComment(comm)).catch(async (err) => {
             const errors = await err.json();
             if (errors) {
@@ -27,12 +29,12 @@ const EditComment = ({comm}) => {
             }
           });
           if (value?.errors) {
-            return setEdit(value?.errors);
+            setEdit('')
+            return setErrors(value?.errors);
           }
            setEdit(value?.content);
           setTest(false);
     }
-
 
 
     return (
@@ -48,7 +50,7 @@ const EditComment = ({comm}) => {
             type='text'
             placeholder={error}
             />
-            <button className="post-comment one" type='submit'>Edit</button>
+          <button className="post-comment one" type='submit'>Edit</button> 
             </form>
         }
         </>

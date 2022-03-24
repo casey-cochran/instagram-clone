@@ -12,10 +12,12 @@ const editComment = (comment) => ({
 })
 
 export const editOneComment = (comment) => async dispatch => {
+    const {content} = comment
     const response = await csrfFetch(`/api/users/posts/${comment.postId}/comments/${comment.id}/edit`,{
         method: 'PATCH',
         body: JSON.stringify({
-            comment
+            comment,
+            content
         })
     })
     const data = await response.json();
