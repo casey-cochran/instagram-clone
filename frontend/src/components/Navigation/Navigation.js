@@ -65,6 +65,7 @@ function Navigation({ isLoaded }){
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
+
       >
         <CreatePost closeModal={closeModal}/>
       </Modal>
