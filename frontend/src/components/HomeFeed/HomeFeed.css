@@ -183,6 +183,10 @@
   padding-bottom: 10px;
 }
 
+.view-all:hover{
+  color: #706f6f;
+}
+
 .comm-input-feed{
   width: 500px;
 }
@@ -205,6 +209,7 @@
 .link-to-user{
   text-decoration: none;
   color: black;
+  text-transform: capitalize;
   font-weight: 800;
   width: 100px;
 }

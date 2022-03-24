@@ -129,9 +129,9 @@ const HomeFeed = () => {
                   </div>
                   <div className="sub-likes-cont">
                     <p>{post?.Likes?.length ? post?.Likes?.length : 0} Likes {post?.Dislikes?.length ? post?.Dislikes?.length : 0} Dislikes</p>
-                    <p id="sub-likes-f">
+                    <div id="sub-likes-f">
                     <Link className="link-to-user" to={`/users/${post?.userId}`}>{post.User?.username} </Link> {post?.caption}
-                    </p>
+                    </div>
                     <p onClick={() => {
                         setModalPost(post);
                         setModalProps(post.id);

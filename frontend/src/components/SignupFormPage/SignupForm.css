@@ -11,3 +11,17 @@
 .login-title.signup{
     margin-top: 20px;
 }
+
+.sign-errors{
+    width: 200px;
+    margin-left: 30px;;
+}
+
+.about-proj{
+    height: 100px;
+    width: 268px;
+}
+
+.about-proj > p{
+    margin-top: 0;
+}

@@ -24,10 +24,10 @@ function SignupFormPage() {
       ).catch(async (res) => {
         const errors = await res.json();
         if (errors) return errors;
-        if (value.errors) {
-          return setErrors(value.errors);
-        }
       });
+      if (value?.errors) {
+        return setErrors(value.errors);
+      }
     }
     return setErrors([
       "Confirm Password field must be the same as the Password field",
@@ -42,11 +42,11 @@ function SignupFormPage() {
           <h1 className="login-title signup">Sign Up</h1>
           <p>Sign up to see photos and videos from your friends.</p>
           <form className="login-form signup" onSubmit={handleSubmit}>
-            <ul>
+            <div>
               {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
+                <div className="sign-errors" key={idx}>{error}</div>
               ))}
-            </ul>
+              </div>
             <input
               type="text"
               value={email}
@@ -82,6 +82,12 @@ function SignupFormPage() {
             <button className="login-btns" type="submit">
               Sign Up
             </button>
+          <div className="about-proj">
+                <p>This project is a basic CRUD application that
+                  is built to resemble Instagram. It contains features such as
+                  full crud for posts, comments, and bonus features such as follows, likes, and dislikes.
+                </p>
+            </div>
           </form>
         </div>
         <div className="testing-s">

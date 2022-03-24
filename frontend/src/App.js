@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import SignupFormPage from './components/SignupFormPage';
-// import LoginFormPage from "./components/LoginFormPage";
+import PageNotFound from './components/PageNotFound/PageNotFound';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation/Navigation';
 import HomeFeed from './components/HomeFeed/HomeFeed';
@@ -39,6 +39,9 @@ function App() {
           </Route>
           <Route path='/users/:userId' exact={true}>
             <UserProfile />
+          </Route>
+          <Route>
+            <PageNotFound />
           </Route>
         </Switch>
       )}
