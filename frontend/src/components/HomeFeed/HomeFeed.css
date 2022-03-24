@@ -50,7 +50,7 @@
 }
 
 .side-link:hover{
-  color: rgb(49, 48, 48)
+  color: rgb(65, 63, 63)
 }
 
 #side-title{
@@ -219,4 +219,13 @@
 
 .link-to-user:hover{
   color:rgb(58, 57, 57);
+}
+
+#linkedin{
+  color: #0A66C2;
+  font-size: 18px;
+}
+
+#github{
+  font-size: 18px;
 }

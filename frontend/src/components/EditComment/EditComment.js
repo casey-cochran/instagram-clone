@@ -10,6 +10,7 @@ const EditComment = ({comm}) => {
     const dispatch = useDispatch();
     const [test, setTest] = useState(false)
     const [edit, setEdit] = useState(comm.content)
+    const [error, setErrors] = useState('')
     const {userId, postId} = comm
 
 
@@ -17,7 +18,7 @@ const EditComment = ({comm}) => {
         e.preventDefault()
         comm.content=edit
         if(!edit) {
-          return setEdit('Must provide content')
+          return setErrors('Must provide content')
         }
         const value = await dispatch(editOneComment(comm)).catch(async (err) => {
             const errors = await err.json();
@@ -45,6 +46,7 @@ const EditComment = ({comm}) => {
             onChange={((e) => setEdit(e.target.value))}
             value={edit}
             type='text'
+            placeholder={error}
             />
             <button className="post-comment one" type='submit'>Edit</button>
             </form>
