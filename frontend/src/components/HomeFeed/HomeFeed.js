@@ -88,11 +88,8 @@ const HomeFeed = () => {
               <div className="post-cont" key={index}>
                 <div className="post-menu">
                   <div className="icon-user">
-                    {post.User?.image ? (
-                      <img id="profile-img" src={post.User?.image} />
-                    ) : (
-                      <FaUserCircle className="icons" />
-                    )}
+                      <img id="profile-img" src={post.User?.image ? post.User?.image : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"} />
+
                     <Link className="link-to-user" to={`/users/${post?.userId}`}>{post.User?.username} </Link>
                   </div>
 
