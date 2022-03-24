@@ -10,10 +10,10 @@ const CreatePost = ({ closeModal }) => {
   const userId = useSelector((state) => state.session.user.id);
 
   const [image, setImage] = useState("");
+  const [test,setTest] = useState(false)
   const [caption, setCaption] = useState("");
   const [errors, setErrors] = useState([]);
   const [openForm, setOpenForm] = useState(false);
-
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -62,13 +62,27 @@ const CreatePost = ({ closeModal }) => {
     closeModal();
   };
 
+  const isImageReal = () => {
+    setImage("https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png")
+    setTest(true)
+  }
+
+  const didLoad = () => {
+    setTest(true)
+  }
   return (
     <div>
       {openForm ? (
         <div className="create-post-cont">
-          <img className="add-img" src={image} />
+          <img className="add-img" src={image} onLoad={didLoad} onError={isImageReal}  />
+          {!test && <p>Please wait while image is being verified</p>}
+          {image === "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" && <div><p className="not-veri">Image not verified</p> <button className="post-comment" onClick={() => setOpenForm(false)}>
+              Go back to add image
+            </button></div>}
+            {image &&
           <form className="create-post-form" onSubmit={handleSubmit}>
             <div>
+              {image !== "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" &&
               <input
                 onChange={(e) => setCaption(e.target.value)}
                 value={caption}
@@ -77,16 +91,17 @@ const CreatePost = ({ closeModal }) => {
                 placeholder="Add caption"
                 className="create-post-input"
               />
+            }
             </div>
-            <button
+           {(test && image !== "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png") && <button
               onClick={() => setOpenForm(true)}
               disabled={caption ? false : true}
               className={createImageClass}
               type="submit"
             >
               Add image
-            </button>
-          </form>
+            </button> }
+          </form> }
           <div>
             {errors?.map((error, index) => {
               return <div key={index}>{error}</div>;
@@ -101,7 +116,6 @@ const CreatePost = ({ closeModal }) => {
       ) : (
         <div className="create-post-cont">
           <h3 className="create-post-title">Create new post</h3>
-          {/* <BiImage className="create-post-icon"/> */}
           <img
             className="create-post-icon"
             src="https://www.cera.org.au/wp-content/uploads/2021/06/placeholder-images-image_large.png"
