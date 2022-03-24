@@ -12,15 +12,14 @@ features, with my little experience I was able to surpass this goal by having co
 as well as adding likes, dislikes, and follows features. It was a very difficult task, but I love learning the world of programming
 and have enjoyed every step of the way. 
 
-## [Feature Lists](https://github.com/casey-cochran/instagram-clone/wiki/Feature-List)
+## Wiki Links
 
-## [User Stories](https://github.com/casey-cochran/instagram-clone/wiki/User-Stories)
+* [Feature Lists](https://github.com/casey-cochran/instagram-clone/wiki/Feature-List)
+* [User Stories](https://github.com/casey-cochran/instagram-clone/wiki/User-Stories)
+* [Database Schema](https://github.com/casey-cochran/instagram-clone/wiki/Database-Schema)
+* [WireFrames](https://github.com/casey-cochran/instagram-clone/wiki/WireFrames)
 
-## [Database Schema](https://github.com/casey-cochran/instagram-clone/wiki/Database-Schema)
-
-## [WireFrames](https://github.com/casey-cochran/instagram-clone/wiki/WireFrames)
-
-## Features
+* Features
 
   * Create an account, sign in, or log in as a demo user
   * View, Edit 
