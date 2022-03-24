@@ -200,10 +200,13 @@
   display: flex;
   gap: 10px;
   padding-bottom: 10px;
+  width: 250px;
 }
 
 #com-content{
   margin: 0;
+  width: 250px;
+  overflow-wrap: break-word;
 }
 
 .link-to-user{
