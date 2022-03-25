@@ -93,8 +93,8 @@ const UserProfile = () => {
           <img
             className="user-prof-img"
             src={
-              userPosts[0]?.User?.image
-                ? userPosts[0]?.User?.image
+              profileUser?.image
+                ? profileUser?.image
                 : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
             }
           />
