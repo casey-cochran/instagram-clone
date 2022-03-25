@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 
-
+const EDIT_USER_PROFILE = 'user/EDIT_USER_PROFILE';
 const LOAD_USER = 'user/LOAD_USER';
 
 const loadUser = (user) => ({
@@ -26,6 +26,10 @@ function usersReducer(state = initialState, action){
             newState = {...state}
             newState.User = action.user
             return newState;
+        case EDIT_USER_PROFILE:
+          newState = {...state}
+          newState.User = action.user
+          return newState;
         default:
             return state;
     }
