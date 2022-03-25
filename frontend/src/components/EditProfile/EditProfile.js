@@ -45,6 +45,7 @@ const handleSubmit = async(e) => {
     if(value?.errors){
       return  setErrors(value.errors)
     }
+    setImage(image)
     closeModal();
 }
 
