@@ -8,8 +8,9 @@ import './EditProfile.css';
 const EditProfile = ({user, closeModal}) => {
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.session.user)
-const [bio, setBio] = useState(user?.bio ? user?.bio : currentUser.bio)
-const [image, setImage] = useState(user?.image ? user?.image : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png")
+    console.log(currentUser, ' wahts this image ?')
+const [bio, setBio] = useState(currentUser?.bio ? currentUser?.bio : 'Add a bio')
+const [image, setImage] = useState(currentUser?.image ? currentUser?.image : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png")
 const [errors, setErrors] = useState('')
 
 let buttonClass = ''
@@ -23,7 +24,8 @@ const handleSubmit = async(e) => {
     e.preventDefault();
 
     const validateImage = /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp|svg|avif)(\?(.*))?$/.test(image);
-    if(validateImage){
+    if(validateImage || !image){
+        setImage(currentUser?.image)
       setErrors([])
     }else{
       const newErrors = [];
@@ -55,8 +57,8 @@ const handleSubmit = async(e) => {
             <div>
             <h2 id='edit-prof-header'>Edit Profile</h2>
                 <img className="prof-edit-image" src={
-              user?.image
-                ? user?.image
+              currentUser?.image
+                ? currentUser?.image
                 : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
             } />
             </div>
