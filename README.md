@@ -1,4 +1,4 @@
-## Welcome to my Instagram Clone --- Live Link https://memories-gram.herokuapp.com/
+## Welcome to my Instagram Clone 
 
 The aim of this project is to mimick certain features of Instagram. Like Instagram this project is a social media application in which users
 are able to share content and view other users content. Once signed up users are directed to the home page where the feed is present that
@@ -11,6 +11,11 @@ to being able to build a full stack application within 2 weeks. We were given 2 
 features, with my little experience I was able to surpass this goal by having completed both CRUD features for user posts and comments 
 as well as adding likes, dislikes, and follows features. It was a very difficult task, but I love learning the world of programming
 and have enjoyed every step of the way. 
+
+## Live link
+ * To immediately experience this project, go to the live link below and signup or continue as a demo user!
+
+ - https://memories-gram.herokuapp.com/
 
 ## Wiki Links
 
