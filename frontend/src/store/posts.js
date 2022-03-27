@@ -170,9 +170,15 @@ export const deleteSinglePost = (postId) => async dispatch => {
 
 
 export const createUserPost = (post) => async dispatch => {
+    const {image, caption, userId} = post;
+    const formData = new FormData();
+    formData.append('caption', caption)
+    formData.append('userId', userId)
+    if(image) formData.append('image', image)
     const response = await csrfFetch('/api/users/posts/new', {
         method: 'POST',
-        body: JSON.stringify(post)
+        headers: {'Content-Type': 'multipart/form-data'},
+        body: formData
     })
     const data = await response.json()
     return data

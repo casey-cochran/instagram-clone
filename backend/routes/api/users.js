@@ -7,6 +7,9 @@ const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { User, Post, Comment, Like, Dislike } = require("../../db/models");
 const { response } = require("express");
 
+// import { singlePublicFileUpload, singleMulterUpload } from "../../awsS3";
+const {singlePublicFileUpload }= require('../../awsS3')
+const {singleMulterUpload} = require('../../awsS3')
 
 const router = express.Router();
 
@@ -93,11 +96,11 @@ router.get('/posts/:postId', asyncHandler(async(req,res) => {
 }))
 
 const validatePost = [
-  check("image")
-    .exists({ checkFalsy: true })
-    .withMessage("Must provide an image URL")
-    .isURL()
-    .withMessage("Must be a valid URL"),
+  // check("image")
+  //   .exists({ checkFalsy: true })
+  //   .withMessage("Must provide an image URL")
+  //   .isURL()
+  //   .withMessage("Must be a valid URL"),
   check('caption')
     .exists({checkFalsy: true})
     .withMessage("Must provide a caption"),
@@ -106,9 +109,10 @@ const validatePost = [
 ]
 
 
-router.post('/posts/new', validatePost, requireAuth, asyncHandler(async(req,res) => {
+router.post('/posts/new', singleMulterUpload("image"), validatePost, requireAuth, asyncHandler(async(req,res) => {
     const {userId, image, caption} = req.body
-    const newPost = {userId, image, caption}
+    const postImageUrl = await singlePublicFileUpload(req.file);
+    const newPost = {userId, image: postImageUrl, caption}
     const post = await Post.create(newPost);
     res.json(post);
 }));

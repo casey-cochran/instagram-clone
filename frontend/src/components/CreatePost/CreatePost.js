@@ -9,7 +9,7 @@ const CreatePost = ({ closeModal }) => {
   const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
 
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [test,setTest] = useState(false)
   const [caption, setCaption] = useState("");
   const [errors, setErrors] = useState([]);
@@ -17,15 +17,15 @@ const CreatePost = ({ closeModal }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    const validateImage = /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp|svg|avif)(\?(.*))?$/.test(image);
-    if(validateImage){
-      setErrors([])
+    // const validateImage = /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp|svg|avif)(\?(.*))?$/.test(image);
+    // if(validateImage){
+    //   setErrors([])
       setOpenForm(true)
-    }else{
-      const newErrors = [];
-      newErrors.push('Valid image URL must contain jpg, jpeg, png, bmp, avif, gif, or svg')
-      setErrors(newErrors)
-    }
+    // }else{
+    //   const newErrors = [];
+    //   newErrors.push('Valid image URL must contain jpg, jpeg, png, bmp, avif, gif, or svg')
+    //   setErrors(newErrors)
+    // }
   };
 
   let buttonClass = "";
@@ -62,6 +62,12 @@ const CreatePost = ({ closeModal }) => {
     closeModal();
   };
 
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
+    console.log(file, ' what is the file ?')
+  }
+
   const isImageReal = () => {
     setImage("https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png")
     setTest(true)
@@ -74,12 +80,12 @@ const CreatePost = ({ closeModal }) => {
     <div>
       {openForm ? (
         <div className="create-post-cont">
-          <img className="add-img" src={image} onLoad={didLoad} onError={isImageReal}  />
-          {!test && <p>Please wait while image is being verified</p>}
+          <img className="add-img" src={image.name}  />
+          {/* {!test && <p>Please wait while image is being verified</p>} */}
           {image === "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" && <div><p className="not-veri">Image not verified</p> <button className="post-comment" onClick={() => setOpenForm(false)}>
               Go back to add image
             </button></div>}
-            {image &&
+            {/* {image && */}
           <form className="create-post-form" onSubmit={handleSubmit}>
             <div>
               {image !== "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" &&
@@ -93,15 +99,15 @@ const CreatePost = ({ closeModal }) => {
               />
             }
             </div>
-           {(test && image !== "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png") && <button
+ <button
               onClick={() => setOpenForm(true)}
               disabled={caption ? false : true}
               className={createImageClass}
               type="submit"
             >
               Add image
-            </button> }
-          </form> }
+            </button>
+          </form>
           <div>
             {errors?.map((error, index) => {
               return <div key={index}>{error}</div>;
@@ -123,10 +129,10 @@ const CreatePost = ({ closeModal }) => {
           <form className="create-post-form">
             <div>
               <input
-                onChange={(e) => setImage(e.target.value)}
-                value={image}
+                onChange={updateFile}
+                // value={image}
                 required
-                type="url"
+                type="file"
                 id="image"
                 placeholder="Add image url"
                 className="create-post-input"
