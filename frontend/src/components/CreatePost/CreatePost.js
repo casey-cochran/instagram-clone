@@ -9,6 +9,7 @@ const CreatePost = ({ closeModal }) => {
   const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
 
+  const [src, setSrc] = useState('')
   const [image, setImage] = useState(null);
   const [test,setTest] = useState(false)
   const [caption, setCaption] = useState("");
@@ -27,6 +28,7 @@ const CreatePost = ({ closeModal }) => {
     //   setErrors(newErrors)
     // }
   };
+
 
   let buttonClass = "";
   let createImageClass = "";
@@ -63,6 +65,9 @@ const CreatePost = ({ closeModal }) => {
   };
 
   const updateFile = (e) => {
+    if (e.target.files && e.target.files[0]) {
+       setSrc(URL.createObjectURL(e.target.files[0]))
+    }
     const file = e.target.files[0];
     if (file) setImage(file);
     console.log(file, ' what is the file ?')
@@ -80,7 +85,7 @@ const CreatePost = ({ closeModal }) => {
     <div>
       {openForm ? (
         <div className="create-post-cont">
-          <img className="add-img" src={image.name}  />
+          <img className="add-img" src={src}  />
           {/* {!test && <p>Please wait while image is being verified</p>} */}
           {image === "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" && <div><p className="not-veri">Image not verified</p> <button className="post-comment" onClick={() => setOpenForm(false)}>
               Go back to add image
@@ -134,6 +139,7 @@ const CreatePost = ({ closeModal }) => {
                 required
                 type="file"
                 id="image"
+                accept="image/bmp,image/jpeg,image/png,image/gif"
                 placeholder="Add image url"
                 className="create-post-input"
               />
