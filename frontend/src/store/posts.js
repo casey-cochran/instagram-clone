@@ -22,11 +22,15 @@ const editProfile = (user) => ({
 })
 
 export const editUserProfile = (user) => async dispatch => {
+    const {image, bio, userId} = user;
+    const formData = new FormData();
+    formData.append('bio', bio)
+    formData.append('userId', userId)
+    if(image) formData.append('image', image)
     const response = await csrfFetch(`/api/users/${user.id}/edit`, {
         method: 'PATCH',
-        body: JSON.stringify(
-            user
-        )
+        headers: {'Content-Type': 'multipart/form-data'},
+        body: formData
     })
 
     const data = await response.json();

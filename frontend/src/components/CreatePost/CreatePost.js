@@ -70,7 +70,6 @@ const CreatePost = ({ closeModal }) => {
     }
     const file = e.target.files[0];
     if (file) setImage(file);
-    console.log(file, ' what is the file ?')
   }
 
   const isImageReal = () => {
@@ -141,7 +140,7 @@ const CreatePost = ({ closeModal }) => {
                 id="image"
                 accept="image/bmp,image/jpeg,image/png,image/gif"
                 placeholder="Add image url"
-                className="create-post-input"
+                className="cutom-file-input"
               />
             </div>
             <button

@@ -11,9 +11,25 @@ const multer = require("multer");
 
 const s3 = new AWS.S3({ apiVersion: "2006-03-01", signatureVersion: 'v4' });
 
+// -----------------------Delete s3 Object---------
+const deleteObject = async(key) => {
+    const params = {
+        Bucket: NAME_OF_BUCKET,
+        Key: key
+       };
+       s3.deleteObject(params, function(err, data) {
+         if (err) console.log(err, err.stack); // an error occurred
+         else     console.log(data);           // successful response
+         /*
+         data = {
+         }
+         */
+       });
+}
 // --------------------------- Public UPLOAD ------------------------
 
 const singlePublicFileUpload = async (file) => {
+    if(!file) return;
   const { originalname, mimetype, buffer } = await file;
   const path = require("path");
   // name of the file in your S3 bucket will be the date in ms plus the extension name
@@ -97,4 +113,5 @@ module.exports = {
   retrievePrivateFile,
   singleMulterUpload,
   multipleMulterUpload,
+  deleteObject
 };

@@ -9,7 +9,8 @@ const { response } = require("express");
 
 // import { singlePublicFileUpload, singleMulterUpload } from "../../awsS3";
 const {singlePublicFileUpload }= require('../../awsS3')
-const {singleMulterUpload} = require('../../awsS3')
+const {singleMulterUpload, deleteObject} = require('../../awsS3')
+
 
 const router = express.Router();
 
@@ -81,10 +82,11 @@ const validateProfile = [
   handleValidationErrors
 ]
 
-router.patch('/:userId/edit', validateProfile, requireAuth, asyncHandler(async(req,res) => {
+router.patch('/:userId/edit', singleMulterUpload("image"), validateProfile, requireAuth, asyncHandler(async(req,res) => {
   const {userId, bio, image} = req.body;
   const user = await User.findByPk(userId)
-  const updateUser =  await user.update({bio: bio, image:image})
+  const postImageUrl = await singlePublicFileUpload(req.file);
+  const updateUser =  await user.update({bio: bio, image:postImageUrl})
   res.json(updateUser)
 }))
 
@@ -121,7 +123,10 @@ router.post('/posts/new', singleMulterUpload("image"), validatePost, requireAuth
 router.delete('/posts/:postId/delete', requireAuth, asyncHandler(async(req,res) => {
   const {postId} = req.params
   const post = await Post.findByPk(postId)
-  await post.destroy();
+  const urlArr = post.dataValues.image.split('/')
+  const key = urlArr[urlArr.length - 1]
+  deleteObject(key)
+ await post.destroy();
   res.json({msg: 'delete successful'})
 }))
 

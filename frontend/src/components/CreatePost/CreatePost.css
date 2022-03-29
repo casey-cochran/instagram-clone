@@ -71,3 +71,22 @@
 .not-veri{
     margin-bottom: 0;
 }
+
+.testing-in{
+    border: none;
+}
+input[type=file]::file-selector-button {
+    border: none;
+    padding: .4em .8em;
+    border-radius: .2em;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    background-color: #0095F6;
+    transition: 1s;
+  }
+
+  input[type=file]::file-selector-button:hover {
+    background-color: #0785da;
+
+  }
