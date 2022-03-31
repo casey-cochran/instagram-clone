@@ -46,6 +46,7 @@ and have enjoyed every step of the way.
   * React
   * Redux
   * Javascript
+  * AWS S3
   * Express
   * PostgreSQL
   * Sequelize
