@@ -1,11 +1,11 @@
 #main-cont {
   display: flex;
   justify-content: center;
-  gap: 50px;
+
   margin-top: 35px;
   width: 100%;
   margin: auto;
-  padding-left: 50px;
+  padding-left: 10px;
   overflow: scroll;
   height: 850px;
   /* overflow: auto; */
@@ -18,28 +18,36 @@
   display:flex;
   flex-direction: column;
   justify-content: space-between;
-
+  position: relative;
   align-items: center;
   background-color: white;
   margin-top: 50px;
 }
 .home-side-cont{
-  width: 200px;
-  margin-top: 50px;
+  /* width: 200px;
+  display:flex;
+
   background-color: white;
-  height: 250px;
+  /* height: 250px; */
+  height: 100%;
+  margin-top: 50px;
   position: relative;
 }
 .side-child{
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  /* width: 33%; */
+ /* z-index: -1; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  pointer-events: none;
+  /* background-color: white; */
   gap: 30px;
-  height: 250px;
-  right: 0;
-  border: 1px solid #dbdbdb;
+
+  padding-left: 20px;
+  padding-right: 15px;
+  /* right: 0; */
+  /* border: 1px solid #dbdbdb; */
 }
 
 .side-link{
@@ -47,10 +55,12 @@
   color: black;
   font-weight: 800;
   padding-left: 10px;
+  pointer-events: auto;
 }
 
 .side-link:hover{
-  color: rgb(65, 63, 63)
+  color: rgb(65, 63, 63);
+
 }
 
 #side-title{

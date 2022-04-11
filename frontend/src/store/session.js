@@ -13,7 +13,6 @@ export const validateUserExists = (userId) => async dispatch => {
   const response = await csrfFetch(`/api/users/${userId}/validate`)
   const data = await response.json();
   return data
-  console.log(data, ' what is repsone?')
 }
 
 const setUser = (user) => ({

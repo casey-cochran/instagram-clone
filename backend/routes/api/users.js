@@ -7,6 +7,10 @@ const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { User, Post, Comment, Like, Dislike } = require("../../db/models");
 const { response } = require("express");
 
+// import { singlePublicFileUpload, singleMulterUpload } from "../../awsS3";
+const {singlePublicFileUpload }= require('../../awsS3')
+const {singleMulterUpload, deleteObject} = require('../../awsS3')
+
 
 const router = express.Router();
 
@@ -78,10 +82,11 @@ const validateProfile = [
   handleValidationErrors
 ]
 
-router.patch('/:userId/edit', validateProfile, requireAuth, asyncHandler(async(req,res) => {
+router.patch('/:userId/edit', singleMulterUpload("image"), validateProfile, requireAuth, asyncHandler(async(req,res) => {
   const {userId, bio, image} = req.body;
   const user = await User.findByPk(userId)
-  const updateUser =  await user.update({bio: bio, image:image})
+  const postImageUrl = await singlePublicFileUpload(req.file);
+  const updateUser =  await user.update({bio: bio, image:postImageUrl})
   res.json(updateUser)
 }))
 
@@ -93,11 +98,11 @@ router.get('/posts/:postId', asyncHandler(async(req,res) => {
 }))
 
 const validatePost = [
-  check("image")
-    .exists({ checkFalsy: true })
-    .withMessage("Must provide an image URL")
-    .isURL()
-    .withMessage("Must be a valid URL"),
+  // check("image")
+  //   .exists({ checkFalsy: true })
+  //   .withMessage("Must provide an image URL")
+  //   .isURL()
+  //   .withMessage("Must be a valid URL"),
   check('caption')
     .exists({checkFalsy: true})
     .withMessage("Must provide a caption"),
@@ -106,9 +111,10 @@ const validatePost = [
 ]
 
 
-router.post('/posts/new', validatePost, requireAuth, asyncHandler(async(req,res) => {
+router.post('/posts/new', singleMulterUpload("image"), validatePost, requireAuth, asyncHandler(async(req,res) => {
     const {userId, image, caption} = req.body
-    const newPost = {userId, image, caption}
+    const postImageUrl = await singlePublicFileUpload(req.file);
+    const newPost = {userId, image: postImageUrl, caption}
     const post = await Post.create(newPost);
     res.json(post);
 }));
@@ -117,7 +123,10 @@ router.post('/posts/new', validatePost, requireAuth, asyncHandler(async(req,res)
 router.delete('/posts/:postId/delete', requireAuth, asyncHandler(async(req,res) => {
   const {postId} = req.params
   const post = await Post.findByPk(postId)
-  await post.destroy();
+  const urlArr = post.dataValues.image.split('/')
+  const key = urlArr[urlArr.length - 1]
+  deleteObject(key)
+ await post.destroy();
   res.json({msg: 'delete successful'})
 }))
 

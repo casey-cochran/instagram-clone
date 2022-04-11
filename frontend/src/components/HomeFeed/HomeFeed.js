@@ -7,8 +7,8 @@ import Modal from "react-modal";
 import DeletePost from "../DeletePost/DeletePost";
 import OnePostModal from "../OnePostModal/OnePostModal";
 import { FaEllipsisH, FaRegComment } from "react-icons/fa";
-import {AiOutlineGithub} from 'react-icons/ai';
-import {BsLinkedin} from 'react-icons/bs'
+import { AiOutlineGithub } from "react-icons/ai";
+import { BsLinkedin } from "react-icons/bs";
 import PostCommentFeed from "../PostCommentFeed/PostCommentFeed";
 import AddLikes from "../Likes/Likes";
 import AddDislikes from "../Dislike/AddDislike";
@@ -26,7 +26,7 @@ const HomeFeed = () => {
     Object.values(state.commentsReducer.Comments)
   );
 
-  if (!user) history.push('/login');
+  if (!user) history.push("/login");
 
   const customStyles = {
     content: {
@@ -42,9 +42,9 @@ const HomeFeed = () => {
 
   const deleteModalStyles = {
     content: {
-      width: '250px',
-      height: '250px',
-      padding: '0px',
+      width: "250px",
+      height: "250px",
+      padding: "0px",
       top: "50%",
       outline: 0,
       left: "50%",
@@ -60,7 +60,7 @@ const HomeFeed = () => {
   const [modalPost, setModalPost] = useState(null);
   // const [commentProps, setCommentProps] = useState(null);
   const [openComm, setOpenComm] = useState(false);
-  const inputId = 'home-comment'
+  const inputId = "home-comment";
 
   function openModal() {
     setIsOpen(true);
@@ -80,6 +80,12 @@ const HomeFeed = () => {
     dispatch(loadAllPosts());
   }, [dispatch]);
 
+  // let window = document.documentElement.clientWidth
+  // useEffect(() => {
+  //   console.log(window)
+
+  // },[window, window.innerWidth])
+
   return (
     <div id="main-cont">
       <div className="user-feed">
@@ -89,9 +95,21 @@ const HomeFeed = () => {
               <div className="post-cont" key={index}>
                 <div className="post-menu">
                   <div className="icon-user">
-                      <img id="profile-img" src={post.User?.image ? post.User?.image : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"} />
+                    <img
+                      id="profile-img"
+                      src={
+                        post.User?.image
+                          ? post.User?.image
+                          : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+                      }
+                    />
 
-                    <Link className="link-to-user" to={`/users/${post?.userId}`}>{post.User?.username} </Link>
+                    <Link
+                      className="link-to-user"
+                      to={`/users/${post?.userId}`}
+                    >
+                      {post.User?.username}{" "}
+                    </Link>
                   </div>
 
                   <FaEllipsisH
@@ -108,7 +126,7 @@ const HomeFeed = () => {
                 <div id="testing">
                   <div className="likes-cont">
                     <p>
-                      <AddLikes postId={post?.id} userId={post?.userId}/>
+                      <AddLikes postId={post?.id} userId={post?.userId} />
                     </p>
                     <p>
                       <AddDislikes postId={post?.id} userId={post?.userId} />
@@ -126,23 +144,43 @@ const HomeFeed = () => {
                     </p>
                   </div>
                   <div className="sub-likes-cont">
-                    <p>{post?.Likes?.length ? post?.Likes?.length : 0} Likes {post?.Dislikes?.length ? post?.Dislikes?.length : 0} Dislikes</p>
+                    <p>
+                      {post?.Likes?.length ? post?.Likes?.length : 0} Likes{" "}
+                      {post?.Dislikes?.length ? post?.Dislikes?.length : 0}{" "}
+                      Dislikes
+                    </p>
                     <div id="sub-likes-f">
-                    <Link className="link-to-user" to={`/users/${post?.userId}`}>{post.User?.username} </Link> {post?.caption}
+                      <Link
+                        className="link-to-user"
+                        to={`/users/${post?.userId}`}
+                      >
+                        {post.User?.username}{" "}
+                      </Link>{" "}
+                      {post?.caption}
                     </div>
-                    <p onClick={() => {
+                    <p
+                      onClick={() => {
                         setModalPost(post);
                         setModalProps(post.id);
                         openCommModal();
-                      }} className="view-all">
+                      }}
+                      className="view-all"
+                    >
                       View all {post?.Comments?.length} comments
                     </p>
                   </div>
                   {comments?.map((com, index) => {
                     return (
                       <div key={index}>
-                        <div className="home-comments" >
-                          {com.postId === post.id ? <div className="com-content-cont"><b>{com.User?.username}</b> <p id='com-content'>{com.content}</p></div> : ''}
+                        <div className="home-comments">
+                          {com.postId === post.id ? (
+                            <div className="com-content-cont">
+                              <b>{com.User?.username}</b>{" "}
+                              <p id="com-content">{com.content}</p>
+                            </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </div>
                     );
@@ -178,34 +216,36 @@ const HomeFeed = () => {
           />
         </Modal>
       </div>
-      <div className='home-side-cont'>
-      <div className='side-child'>
-        <h3 id='side-title'>About this developer</h3>
-        <div>
-          <Link
-            to={{ pathname: "https://github.com/casey-cochran" }}
-            target="_blank"
-            className="side-link"
-          >
-            Github <AiOutlineGithub id='github'/>
-          </Link>
+      <div className="home-side-cont">
+        <div className="side-child">
+          <h3 id="side-title">About this developer</h3>
+          <div>
+            <Link
+              to={{ pathname: "https://github.com/casey-cochran" }}
+              target="_blank"
+              className="side-link"
+            >
+              Github <AiOutlineGithub id="github" />
+            </Link>
+          </div>
+          <div>
+            <Link
+              to={{
+                pathname: "https://linkedin.com/in/casey-cochran-488420219/",
+              }}
+              target="_blank"
+              className="side-link"
+            >
+              LinkedIn <BsLinkedin id="linkedin" />
+            </Link>
+          </div>
+          <div>
+            <p className="tech-names-title">Technologies Used</p>
+            <p className="tech-names">
+              React, Redux, Express, Sequelize, HTML, CSS{" "}
+            </p>
+          </div>
         </div>
-        <div>
-          <Link
-            to={{
-              pathname: "https://linkedin.com/in/casey-cochran-488420219/",
-            }}
-            target="_blank"
-            className="side-link"
-          >
-            LinkedIn <BsLinkedin id='linkedin'/>
-          </Link>
-        </div>
-        <div>
-          <p className='tech-names-title'>Technologies Used</p>
-        <p className='tech-names'>React, Redux, Express, Sequelize, HTML, CSS </p>
-        </div>
-      </div>
       </div>
     </div>
   );

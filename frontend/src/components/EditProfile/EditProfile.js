@@ -8,8 +8,9 @@ import './EditProfile.css';
 const EditProfile = ({user, closeModal}) => {
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.session.user)
-    
+
 const [bio, setBio] = useState(currentUser?.bio ? currentUser?.bio : 'Add a bio')
+const [src, setSrc] = useState('')
 const [image, setImage] = useState(currentUser?.image ? currentUser?.image : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png")
 const [errors, setErrors] = useState('')
 
@@ -23,15 +24,15 @@ if(bio || image){
 const handleSubmit = async(e) => {
     e.preventDefault();
 
-    const validateImage = /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp|svg|avif)(\?(.*))?$/.test(image);
-    if(validateImage || !image){
-        setImage(currentUser?.image)
-      setErrors([])
-    }else{
-      const newErrors = [];
-      newErrors.push('Valid image URL must contain jpg, jpeg, png, bmp, avif, gif, or svg')
-     return setErrors(newErrors)
-    }
+    // const validateImage = /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp|svg|avif)(\?(.*))?$/.test(image);
+    // if(validateImage || !image){
+    //     setImage(currentUser?.image)
+    //   setErrors([])
+    // }else{
+    //   const newErrors = [];
+    //   newErrors.push('Valid image URL must contain jpg, jpeg, png, bmp, avif, gif, or svg')
+    //  return setErrors(newErrors)
+    // }
 
     const userEdit = {
         userId: currentUser.id,
@@ -50,6 +51,15 @@ const handleSubmit = async(e) => {
     setImage(image)
     closeModal();
 }
+
+const updateFile = (e) => {
+    if (e.target.files && e.target.files[0]) {
+       setSrc(URL.createObjectURL(e.target.files[0]))
+       setImage(src)
+    }
+    const file = e.target.files[0];
+    if (file) setImage(file);
+  }
 
 
     return (
@@ -74,11 +84,12 @@ const handleSubmit = async(e) => {
                 className="create-post-input edit"
                 />
                 <input
-                onChange={((e) => setImage(e.target.value))}
-                value={image}
-                type='text'
+                onChange={updateFile}
+                // value={image}
+                accept="image/bmp,image/jpeg,image/png,image/gif"
+                type='file'
                 placeholder="Add profile image"
-                className="create-post-input edit"
+
                 />
                 <button disabled={bio || image ? false : true} className={buttonClass} type='submit'>Edit</button>
             </form>
