@@ -48,7 +48,7 @@
     border: none;
     padding: 10px;
     background: none;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .post-comment{
