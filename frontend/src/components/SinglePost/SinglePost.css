@@ -10,14 +10,21 @@
     margin: auto;
     margin-top: 40px;
 }
+
+.single-post-cont{
+    height: 100%;
+
+}
+
 #testing3{
     display: flex;
     justify-content: center;
-    height: 400px;
-    width: 400px;
-    margin: auto;
+
+    width: 100%;
+    /* margin: auto; */
     margin-top: 50px;
-    margin-bottom: 300px;
+    margin-bottom: 100px;
+
 }
 
 .comments-side-bar.single{
@@ -28,7 +35,7 @@
     height: 550px;
 }
  .view-items.img.single{
-    height: 607px;
+    height: 611px;
 }
 /*
 .single-post-cont.single{

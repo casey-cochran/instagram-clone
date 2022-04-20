@@ -47,11 +47,12 @@ const SinglePost = () => {
   }
 
   useEffect(() => {
+    document.body.style.overflow='auto'
     dispatch(loadSinglePost(postId))
   }, [dispatch]);
 
   return (
-    <> {singlePost?.id ?
+    <div className="single-p-cont"> {singlePost?.id ?
     <div id="testing3">
       <div className="one-post-cont ">
         <img className="view-items img single" src={singlePost?.image} />
@@ -125,7 +126,7 @@ const SinglePost = () => {
    : <div className="no-content">
    <h2>You must have typed in the wrong url..</h2>
    <p className="return-p">Return to home <Link className="no-content-lnk" to='/'>Here</Link></p>
-   </div>} </>
+   </div>} </div>
   );
 };
 

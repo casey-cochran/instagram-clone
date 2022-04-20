@@ -3,9 +3,10 @@
   border: 1px solid #dbdbdb;
   width: 180px;
   height: 200px;
+  margin-top: 40px;
   top: 8%;
   z-index: 2;
-  right: 22%;
+  /* right: 22%; */
   display:flex;
   flex-direction: column;
   gap: 10px;
@@ -42,7 +43,8 @@
 
 .up-r-icons{
   display: flex;
-  gap: 5px;
+  position:relative;
+  gap: 15px;
 }
 
 .home-title{
