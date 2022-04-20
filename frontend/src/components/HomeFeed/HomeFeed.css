@@ -7,13 +7,13 @@
   margin: auto;
   padding-left: 10px;
   overflow: scroll;
-  height: 850px;
+  height: 892px;
   /* overflow: auto; */
 }
 
 .post-cont{
-  width: 500px;
-  /* height: 585px; */
+  width: 600px;
+  /* height: 892px; */
   border: 1px solid #dbdbdb;
   display:flex;
   flex-direction: column;
@@ -41,8 +41,7 @@
   flex-direction: column;
   justify-content: flex-start;
   pointer-events: none;
-  /* background-color: white; */
-  gap: 30px;
+
 
   padding-left: 20px;
   padding-right: 15px;
@@ -68,6 +67,12 @@
   color: #0095F6;
   padding-top: 10px;
   margin: 0;
+  margin-bottom: 10px;
+}
+
+.tech-names-cont{
+  width: 170px;
+  margin-top: 20px;
 }
 
 .tech-names-title{
@@ -93,8 +98,8 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 500px;
-  gap: 300px;
+  width: 600px;
+  gap: 380px;
 }
 
 .modal-delete{
@@ -110,7 +115,7 @@
 .likes-cont{
   display: flex;
   justify-content: flex-start;
-  width: 500px;
+  width: 600px;
   align-items: center;
   gap: 10px;
   height: 40px;
@@ -122,14 +127,14 @@
   width: 500px;
 } */
 .add-img.home{
-  height: 314px;
+  height: 414px;
   object-fit: fill;
-  width: 500px;
+  width: 600px;
 }
 
 .add-comment{
   border: 1px solid black;
-  width: 500px;
+  width: 600px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -165,6 +170,7 @@
 .icon-user{
   display: flex;
   align-items: center;
+  justify-content: space-around;
   gap: 10px;
   padding: 10px;
 }
@@ -198,7 +204,7 @@
 }
 
 .comm-input-feed{
-  width: 500px;
+  width: 600px;
 }
 
 .home-comments{
@@ -234,8 +240,27 @@
 #linkedin{
   color: #0A66C2;
   font-size: 18px;
+  margin-top: 4px;
+}
+
+#angellist{
+  color: black;
 }
 
 #github{
   font-size: 18px;
+  margin-top: 4px;
+
+}
+
+.media-links{
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+  height: 40px;
+}
+.media-links > p {
+  font-size: 20px;
+  font-weight: 600;
 }

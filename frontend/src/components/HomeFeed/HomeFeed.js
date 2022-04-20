@@ -9,6 +9,7 @@ import OnePostModal from "../OnePostModal/OnePostModal";
 import { FaEllipsisH, FaRegComment } from "react-icons/fa";
 import { AiOutlineGithub } from "react-icons/ai";
 import { BsLinkedin } from "react-icons/bs";
+import {FaAngellist} from 'react-icons/fa'
 import PostCommentFeed from "../PostCommentFeed/PostCommentFeed";
 import AddLikes from "../Likes/Likes";
 import AddDislikes from "../Dislike/AddDislike";
@@ -219,16 +220,23 @@ const HomeFeed = () => {
       <div className="home-side-cont">
         <div className="side-child">
           <h3 id="side-title">About this developer</h3>
-          <div>
+          <div className="media-links">
             <Link
               to={{ pathname: "https://github.com/casey-cochran" }}
               target="_blank"
               className="side-link"
             >
-              Github <AiOutlineGithub id="github" />
+               <AiOutlineGithub id="github" />
             </Link>
+               <Link
+               to={{
+                pathname: "https://linkedin.com/in/casey-cochran-488420219/",
+              }}
+              target="_blank"
+              className="side-link"
+               >Github</Link>
           </div>
-          <div>
+          <div className="media-links">
             <Link
               to={{
                 pathname: "https://linkedin.com/in/casey-cochran-488420219/",
@@ -236,10 +244,37 @@ const HomeFeed = () => {
               target="_blank"
               className="side-link"
             >
-              LinkedIn <BsLinkedin id="linkedin" />
+               <BsLinkedin id="linkedin" />
             </Link>
+               <Link
+               to={{
+                pathname: "https://linkedin.com/in/casey-cochran-488420219/",
+              }}
+              target="_blank"
+              className="side-link"
+               >LinkedIn</Link>
+
           </div>
-          <div>
+          <div className="media-links">
+            <Link
+              to={{
+                pathname: "https://angel.co/u/casey-cochran-2",
+              }}
+              target="_blank"
+              className="side-link"
+            >
+               <FaAngellist id="angellist" />
+            </Link>
+               <Link
+               to={{
+                pathname: "https://angel.co/u/casey-cochran-2",
+              }}
+              target="_blank"
+              className="side-link"
+               >AngelList</Link>
+
+          </div>
+          <div className="tech-names-cont">
             <p className="tech-names-title">Technologies Used</p>
             <p className="tech-names">
               React, Redux, Express, Sequelize, HTML, CSS{" "}

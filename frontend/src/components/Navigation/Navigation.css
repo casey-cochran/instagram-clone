@@ -32,9 +32,12 @@
   padding-bottom: 30px;
   width: 100%;
   background-color: white;
+
+
 }
 .html, body{
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .up-r-icons{

@@ -7,7 +7,7 @@
 }
 
 .home-feed-input{
-    width: 400px;
+    width: 500px;
     margin-right:8px;
     border:none;
     background: none;
@@ -22,7 +22,7 @@
     border: none;
     padding: 10px;
     background: none;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .post-comment{

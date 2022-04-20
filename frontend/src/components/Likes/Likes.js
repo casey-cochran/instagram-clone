@@ -1,5 +1,5 @@
 import { AiOutlineHeart } from "react-icons/ai";
-import { addOneLike, removeOneLike } from "../../store/posts";
+import { addOneLike, removeOneLike, removeOneDislike } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 import './Likes.css';
 
@@ -14,6 +14,8 @@ const AddLikes = ({postId, userId}) => {
         if (!foundLike && !foundDislike){
             dispatch(addOneLike(postId,currentUserId))
         }else if(foundDislike) {
+            dispatch(addOneLike(postId,currentUserId))
+            dispatch(removeOneDislike(foundDislike.id, postId))
             return;
         }else{
             dispatch(removeOneLike(foundLike.id, postId))

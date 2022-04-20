@@ -1,5 +1,5 @@
 import {GoThumbsdown} from 'react-icons/go';
-import { addOneDislike, removeOneDislike } from '../../store/posts';
+import { addOneDislike, removeOneDislike, removeOneLike } from '../../store/posts';
 import { useDispatch, useSelector } from "react-redux";
 import './Dislike.css';
 
@@ -15,6 +15,8 @@ const AddDislikes = ({postId, userId}) => {
         if (!foundDislike && !foundLike){
             dispatch(addOneDislike(postId,currentUserId))
         }else if(foundLike){
+            dispatch(addOneDislike(postId, currentUserId))
+            dispatch(removeOneLike(foundLike.id, postId))
             return
         } else{
             dispatch(removeOneDislike(foundDislike.id, postId))
