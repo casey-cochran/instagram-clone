@@ -43,12 +43,13 @@ const HomeFeed = () => {
 
   const deleteModalStyles = {
     content: {
-      width: "250px",
-      height: "250px",
+      width: "190px",
+      height: "190px",
       padding: "0px",
       top: "50%",
       outline: 0,
       left: "50%",
+      borderRadius: '100px',
       right: "auto",
       bottom: "auto",
       marginRight: "-50%",
@@ -78,6 +79,7 @@ const HomeFeed = () => {
   };
 
   useEffect(() => {
+    document.body.style.overflow='hidden'
     dispatch(loadAllPosts());
   }, [dispatch]);
 

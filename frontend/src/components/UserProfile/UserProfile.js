@@ -81,7 +81,7 @@ const UserProfile = () => {
     dispatch(loadAllUserPosts(userId));
     dispatch(loadAllFollows(userId))
     dispatch(loadAUser(userId))
-
+    document.body.style.overflow='auto'
   }, [dispatch, userId]);
 
 
