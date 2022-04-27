@@ -8,6 +8,7 @@ import './Navigation.css';
 import CreatePost from '../CreatePost/CreatePost';
 import { MdHomeFilled } from 'react-icons/md';
 import { AiOutlinePlusSquare } from 'react-icons/ai';
+import Search from '../../Search/Search';
 
 
 
@@ -58,6 +59,7 @@ function Navigation({ isLoaded }){
         <NavLink className='home-title name' exact to="/">Memories</NavLink>
         {/* {isLoaded && sessionLinks} */}
       </div>
+      <Search />
       <div className='up-r-icons'>
       <NavLink to='/'><MdHomeFilled className='icons home-title' /></NavLink>
       <NavLink to='/post/new' onClick={openModal}><AiOutlinePlusSquare className='icons home-title' /></NavLink>

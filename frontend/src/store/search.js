@@ -3,14 +3,14 @@ import { csrfFetch } from "./csrf";
 const SEARCH_VALUE = 'user/SEARCH';
 
 const search = (value) => {
-    return {
+    return ({
         type: SEARCH_VALUE,
         value
-    }
+    })
 }
 
 
-const searchUser = (value) => async dispatch => {
+export const searchUser = (value) => async dispatch => {
     const response = await csrfFetch('/api/search', {
         method: 'POST',
         body: JSON.stringify({
