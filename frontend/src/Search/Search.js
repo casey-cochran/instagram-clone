@@ -1,5 +1,5 @@
 import "./Search.css";
-import { useEffect, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
@@ -36,7 +36,6 @@ const Search = () => {
   return (
     <>
       <BsSearch className="search-icon" />
-      {/* TODO on enter of form redirect to first search result */}
       <form onSubmit={handleSubmit}>
       <input
         onClick={() => setMenu(true)}

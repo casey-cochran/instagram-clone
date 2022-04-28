@@ -7,7 +7,9 @@
     background-color: #efefef;
 }
 
-/* .search-input[::placeholder] */
+#searchtest{
+    display:flex;
+}
 
 .search-cont{
     width: 290px;
