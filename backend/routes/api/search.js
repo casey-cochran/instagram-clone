@@ -7,11 +7,11 @@ const {User} = require('../../db/models');
 
 
 router.post('', asyncHandler(async(req,res) => {
-    const {searchVal} = req.body;
+    const {searchValue} = req.body;
     const value = await User.findAll({
         where: {
             username: {
-                [Op.like]: '%' + searchVal + '%'
+                [Op.iLike]: '%' + searchValue + '%'
             }
         }
     })

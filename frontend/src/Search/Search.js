@@ -1,33 +1,74 @@
-import './Search.css';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import {BsSearch} from 'react-icons/bs';
-import searchReducer from '../store/search';
+import "./Search.css";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useHistory } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
+import { searchUser } from "../store/search";
 
 
 const Search = () => {
-    const dispatch = useDispatch();
-    const [searchVal, setSearchVal] = useState('');
-    const [menu, setMenu] = useState(false)
-    const searchResults = useSelector((state) => state.searchReducer)
-
-    useEffect(() => {
-        dispatch(searchReducer(searchVal))
-    },[searchVal])
-
-    return (
-        <>
-            <BsSearch />
-            <input
-                type='search'
-                onChange={((e) => setSearchVal(e.target.value))}
-                value={searchVal}
-                />
-        </>
-    )
-}
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [searchVal, setSearchVal] = useState('');
+  const [menu, setMenu] = useState(false);
+  const searchResults = useSelector((state) => Object.values(state.searchReducer.Search))
 
 
+  const handleSubmit = () => {
+    history.push(`/users/${searchResults[0]?.id}`)
+  }
+
+  useEffect(() => {
+    if (!menu) return;
+    const closeMenu = () => {
+      setMenu(false);
+    };
+    document.addEventListener("click", closeMenu);
+    return () => document.removeEventListener("click", closeMenu);
+  }, [menu]);
+
+  useEffect(() => {
+      if(searchVal.length > 0){
+    dispatch(searchUser(searchVal));
+      }
+  }, [searchVal]);
+
+  return (
+    <>
+      <BsSearch className="search-icon" />
+      {/* TODO on enter of form redirect to first search result */}
+      <form onSubmit={handleSubmit}>
+      <input
+        onClick={() => setMenu(true)}
+        className="search-input"
+        type="search"
+        placeholder="Search"
+        onChange={(e) => setSearchVal(e.target.value)}
+        value={searchVal}
+      />
+      </form>
+      {menu && (
+        <div className="search-cont">
+          {searchResults.length > 0 ? (
+            searchResults?.map((ele, i) => {
+              return (
+                <NavLink onClick={(() => {setSearchVal('')})} key={i} className="spot-links" to={`/users/${ele.id}`}>
+                  <div
+                    className="search-results-list"
+                    key={i}
+                  >
+                    {ele.username}
+                  </div>
+                </NavLink>
+              );
+            })
+          ) : (
+            <div className="search-results-list">No search results found</div>
+          )}
+        </div>
+      )}
+    </>
+  );
+};
 
 export default Search;
