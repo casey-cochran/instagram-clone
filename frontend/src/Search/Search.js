@@ -54,6 +54,7 @@ const Search = () => {
                 <NavLink onClick={(() => {setSearchVal('')})} key={i} className="spot-links" to={`/users/${ele.id}`}>
                   <div
                     className="search-results-list"
+                    autoFocus
                     key={i}
                   >
                     {ele.username}

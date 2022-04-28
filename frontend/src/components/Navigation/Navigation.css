@@ -23,22 +23,27 @@
 
 #nav-cont{
   display:flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 200px;
+  /* position: fixed;
+  z-index: 2;
+  top:0;
+  left:0; */
   align-items: center;
   border: 1px solid #dbdbdb;
   border-top: none;
   border-left: none;
   padding: 20px;
-  padding-top: 20px;
-  padding-bottom: 30px;
+  padding-top: 12px;
+  padding-bottom: 20px;
   width: 100%;
   background-color: white;
-
 
 }
 .html, body{
   overflow-x: hidden;
   overflow-y: hidden;
+  margin: 0;
 }
 
 .up-r-icons{
