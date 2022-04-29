@@ -1,5 +1,5 @@
 import "./Search.css";
-import { createRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
@@ -12,11 +12,19 @@ const Search = () => {
   const [searchVal, setSearchVal] = useState('');
   const [menu, setMenu] = useState(false);
   const searchResults = useSelector((state) => Object.values(state.searchReducer.Search))
+    const testRef = useRef()
 
 
   const handleSubmit = () => {
     history.push(`/users/${searchResults[0]?.id}`)
   }
+
+//   useEffect(() => {
+//       if(searchResults?.length > 0){
+//           testRef.current.focus();
+//       }
+//   })
+
 
   useEffect(() => {
     if (!menu) return;
@@ -29,8 +37,10 @@ const Search = () => {
 
   useEffect(() => {
       if(searchVal.length > 0){
+          setMenu(true)
     dispatch(searchUser(searchVal));
       }
+      if(searchVal.length === 0) setMenu(false)
   }, [searchVal]);
 
   return (
@@ -40,6 +50,7 @@ const Search = () => {
       <input
         onClick={() => setMenu(true)}
         className="search-input"
+        autoFocus
         type="search"
         placeholder="Search"
         onChange={(e) => setSearchVal(e.target.value)}
@@ -54,7 +65,6 @@ const Search = () => {
                 <NavLink onClick={(() => {setSearchVal('')})} key={i} className="spot-links" to={`/users/${ele.id}`}>
                   <div
                     className="search-results-list"
-                    autoFocus
                     key={i}
                   >
                     {ele.username}
