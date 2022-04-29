@@ -5,6 +5,7 @@ import postsReducer from './posts';
 import commentsReducer from './comments';
 import followsReducer from './followers';
 import usersReducer from './users';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   commentsReducer,
   followsReducer,
   usersReducer,
+  searchReducer,
 });
 
 let enhancer;
