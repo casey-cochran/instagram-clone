@@ -65,7 +65,7 @@ const updateFile = (e) => {
     return (
         <div className="prof-edit-cont">
             <div>
-            <h2 id='edit-prof-header'>Edit Profile</h2>
+            {/* <h2 id='edit-prof-header'>Edit Profile</h2> */}
                 <img className="prof-edit-image" src={
               currentUser?.image
                 ? currentUser?.image
