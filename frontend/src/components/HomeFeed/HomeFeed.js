@@ -232,7 +232,7 @@ const HomeFeed = () => {
             </Link>
                <Link
                to={{
-                pathname: "https://linkedin.com/in/casey-cochran-488420219/",
+                pathname: "https://github.com/casey-cochran",
               }}
               target="_blank"
               className="side-link"
