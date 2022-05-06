@@ -61,8 +61,8 @@ const UserProfile = () => {
 
   const customStyles = {
     content: {
-        width: '350px',
-      height: '520px',
+        width: '450px',
+      height: '500px',
       top: "50%",
       outline: 0,
       padding: 0,
