@@ -20,7 +20,7 @@
 .prof-edit-image{
     width: 450px;
     height: 360px;
-    object-fit: fill;
+    object-fit: cover;
 }
 
 .create-post-input.edit{
