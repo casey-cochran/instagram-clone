@@ -21,8 +21,6 @@ const UserProfile = () => {
   const userFollowers = useSelector((state) => state.followsReducer?.Follows)
   const userFollowing = useSelector((state) => state.followsReducer?.Following)
   if (!currentUser) history.push('/login');
-  // let usertest;
-  // if(profileUser && !profileUser?.id) history.push('/')
   const userPosts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
@@ -52,9 +50,6 @@ const UserProfile = () => {
     setFollowOpen(false)
   }
 
-  function openModal() {
-    setIsOpen(true);
-  }
   function closeModal() {
     setIsOpen(false);
   }
@@ -62,7 +57,7 @@ const UserProfile = () => {
   const customStyles = {
     content: {
         width: '450px',
-      height: '500px',
+      height: '520px',
       top: "50%",
       outline: 0,
       padding: 0,
