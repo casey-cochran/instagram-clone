@@ -41,9 +41,9 @@ function ProfileButton({ user }) {
 
       {showMenu && (
         <div className="profile-dropdown">
-          <div className="prof-item">{user.username}</div>
-          <div className="prof-item">{user.email}</div>
-          <div className='prof-item'>
+          <div className="prof-item"><p className="user-det top">{user.username}</p></div>
+          <div className="prof-item"><p className="user-det bot">{user.email}</p></div>
+          <div className='prof-item link'>
             <Link className='profile-btn lnk' to={`/users/${userId}`}>Go to profile</Link>
             </div>
           <div className="prof-item">

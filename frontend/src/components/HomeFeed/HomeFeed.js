@@ -60,13 +60,10 @@ const HomeFeed = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalProps, setModalProps] = useState(null);
   const [modalPost, setModalPost] = useState(null);
-  // const [commentProps, setCommentProps] = useState(null);
   const [openComm, setOpenComm] = useState(false);
   const inputId = "home-comment";
 
-  function openModal() {
-    setIsOpen(true);
-  }
+
   function closeModal() {
     setIsOpen(false);
   }
@@ -83,11 +80,7 @@ const HomeFeed = () => {
     dispatch(loadAllPosts());
   }, [dispatch]);
 
-  // let window = document.documentElement.clientWidth
-  // useEffect(() => {
-  //   console.log(window)
 
-  // },[window, window.innerWidth])
 
   return (
     <div id="main-cont">
@@ -279,7 +272,7 @@ const HomeFeed = () => {
           <div className="tech-names-cont">
             <p className="tech-names-title">Technologies Used</p>
             <p className="tech-names">
-              React, Redux, Express, Sequelize, HTML, CSS{" "}
+              React, Redux, Javascript, Express, Sequelize, HTML, CSS{" "}
             </p>
           </div>
         </div>

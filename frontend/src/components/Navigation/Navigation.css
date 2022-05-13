@@ -6,17 +6,24 @@
   margin-top: 40px;
   top: 8%;
   z-index: 2;
-  /* right: 22%; */
   display:flex;
   flex-direction: column;
-  gap: 10px;
   background-color: white;
 }
 
+.user-det{
+  padding-left: 10px;
+  font-weight: 600;
+}
+
+.user-det.top{
+  margin-bottom: 10px;
+}
+
+
 .prof-item{
-  padding-left: 8px;
-  padding-top: 15px;
   width: 180px;
+  font-weight: 600;
 }
 
 
@@ -25,10 +32,6 @@
   display:flex;
   justify-content: center;
   gap: 200px;
-  /* position: fixed;
-  z-index: 2;
-  top:0;
-  left:0; */
   align-items: center;
   border: 1px solid #dbdbdb;
   border-top: none;
@@ -78,25 +81,34 @@
 .profile-btn{
   color: #0095F6;
     border: none;
-    /* padding: 10px; */
     background: none;
     cursor: pointer;
-    width: 180px;
     text-align: left;
-    padding-top: 8px;
-    padding-bottom: 8px;
+
 }
 
+
 .profile-btn.home{
-  padding-left: 0;
+  font-weight: 600;
+  width: 178px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 10px;
 }
 
 .profile-btn:hover{
   background-color: rgb(250, 249, 249);
+  color:#0781d3;
 }
+
 
 .profile-btn.lnk{
   text-decoration: none;
-  width: 180px !important;
+  width: 169px;
   cursor:pointer;
+  font-weight: 600;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 10px;
+  display: inline-block
 }

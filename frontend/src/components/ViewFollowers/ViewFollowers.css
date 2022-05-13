@@ -8,7 +8,8 @@
 
 .view-follows-cont{
     height: 520px;
-    width: 350px;
+    width: 450px;
+
 }
 
 
@@ -31,11 +32,12 @@
 .no-follows{
     display: flex;
     height: 520px;
-    width: 350px;
+    width: 450px;
     justify-content: center;
     flex-direction: column;
     gap: 50px;
     align-items: center;
+
 }
 
 .no-follow-icon{
