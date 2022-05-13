@@ -9,3 +9,12 @@ input::placeholder{
 input{
     font-family: 'Roboto', sans-serif;
 }
+
+
+html, body{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0;
+  }
+
+

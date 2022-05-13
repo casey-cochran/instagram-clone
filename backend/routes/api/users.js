@@ -57,7 +57,7 @@ router.get('/:userId/validate', asyncHandler(async(req,res) => {
   res.json(user)
 }))
 
-
+//TODO add offest to aide infinite scroll
 router.get("", asyncHandler(async(req,res) => {
   const posts = await Post.findAll({order:[['createdAt','DESC']],include:[{model:User}, {model:Like}, {model:Dislike}, {model:Comment, include: User}]})
   res.json(posts);
@@ -67,7 +67,6 @@ router.get('/:userId', asyncHandler(async(req,res) => {
   const {userId} = req.params;
   const user = await User.findByPk(+userId)
   const userPosts = await Post.findAll({where:{userId}, include: [User]})
-  // userPosts.dataValues['User'] = user
   res.json(userPosts)
 }))
 
