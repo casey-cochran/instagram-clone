@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { loadAllPosts } from "../../store/posts";
 import { useHistory, Link } from "react-router-dom";
 import "./HomeFeed.css";
@@ -80,10 +80,25 @@ const HomeFeed = () => {
     dispatch(loadAllPosts());
   }, [dispatch]);
 
+  const ref = useRef()
+  const onScroll = () => {
+    if (ref.current) {
+      const { scrollTop, scrollHeight, clientHeight } = ref.current;
+      if (scrollTop + clientHeight === scrollHeight) {
+        // TO SOMETHING HERE
+        // dispatch(loadAllPosts())
+        console.log('Reached bottom')
+      }
+    }
+  };
+  // const scrollTest = (e) => {
+  //   const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+  //   if(bottom) console.log('I am at the bottom ?')
+  // }
 
 
   return (
-    <div id="main-cont">
+    <div onScroll={onScroll} ref={ref} id="main-cont">
       <div className="user-feed">
         {posts.length > 0 &&
           posts?.map((post, index) => {
@@ -99,7 +114,6 @@ const HomeFeed = () => {
                           : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
                       }
                     />
-
                     <Link
                       className="link-to-user"
                       to={`/users/${post?.userId}`}
