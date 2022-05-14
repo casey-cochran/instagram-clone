@@ -44,7 +44,7 @@ const loadUserPosts = (posts) => ({
 })
 
 export const loadAllUserPosts = (userId) => async dispatch => {
-    const response = await csrfFetch(`/api/users/${userId}`);
+    const response = await csrfFetch(`/api/users/${userId}/posts`);
     const posts = await response.json();
     dispatch(loadUserPosts(posts))
     return posts;
@@ -198,10 +198,6 @@ export const loadAllPosts = (offset) => async dispatch => {
     const postData = await response.json()
     dispatch(loadPosts(postData))
 }
-//TODO need to restructure redux store to store data as arrays
-//to accomplished the pagination effect, since looping through the data
-//as an object sorts them, but need it to load unsorted.
-
 
 
 
@@ -212,12 +208,8 @@ function postsReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_POSTS:
         newState = {...state}
-        // if(newState.Posts){
-        //     let merge = {...newState.Posts, ...action.postData}
-        //     newState.Posts = merge;
-        //     return newState;
-        // }
-        newState['Posts'] = action.postData;
+        let merged = {...newState.Posts, ...action.postData}
+        newState.Posts = merged
         return newState;
     case DELETE_POST:
         newState = {...state}
