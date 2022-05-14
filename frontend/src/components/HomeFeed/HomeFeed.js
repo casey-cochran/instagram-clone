@@ -18,6 +18,7 @@ const HomeFeed = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const scrollRef = useRef()
+  const offset = useSelector((state) => state.postsReducer?.Posts.Offset)
   const user = useSelector((state) => state.session.user);
   const userId = useSelector((state) => state.session.user?.id);
   const posts = useSelector((state) =>
@@ -26,7 +27,7 @@ const HomeFeed = () => {
   // posts?.reverse();
 
   posts.sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
-
+  posts.pop()
   const comments = useSelector((state) =>
     Object.values(state.commentsReducer.Comments)
   );
@@ -78,11 +79,11 @@ const HomeFeed = () => {
   const closeCommModal = () => {
     setOpenComm(false);
   };
-  
-  let offset = 0;
+
+ const emptyOffset = 0;
   useEffect(() => {
     document.body.style.overflow='hidden'
-    dispatch(loadAllPosts(offset));//increase offset by 10
+    dispatch(loadAllPosts(offset ? offset : emptyOffset));//increase offset by 10
   }, [dispatch]);
 
 
@@ -91,9 +92,7 @@ const HomeFeed = () => {
     if (scrollRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
       if (scrollTop + clientHeight === scrollHeight) {
-        offset += 10;
          dispatch(loadAllPosts(offset))
-          console.log('at the bottom')
       }
     }
   };
