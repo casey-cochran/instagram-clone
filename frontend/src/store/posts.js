@@ -196,7 +196,6 @@ const loadPosts = (postData) => ({
 export const loadAllPosts = (offset) => async dispatch => {
     const response = await csrfFetch(`/api/users/${offset}`)
     const postData = await response.json()
-    console.log('\n \n ', 'postdata on scroll', postData, '\n \n')
     dispatch(loadPosts(postData))
 }
 

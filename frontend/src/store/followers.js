@@ -62,7 +62,6 @@ function followsReducer(state = initialState, action){
     switch(action.type){
         case LOAD_FOLLOWS:
             newState = {...state};
-            // console.log(action.follows, ' waht is action follows')
             newState.Follows = action.follows.followed
             newState.Following = action.follows.followers
             return newState;
