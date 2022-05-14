@@ -22,6 +22,7 @@ const HomeFeed = () => {
   const posts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
+
   posts?.reverse();
   const comments = useSelector((state) =>
     Object.values(state.commentsReducer.Comments)
@@ -74,27 +75,25 @@ const HomeFeed = () => {
   const closeCommModal = () => {
     setOpenComm(false);
   };
-
+  let offset = 0;
   useEffect(() => {
     document.body.style.overflow='hidden'
-    dispatch(loadAllPosts());
+    dispatch(loadAllPosts(offset));//increase offset by 10
   }, [dispatch]);
 
   const ref = useRef()
+
   const onScroll = () => {
     if (ref.current) {
       const { scrollTop, scrollHeight, clientHeight } = ref.current;
       if (scrollTop + clientHeight === scrollHeight) {
-        // TO SOMETHING HERE
-        // dispatch(loadAllPosts())
-        console.log('Reached bottom')
+        // offset += 10;
+        //  dispatch(loadAllPosts(offset))
+          console.log('at the bottom')
       }
     }
   };
-  // const scrollTest = (e) => {
-  //   const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-  //   if(bottom) console.log('I am at the bottom ?')
-  // }
+
 
 
   return (
