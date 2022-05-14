@@ -44,7 +44,7 @@ const loadUserPosts = (posts) => ({
 })
 
 export const loadAllUserPosts = (userId) => async dispatch => {
-    const response = await csrfFetch(`/api/users/${userId}`);
+    const response = await csrfFetch(`/api/users/${userId}/posts`);
     const posts = await response.json();
     dispatch(loadUserPosts(posts))
     return posts;
@@ -193,15 +193,11 @@ const loadPosts = (postData) => ({
     postData
 })
 
-export const loadAllPosts = () => async dispatch => {
-    const response = await csrfFetch('/api/users')
+export const loadAllPosts = (offset) => async dispatch => {
+    const response = await csrfFetch(`/api/users/${offset}`)
     const postData = await response.json()
     dispatch(loadPosts(postData))
 }
-
-
-
-
 
 
 
@@ -212,11 +208,8 @@ function postsReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_POSTS:
         newState = {...state}
-        // let posts = []
-        action.postData.forEach((post) => newState.Posts[post.id] = post)
-        // action.postData.forEach((post) => posts.push(post[post.id] = post))
-        // newState.Posts = posts
-        // console.log(newState.Posts, ' what happened')
+        let merged = {...newState.Posts, ...action.postData}
+        newState.Posts = merged
         return newState;
     case DELETE_POST:
         newState = {...state}

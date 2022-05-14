@@ -17,12 +17,16 @@ import AddDislikes from "../Dislike/AddDislike";
 const HomeFeed = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const scrollRef = useRef()
   const user = useSelector((state) => state.session.user);
   const userId = useSelector((state) => state.session.user?.id);
   const posts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
-  posts?.reverse();
+  // posts?.reverse();
+
+  posts.sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+
   const comments = useSelector((state) =>
     Object.values(state.commentsReducer.Comments)
   );
@@ -74,31 +78,30 @@ const HomeFeed = () => {
   const closeCommModal = () => {
     setOpenComm(false);
   };
-
+  
+  let offset = 0;
   useEffect(() => {
     document.body.style.overflow='hidden'
-    dispatch(loadAllPosts());
+    dispatch(loadAllPosts(offset));//increase offset by 10
   }, [dispatch]);
 
-  const ref = useRef()
+
+
   const onScroll = () => {
-    if (ref.current) {
-      const { scrollTop, scrollHeight, clientHeight } = ref.current;
+    if (scrollRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
       if (scrollTop + clientHeight === scrollHeight) {
-        // TO SOMETHING HERE
-        // dispatch(loadAllPosts())
-        console.log('Reached bottom')
+        offset += 10;
+         dispatch(loadAllPosts(offset))
+          console.log('at the bottom')
       }
     }
   };
-  // const scrollTest = (e) => {
-  //   const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-  //   if(bottom) console.log('I am at the bottom ?')
-  // }
+
 
 
   return (
-    <div onScroll={onScroll} ref={ref} id="main-cont">
+    <div onScroll={onScroll} ref={scrollRef} id="main-cont">
       <div className="user-feed">
         {posts.length > 0 &&
           posts?.map((post, index) => {

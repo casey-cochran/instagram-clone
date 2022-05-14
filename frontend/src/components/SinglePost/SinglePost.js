@@ -47,7 +47,7 @@ const SinglePost = () => {
   }
 
   useEffect(() => {
-    document.body.style.overflow='auto'
+    document.body.style.overflow='scroll';
     dispatch(loadSinglePost(postId))
   }, [dispatch]);
 
