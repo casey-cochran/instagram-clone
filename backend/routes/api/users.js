@@ -58,9 +58,13 @@ router.get('/:userId/validate', asyncHandler(async(req,res) => {
 }))
 
 //TODO add offest to aide infinite scroll
-router.get("", asyncHandler(async(req,res) => {
-  const posts = await Post.findAll({order:[['createdAt','DESC']],include:[{model:User}, {model:Like}, {model:Dislike}, {model:Comment, include: User}]})
-  res.json(posts);
+//will have to restructure to an array to get pagination effect
+router.get("/:offset", asyncHandler(async(req,res) => {
+  const {offset} = req.params
+  const posts = await Post.findAll({order:[['createdAt','DESC']],include:[{model:User}, {model:Like}, {model:Dislike}, {model:Comment, include: User}], limit: 10, offset: +offset})
+  const postObj = {}
+  posts.forEach((post) => postObj[post.id] = post)
+  res.json(postObj);
 }));
 
 router.get('/:userId', asyncHandler(async(req,res) => {
