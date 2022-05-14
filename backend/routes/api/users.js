@@ -63,9 +63,10 @@ router.get("/:offset", asyncHandler(async(req,res) => {
   const {offset} = req.params
   const posts = await Post.findAll({order:[['createdAt','DESC']],
     include:[{model:User}, {model:Like}, {model:Dislike}, {model:Comment, include: User}],
-   limit: 10, offset: +offset})
-  const postObj = {}
+    offset: +offset, limit: 10})
+  let postObj = {}
   posts.forEach((post) => postObj[post.id] = post)
+  postObj['Offset'] = +offset + 10
   res.json(postObj);
 }));
 
