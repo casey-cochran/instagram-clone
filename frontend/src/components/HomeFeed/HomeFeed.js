@@ -24,7 +24,6 @@ const HomeFeed = () => {
   const posts = useSelector((state) =>
     Object.values(state.postsReducer?.Posts)
   );
-  // posts?.reverse();
 
   posts.sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
   posts.pop()
