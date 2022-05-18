@@ -17,8 +17,8 @@ const FollowUser = () => {
 
     if(userFollowers?.length > 0) alreadyFollowed = userFollowers?.find((follow) => follow?.id === currentUser.id)
     const ifFollow = () => {
-        const follow = userFollowers?.find((follow) => follow?.id === currentUser.id)
-        if(follow ){
+        // const follow = userFollowers?.find((follow) => follow?.id === currentUser.id)
+        if(alreadyFollowed ){
             dispatch(unfollowUser(currentUser.id, userId))
         }else {
             dispatch(followUser(currentUser.id, userId))
