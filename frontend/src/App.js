@@ -6,15 +6,12 @@ import PageNotFound from './components/PageNotFound/PageNotFound';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation/Navigation';
 import HomeFeed from './components/HomeFeed/HomeFeed';
-import DeletePost from './components/DeletePost/DeletePost';
 import SinglePost from './components/SinglePost/SinglePost';
 import LoginForm from './components/LoginFormModal/LoginForm';
-import EditComment from './components/EditComment/EditComment';
 import UserProfile from './components/UserProfile/UserProfile';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const user = useSelector((state) => state.session?.user)
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
