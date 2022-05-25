@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
-import { searchUser } from "../store/search";
+import { searchUser } from "../../store/search";
 
 
 const Search = () => {
