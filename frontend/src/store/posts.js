@@ -173,6 +173,12 @@ export const deleteSinglePost = (postId) => async dispatch => {
 }
 
 
+const updateOffset = (offset) => ({
+    type: CREATE_POST,
+    offset
+})
+
+
 export const createUserPost = (post) => async dispatch => {
     const {image, caption, userId} = post;
     const formData = new FormData();
@@ -185,6 +191,8 @@ export const createUserPost = (post) => async dispatch => {
         body: formData
     })
     const data = await response.json()
+    const offset = 0
+    dispatch(updateOffset(offset))
     return data
 }
 
@@ -268,6 +276,10 @@ function postsReducer(state = initialState, action) {
        const dislikesArr = newState.Posts[action.postId].Dislikes.filter((like) => like.id !== action.dislikeId);
        newState.Posts[action.postId].Dislikes = dislikesArr;
        return newState;
+    case CREATE_POST:
+        newState = {...state}
+        newState.Posts.Offset = action.offset
+        return newState
     default:
       return state;
   }

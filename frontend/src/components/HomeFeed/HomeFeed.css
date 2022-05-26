@@ -111,9 +111,12 @@
 
 .add-img.home{
   height: 414px;
-  object-fit: fill;
+  object-fit: contain;
   width: 600px;
+
 }
+
+
 
 .add-comment{
   border: 1px solid black;
