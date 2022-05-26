@@ -6,7 +6,6 @@ import "./CreatePost.css";
 
 const CreatePost = ({ closeModal }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
 
   const [src, setSrc] = useState('')
@@ -60,7 +59,6 @@ const CreatePost = ({ closeModal }) => {
     if (value?.errors) {
       return setErrors(value?.errors);
     }
-
     closeModal();
   };
 

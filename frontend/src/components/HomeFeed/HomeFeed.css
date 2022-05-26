@@ -111,7 +111,8 @@
 
 .add-img.home{
   height: 414px;
-  object-fit: fill;
+  object-fit: cover;
+  object-position: center;
   width: 600px;
 }
 
