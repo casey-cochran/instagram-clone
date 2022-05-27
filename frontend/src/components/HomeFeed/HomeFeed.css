@@ -108,14 +108,11 @@
   height: 40px;
 }
 
-
 .add-img.home{
+  width: 600px;
   height: 414px;
   object-fit: contain;
-  width: 600px;
-
 }
-
 
 
 .add-comment{
