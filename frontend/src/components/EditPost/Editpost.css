@@ -16,9 +16,11 @@
     padding: 5px;
 }
 
+
 .edit-post-input{
     width: 250px;
-    border:none;
+    border: 1px solid #dbdbdb;
+    padding: 7px;
     background: none;
 }
 
@@ -31,7 +33,7 @@
 }
 
 .add-img.edit{
-    height: 350px;
+    height: 370px;
 }
 
 .delete-one-post{

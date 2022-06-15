@@ -26,6 +26,7 @@ export const editUserProfile = (user) => async dispatch => {
     const formData = new FormData();
     formData.append('bio', bio)
     formData.append('userId', userId)
+    
     if(image) formData.append('image', image)
     const response = await csrfFetch(`/api/users/${user.id}/edit`, {
         method: 'PATCH',

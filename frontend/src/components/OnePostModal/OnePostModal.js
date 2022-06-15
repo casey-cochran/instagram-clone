@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import "./OnePost.css";
 import PostComment from "../PostComment/PostComment";
 import { deleteOneComment } from "../../store/comments";
-import { FaUserCircle, FaEllipsisH } from "react-icons/fa";
+import { FaEllipsisH } from "react-icons/fa";
 import { GoTrashcan } from 'react-icons/go';
 import AddLikes from "../Likes/Likes";
 import AddDislikes from "../Dislike/AddDislike";

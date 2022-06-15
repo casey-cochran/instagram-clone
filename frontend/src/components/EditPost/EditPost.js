@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { editSinglePost, deleteSinglePost } from "../../store/posts";
 import { useHistory } from "react-router-dom";
 import './Editpost.css';
 
-const EditPost = ({ postId, closeModal, postImg }) => {
+const EditPost = ({ postId, closeModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const userId = useSelector((state) => state.session.user.id);
@@ -17,7 +17,6 @@ const EditPost = ({ postId, closeModal, postImg }) => {
   const removePost = () => {
     dispatch(deleteSinglePost(postId))
     history.push(`/users/${userId}`)
-    // history.push('/')
   }
 
   let buttonClass = '';
@@ -55,7 +54,6 @@ const EditPost = ({ postId, closeModal, postImg }) => {
     <>
     {!deletePost ?
     <div className="edit-post-cont">
-      <h2 className="edit-post-title">Edit post</h2>
       <img className="add-img edit" src={post?.image} />
       <form className='edit-post-form' onSubmit={handleSubmit}>
         <ul>

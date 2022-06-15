@@ -33,6 +33,7 @@ const SinglePost = () => {
       top: "50%",
       left: "50%",
       right: "auto",
+      padding: '0px',
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
