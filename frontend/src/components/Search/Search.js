@@ -16,7 +16,6 @@ const Search = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
-    console.log(searchResults)
     if(!searchVal){
       window.location.reload()
     }else{
