@@ -166,6 +166,10 @@
   color:black;
 }
 
+.icons:hover{
+  color: rgb(65, 63, 63);
+}
+
 .sub-likes-cont > p{
   margin: 0px;
 }

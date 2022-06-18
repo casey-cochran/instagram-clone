@@ -12,18 +12,18 @@ const Search = () => {
   const [searchVal, setSearchVal] = useState('');
   const [menu, setMenu] = useState(false);
   const searchResults = useSelector((state) => Object.values(state.searchReducer.Search))
-    const testRef = useRef()
 
 
-  const handleSubmit = () => {
-    history.push(`/users/${searchResults[0]?.id}`)
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+    console.log(searchResults)
+    if(!searchVal){
+      window.location.reload()
+    }else{
+       history.push(`/users/${searchResults[0]?.id}`)
+    }
   }
 
-//   useEffect(() => {
-//       if(searchResults?.length > 0){
-//           testRef.current.focus();
-//       }
-//   })
 
 
   useEffect(() => {
@@ -38,9 +38,11 @@ const Search = () => {
   useEffect(() => {
       if(searchVal.length > 0){
           setMenu(true)
-    dispatch(searchUser(searchVal));
+          dispatch(searchUser(searchVal));
       }
-      if(searchVal.length === 0) setMenu(false)
+      if(searchVal.length === 0) {
+        setMenu(false)
+      }
   }, [searchVal]);
 
   return (
