@@ -12,15 +12,19 @@ const Search = () => {
   const [searchVal, setSearchVal] = useState('');
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(0)
-  const searchResults = useSelector((state) => Object.values(state.searchReducer.Search))
+  const searchResults = useSelector((state) => Object.values(state.searchReducer.Search));
+  
+
+
 
   const keyDown = (e) => {
-    if(e.key === 38 && searchResults.length > 0){
+    if(e.key === 38 && active > 0){
       setActive(active - 1)
     }else if(e.key === 40 && active < searchResults.length - 1){
       setActive(active + 1)
     }
   }
+
 
 
   const handleSubmit = async(e) => {
@@ -73,7 +77,7 @@ const Search = () => {
           {searchResults.length > 0 ? (
             searchResults?.map((ele, i) => {
               return (
-                <NavLink onClick={(() => {setSearchVal('')})}id={active === i ? 'active' : null}  key={i}  className="spot-links" to={`/users/${ele.id}`}>
+                <NavLink  onClick={(() => {setSearchVal('')})}id={active === i ? 'active' : null}  key={i}  className="spot-links" to={`/users/${ele.id}`}>
                   <div
                     className="search-results-list"
                   >
