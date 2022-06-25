@@ -13,18 +13,25 @@ const Search = () => {
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(0)
   const searchResults = useSelector((state) => Object.values(state.searchReducer.Search));
-  
+  const testRef = useRef(null);
 
 
 
   const keyDown = (e) => {
-    if(e.key === 38 && active > 0){
+    if(e.keyCode === 38 && active > 0){
       setActive(active - 1)
-    }else if(e.key === 40 && active < searchResults.length - 1){
+    }else if(e.keyCode === 40 && active < searchResults.length - 1){
       setActive(active + 1)
     }
   }
 
+  useEffect(() => {
+    if(testRef.current){
+      testRef.current.focus()
+    }
+    window.addEventListener('keydown', keyDown)
+    return () => window.removeEventListener('keydown', keyDown)
+  },[searchResults])
 
 
   const handleSubmit = async(e) => {
@@ -77,7 +84,7 @@ const Search = () => {
           {searchResults.length > 0 ? (
             searchResults?.map((ele, i) => {
               return (
-                <NavLink  onClick={(() => {setSearchVal('')})}id={active === i ? 'active' : null}  key={i}  className="spot-links" to={`/users/${ele.id}`}>
+                <NavLink ref={active === i ? testRef : null}   onClick={(() => {setSearchVal('')})} key={i}  className="spot-links" to={`/users/${ele.id}`}>
                   <div
                     className="search-results-list"
                   >
