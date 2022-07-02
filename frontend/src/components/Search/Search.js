@@ -20,18 +20,21 @@ const Search = () => {
   const keyDown = (e) => {
     if(e.keyCode === 38 && active > 0){
       setActive(active - 1)
+      testRef.current.focus()
+      testRef.current.style.backgroundColor = 'red'
     }else if(e.keyCode === 40 && active < searchResults.length - 1){
       setActive(active + 1)
+      testRef.current.focus()
+      testRef.current.style.color = 'red'
     }
   }
 
   useEffect(() => {
-    if(testRef.current){
-      testRef.current.focus()
-    }
+    if(menu && searchResults.length > 0) testRef.current.focus()
     window.addEventListener('keydown', keyDown)
     return () => window.removeEventListener('keydown', keyDown)
   },[searchResults])
+
 
 
   const handleSubmit = async(e) => {
@@ -43,11 +46,10 @@ const Search = () => {
     }
   }
 
-
-
   useEffect(() => {
     if (!menu) return;
     const closeMenu = () => {
+      setActive(0)
       setMenu(false);
     };
     document.addEventListener("click", closeMenu);
@@ -60,6 +62,7 @@ const Search = () => {
           dispatch(searchUser(searchVal));
       }
       if(searchVal.length === 0) {
+        setActive(0)
         setMenu(false)
       }
   }, [searchVal]);
@@ -82,9 +85,9 @@ const Search = () => {
       {menu && (
         <div className="search-cont">
           {searchResults.length > 0 ? (
-            searchResults?.map((ele, i) => {
+            searchResults.map((ele, i) => {
               return (
-                <NavLink ref={active === i ? testRef : null}   onClick={(() => {setSearchVal('')})} key={i}  className="spot-links" to={`/users/${ele.id}`}>
+                <NavLink ref={active === i ? testRef : null}  onClick={(() => {setSearchVal('')})} key={i}  className="spot-links" to={`/users/${ele.id}`}>
                   <div
                     className="search-results-list"
                   >
