@@ -11,7 +11,7 @@ const Search = () => {
   const history = useHistory();
   const [searchVal, setSearchVal] = useState('');
   const [menu, setMenu] = useState(false);
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(-1)
   const searchResults = useSelector((state) => Object.values(state.searchReducer.Search));
   const testRef = useRef(null);
 
@@ -21,19 +21,20 @@ const Search = () => {
     if(e.keyCode === 38 && active > 0){
       setActive(active - 1)
       testRef.current.focus()
-      testRef.current.style.backgroundColor = 'red'
+      testRef.current.style.margin = '100px'
+      console.log('am i in here ?')
     }else if(e.keyCode === 40 && active < searchResults.length - 1){
       setActive(active + 1)
+      console.log(active)
       testRef.current.focus()
-      testRef.current.style.color = 'red'
+      testRef.current.style.color = 'black'
     }
   }
 
   useEffect(() => {
-    if(menu && searchResults.length > 0) testRef.current.focus()
     window.addEventListener('keydown', keyDown)
     return () => window.removeEventListener('keydown', keyDown)
-  },[searchResults])
+  },[keyDown])
 
 
 
