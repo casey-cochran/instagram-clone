@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { searchUser } from "../../store/search";
+import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 
 
 const Search = () => {
@@ -11,30 +12,37 @@ const Search = () => {
   const history = useHistory();
   const [searchVal, setSearchVal] = useState('');
   const [menu, setMenu] = useState(false);
-  const [active, setActive] = useState(-1)
+  const [active, setActive] = useState(0)
   const searchResults = useSelector((state) => Object.values(state.searchReducer.Search));
   const testRef = useRef(null);
 
 
 
   const keyDown = (e) => {
+    if(testRef.current) testRef.current.style.color = ''
     if(e.keyCode === 38 && active > 0){
       setActive(active - 1)
       testRef.current.focus()
-      testRef.current.style.margin = '100px'
-      console.log('am i in here ?')
+      if(testRef.current.style.color){
+        testRef.current.style.color = ''
+      }else{
+        testRef.current.style.color = 'red'
+      }
     }else if(e.keyCode === 40 && active < searchResults.length - 1){
       setActive(active + 1)
-      console.log(active)
       testRef.current.focus()
-      testRef.current.style.color = 'black'
+      if(testRef.current.style.color){
+        testRef.current.style.color = ''
+      }else{
+        testRef.current.style.color = 'red'
+      }
     }
   }
 
   useEffect(() => {
     window.addEventListener('keydown', keyDown)
     return () => window.removeEventListener('keydown', keyDown)
-  },[keyDown])
+  },[searchResults])
 
 
 
