@@ -21,6 +21,7 @@ const Search = () => {
   const keyDown = (e) => {
     if(testRef.current) testRef.current.style.color = ''
     if(e.keyCode === 38 && active > 0){
+      e.stopPropagation()
       setActive(active - 1)
       testRef.current.focus()
       if(testRef.current.style.color){
@@ -29,6 +30,7 @@ const Search = () => {
         testRef.current.style.color = 'red'
       }
     }else if(e.keyCode === 40 && active < searchResults.length - 1){
+      e.stopPropagation()
       setActive(active + 1)
       testRef.current.focus()
       if(testRef.current.style.color){
