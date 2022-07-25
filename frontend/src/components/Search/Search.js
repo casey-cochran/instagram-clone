@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { searchUser } from "../../store/search";
-import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 
 
 const Search = () => {
@@ -19,24 +18,26 @@ const Search = () => {
 
 
   const keyDown = (e) => {
-    if(testRef.current) testRef.current.style.color = ''
     if(e.keyCode === 38 && active > 0){
+      if(testRef.current) testRef.current.style.color = ''
       e.stopPropagation()
       setActive(active - 1)
       testRef.current.focus()
       if(testRef.current.style.color){
         testRef.current.style.color = ''
       }else{
-        testRef.current.style.color = 'red'
+        testRef.current.style.color = '#0095F6'
       }
     }else if(e.keyCode === 40 && active < searchResults.length - 1){
+      if(testRef.current) testRef.current.style.color = ''
       e.stopPropagation()
       setActive(active + 1)
+      console.log(active)
       testRef.current.focus()
       if(testRef.current.style.color){
         testRef.current.style.color = ''
       }else{
-        testRef.current.style.color = 'red'
+        testRef.current.style.color = '#0095F6'
       }
     }
   }

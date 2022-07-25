@@ -57,3 +57,6 @@
     color:black;
     text-decoration: none;
 }
+.spot-links:focus{
+    outline: none;
+}
