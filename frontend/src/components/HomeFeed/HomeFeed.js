@@ -287,7 +287,7 @@ const HomeFeed = () => {
           <div className="tech-names-cont">
             <p className="tech-names-title">Technologies Used</p>
             <p className="tech-names">
-              React, Redux, Javascript, Express, Sequelize, HTML, CSS{" "}
+              React, Redux, Javascript, Express, Sequelize, HTML, CSS, AWS S3{" "}
             </p>
           </div>
         </div>

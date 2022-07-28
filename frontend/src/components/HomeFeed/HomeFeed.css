@@ -108,14 +108,11 @@
   height: 40px;
 }
 
-
 .add-img.home{
+  width: 600px;
   height: 414px;
   object-fit: contain;
-  width: 600px;
-
 }
-
 
 
 .add-comment{
@@ -167,6 +164,10 @@
   line-height: 20px;
   cursor: pointer;
   color:black;
+}
+
+.icons:hover{
+  color: rgb(65, 63, 63);
 }
 
 .sub-likes-cont > p{

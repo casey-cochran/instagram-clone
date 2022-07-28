@@ -8,17 +8,11 @@
     padding: 0;
 }
 
-.edit-post-title{
-    border-bottom: 1px solid #dbdbdb;
-    width: 450px;
-    margin: 0;
-    text-align: center;
-    padding: 5px;
-}
 
 .edit-post-input{
     width: 250px;
-    border:none;
+    border: 1px solid #dbdbdb;
+    padding: 7px;
     background: none;
 }
 
@@ -27,11 +21,11 @@
 }
 
 .edit-post-form{
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .add-img.edit{
-    height: 350px;
+    height: 370px;
 }
 
 .delete-one-post{

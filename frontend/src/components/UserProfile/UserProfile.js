@@ -126,7 +126,7 @@ const UserProfile = () => {
               onRequestClose={closeFollowModal}
               style={customStyles}
               >
-                <ViewFollowers follow={followProps} closeModal={closeFollowModal}/>
+                <ViewFollowers follow={followProps} profileUser={profileUser.username} closeModal={closeFollowModal}/>
             </Modal>
             </div>
             <div>{userFollowing?.length > 0 ? userFollowing?.length : 0}<button className="following-btns" onClick={openFollowingModal}>Following</button></div>
@@ -135,7 +135,7 @@ const UserProfile = () => {
               onRequestClose={closeFollowingModal}
               style={customStyles}
               >
-                <ViewFollowing closeModal={closeFollowingModal} following={followingProps} />
+                <ViewFollowing closeModal={closeFollowingModal} profileUser={profileUser.username} following={followingProps} />
               </Modal>
           </div>
           <div>

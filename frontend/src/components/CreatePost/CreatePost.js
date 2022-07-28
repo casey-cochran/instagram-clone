@@ -1,16 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { createUserPost } from "../../store/posts";
 import "./CreatePost.css";
+
 
 const CreatePost = ({ closeModal }) => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.session.user.id);
-
   const [src, setSrc] = useState('')
   const [image, setImage] = useState(null);
-  const [test,setTest] = useState(false)
   const [caption, setCaption] = useState("");
   const [errors, setErrors] = useState([]);
   const [openForm, setOpenForm] = useState(false);
@@ -70,14 +68,14 @@ const CreatePost = ({ closeModal }) => {
     if (file) setImage(file);
   }
 
-  const isImageReal = () => {
-    setImage("https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png")
-    setTest(true)
-  }
+  // const isImageReal = () => {
+  //   setImage("https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png")
+  //   setTest(true)
+  // }
 
-  const didLoad = () => {
-    setTest(true)
-  }
+  // const didLoad = () => {
+  //   setTest(true)
+  // }
   return (
     <div>
       {openForm ? (

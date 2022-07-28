@@ -46,6 +46,7 @@ const PostComment = ({postId, userId, inputId}) => {
         className="home-feed-input modal"
         onChange={(e) => setContent(e.target.value)}
         value={content}
+        autoFocus
         placeholder={errors.length > 0 ? errors : 'Add a comment'}
         type="text"
       />
