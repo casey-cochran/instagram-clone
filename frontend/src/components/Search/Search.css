@@ -59,4 +59,5 @@
 }
 .spot-links:focus{
     outline: none;
+    color:#0095F6;
 }

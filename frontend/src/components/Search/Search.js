@@ -13,32 +13,28 @@ const Search = () => {
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(0)
   const searchResults = useSelector((state) => Object.values(state.searchReducer.Search));
-  const testRef = useRef(null);
-
+  const navRef = useRef(null);
+  const inputRef = useRef(null);
+  const [allowFocus, setAllowFocus] = useState(true);
 
 
   const keyDown = (e) => {
+    if(e.keyCode === 38 && active === 0){
+      inputRef.current.focus();
+    }
     if(e.keyCode === 38 && active > 0){
-      if(testRef.current) testRef.current.style.color = ''
       e.stopPropagation()
       setActive(active - 1)
-      testRef.current.focus()
-      if(testRef.current.style.color){
-        testRef.current.style.color = ''
-      }else{
-        testRef.current.style.color = '#0095F6'
-      }
+      navRef.current.focus()
     }else if(e.keyCode === 40 && active < searchResults.length - 1){
-      if(testRef.current) testRef.current.style.color = ''
       e.stopPropagation()
-      setActive(active + 1)
-      console.log(active)
-      testRef.current.focus()
-      if(testRef.current.style.color){
-        testRef.current.style.color = ''
-      }else{
-        testRef.current.style.color = '#0095F6'
+      if(active === 0 && navRef.current && allowFocus){
+        navRef.current.focus()
+        setAllowFocus(false)
+        return;
       }
+      setActive(active + 1)
+      navRef.current.focus()
     }
   }
 
@@ -46,7 +42,6 @@ const Search = () => {
     window.addEventListener('keydown', keyDown)
     return () => window.removeEventListener('keydown', keyDown)
   },[searchResults])
-
 
 
   const handleSubmit = async(e) => {
@@ -62,6 +57,7 @@ const Search = () => {
     if (!menu) return;
     const closeMenu = () => {
       setActive(0)
+      setAllowFocus(true)
       setMenu(false);
     };
     document.addEventListener("click", closeMenu);
@@ -71,10 +67,10 @@ const Search = () => {
   useEffect(() => {
       if(searchVal.length > 0){
           setMenu(true)
+          setAllowFocus(true)
           dispatch(searchUser(searchVal));
       }
       if(searchVal.length === 0) {
-        setActive(0)
         setMenu(false)
       }
   }, [searchVal]);
@@ -84,7 +80,8 @@ const Search = () => {
       <BsSearch className="search-icon" />
       <form onSubmit={handleSubmit}>
       <input
-        onClick={() => setMenu(true)}
+        onClick={() => setMenu(true)}w
+        ref={inputRef}
         className="search-input"
         autoFocus
         onKeyDown={keyDown}
@@ -99,7 +96,7 @@ const Search = () => {
           {searchResults.length > 0 ? (
             searchResults.map((ele, i) => {
               return (
-                <NavLink ref={active === i ? testRef : null}  onClick={(() => {setSearchVal('')})} key={i}  className="spot-links" to={`/users/${ele.id}`}>
+                <NavLink ref={active === i ? navRef : null}  onClick={(() => {setSearchVal('')})} key={i}  className="spot-links" to={`/users/${ele.id}`}>
                   <div
                     className="search-results-list"
                   >
