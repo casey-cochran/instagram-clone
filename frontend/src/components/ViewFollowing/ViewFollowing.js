@@ -4,7 +4,7 @@ import {RiEmotionSadLine} from 'react-icons/ri';
 
 
 
-const ViewFollowing = ({following, closeModal}) => {
+const ViewFollowing = ({following, closeModal, profileUser}) => {
 
 
     return (
@@ -21,7 +21,7 @@ const ViewFollowing = ({following, closeModal}) => {
             })}
      </> : <div className='no-follows'>
          <h2>
-         User is not following anyone
+         {profileUser} is not following anyone
              </h2>
          <div><RiEmotionSadLine className='no-follow-icon'/></div>
              </div>  }

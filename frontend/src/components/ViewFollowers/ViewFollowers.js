@@ -4,7 +4,7 @@ import './ViewFollowers.css';
 
 
 
-const ViewFollowers = ({follow, closeModal}) => {
+const ViewFollowers = ({follow, closeModal, profileUser}) => {
 
 
     return (
@@ -21,7 +21,7 @@ const ViewFollowers = ({follow, closeModal}) => {
             })}
      </> : <div className='no-follows'>
          <h2>
-         User has no followers
+         {profileUser} has no followers
              </h2>
          <div><RiEmotionSadLine className='no-follow-icon'/></div>
              </div>  }

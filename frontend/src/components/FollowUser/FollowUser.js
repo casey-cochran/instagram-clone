@@ -9,16 +9,15 @@ const FollowUser = () => {
     const { userId } = useParams();
     const currentUser = useSelector((state) => state.session.user)
     const userFollowers = useSelector((state) => state.followsReducer?.Follows)
-    const userPosts = useSelector((state) =>
-    Object.values(state.postsReducer?.Posts)
-  );
+//     const userPosts = useSelector((state) =>
+//     Object.values(state.postsReducer?.Posts)
+//   );
     let alreadyFollowed;
 
 
     if(userFollowers?.length > 0) alreadyFollowed = userFollowers?.find((follow) => follow?.id === currentUser.id)
     const ifFollow = () => {
-        // const follow = userFollowers?.find((follow) => follow?.id === currentUser.id)
-        if(alreadyFollowed ){
+        if(alreadyFollowed){
             dispatch(unfollowUser(currentUser.id, userId))
         }else {
             dispatch(followUser(currentUser.id, userId))
