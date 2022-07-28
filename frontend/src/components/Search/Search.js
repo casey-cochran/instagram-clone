@@ -19,8 +19,13 @@ const Search = () => {
 
 
   const keyDown = (e) => {
+    if(e.keyCode === 40 && active === searchResults.length - 1){
+      navRef.current.focus()
+    }
     if(e.keyCode === 38 && active === 0){
       inputRef.current.focus();
+      setActive(0);
+      setAllowFocus(true);
     }
     if(e.keyCode === 38 && active > 0){
       e.stopPropagation()
@@ -71,6 +76,7 @@ const Search = () => {
           dispatch(searchUser(searchVal));
       }
       if(searchVal.length === 0) {
+        setAllowFocus(true)
         setMenu(false)
       }
   }, [searchVal]);
